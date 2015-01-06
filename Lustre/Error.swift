@@ -8,14 +8,18 @@
 
 import Foundation
 
-public protocol ErrorRepresentable: RawRepresentable {
+public protocol ErrorRepresentable {
+    typealias ErrorCode: SignedIntegerType
+
     class var domain: String { get }
+    var code: ErrorCode { get }
+    var localizedDescription: String? { get }
 }
 
-public func error<T: ErrorRepresentable where T.RawValue == Int>(#code: T, description : String? = nil) -> NSError {
+public func error<T: ErrorRepresentable>(#code: T) -> NSError {
     var userInfo = [NSObject: AnyObject]()
-    if let description = description {
+    if let description = code.localizedDescription {
         userInfo[NSLocalizedDescriptionKey] = description
     }
-    return NSError(domain: T.domain, code: code.rawValue, userInfo: nil)
+    return NSError(domain: T.domain, code: numericCast(code.code), userInfo: userInfo)
 }
