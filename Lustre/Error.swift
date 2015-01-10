@@ -8,18 +8,26 @@
 
 import Foundation
 
-public protocol ErrorRepresentable {
+public protocol ErrorRepresentable: Printable {
     typealias ErrorCode: SignedIntegerType
 
     class var domain: String { get }
     var code: ErrorCode { get }
-    var localizedDescription: String? { get }
+    var failureReason: String? { get }
 }
 
-public func error<T: ErrorRepresentable>(#code: T) -> NSError {
+public func error<T: ErrorRepresentable>(#code: T, underlying: NSError? = nil) -> NSError {
     var userInfo = [NSObject: AnyObject]()
-    if let description = code.localizedDescription {
-        userInfo[NSLocalizedDescriptionKey] = description
+
+    userInfo[NSLocalizedDescriptionKey] = code.description
+
+    if let reason = code.failureReason {
+        userInfo[NSLocalizedFailureReasonErrorKey] = reason
     }
+
+    if let underlying = underlying {
+        userInfo[NSUnderlyingErrorKey] = underlying
+    }
+
     return NSError(domain: T.domain, code: numericCast(code.code), userInfo: userInfo)
 }
