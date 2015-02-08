@@ -79,11 +79,11 @@ public func success<T, R: CustomResult where R.Value == T>(value: T) -> R {
     return R(success: value)
 }
 
-public func failure<R: ResultType>(error: NSError) -> R {
+public func failure<R: CustomResult>(error: NSError) -> R {
     return R(failure: error)
 }
 
-public func failure<R: ResultType>(message: String? = nil, file: String = __FILE__, line: Int = __LINE__) -> R {
+public func failure<R: CustomResult>(message: String? = nil, file: String = __FILE__, line: Int = __LINE__) -> R {
     return R(failure: error(message, file: file, line: line))
 }
 
