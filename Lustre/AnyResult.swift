@@ -75,7 +75,7 @@ extension VoidResult {
 
 extension ObjectResult {
 
-    public func map<U: AnyObject>(transform: T -> U) -> AnyResult<U> {
+    public func map<U>(transform: T -> U) -> AnyResult<U> {
         switch self {
         case Success(let value): return .Success(transform(value))
         case Failure(let error): return .Failure(error)
