@@ -16,6 +16,10 @@ public enum VoidResult {
 
 extension VoidResult: _ResultType {
 
+    public init(failure: NSError) {
+        self = .Failure(failure)
+    }
+
     public var isSuccess: Bool {
         switch self {
         case .Success: return true

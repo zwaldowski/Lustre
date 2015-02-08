@@ -18,6 +18,10 @@ public enum AnyResult<T> {
 
 extension AnyResult: ResultType {
 
+    public init(failure: NSError) {
+        self = .Failure(failure)
+    }
+
     public var isSuccess: Bool {
         switch self {
         case .Success: return true

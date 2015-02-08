@@ -10,22 +10,12 @@ import Foundation
 
 // MARK: Protocols
 
-/// A custom result type that can contain some kind of success value
-public protocol CustomSuccessResult: ResultType {
+/// A custom result type that can be created with some kind of success value
+public protocol CustomResult: ResultType {
 
     init(success: Value)
 
 }
-
-/// A custom result type that can contain a failure (`NSError`)
-public protocol CustomFailureResult: ResultType {
-
-    init(failure: NSError)
-
-}
-
-/// A custom result type that can contain both successes and failures
-public protocol CustomResult: CustomSuccessResult, CustomFailureResult { }
 
 // MARK: Remote map/flatMap
 
@@ -38,7 +28,7 @@ extension VoidResult {
         }
     }
 
-    public func flatMap<U, R: CustomFailureResult where R.Value == U>(getValue: @autoclosure () -> R) -> R {
+    public func flatMap<U, R: ResultType where R.Value == U>(getValue: @autoclosure () -> R) -> R {
         switch self {
         case Success(let value): return getValue()
         case Failure(let error): return R(failure: error)
@@ -56,7 +46,7 @@ extension ObjectResult {
         }
     }
 
-    public func flatMap<U, R: CustomFailureResult where R.Value == U>(transform: T -> R) -> R {
+    public func flatMap<U, R: ResultType where R.Value == U>(transform: T -> R) -> R {
         switch self {
         case Success(let value): return transform(value)
         case Failure(let error): return R(failure: error)
@@ -74,7 +64,7 @@ extension AnyResult {
         }
     }
 
-    public func flatMap<U, R: CustomFailureResult where R.Value == U>(transform: T -> R) -> R {
+    public func flatMap<U, R: ResultType where R.Value == U>(transform: T -> R) -> R {
         switch self {
         case Success(let value): return transform(value as T)
         case Failure(let error): return R(failure: error)
@@ -85,15 +75,15 @@ extension AnyResult {
 
 // MARK: Free initializers
 
-public func success<T, R: CustomSuccessResult where R.Value == T>(value: T) -> R {
+public func success<T, R: CustomResult where R.Value == T>(value: T) -> R {
     return R(success: value)
 }
 
-public func failure<R: CustomFailureResult>(error: NSError) -> R {
+public func failure<R: ResultType>(error: NSError) -> R {
     return R(failure: error)
 }
 
-public func failure<R: CustomFailureResult>(message: String? = nil, file: String = __FILE__, line: Int = __LINE__) -> R {
+public func failure<R: ResultType>(message: String? = nil, file: String = __FILE__, line: Int = __LINE__) -> R {
     return R(failure: error(message, file: file, line: line))
 }
 

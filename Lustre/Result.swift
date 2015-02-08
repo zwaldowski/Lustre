@@ -15,11 +15,15 @@ import Foundation
 /// be satisfied by types conforming to that protocol.
 public protocol _ResultType {
 
+    /// Creates a result in a failure state
+    init(failure: NSError)
+
     /// Returns true if the event succeeded.
     var isSuccess: Bool { get }
 
     /// The error object iff the event failed and `isSuccess` is `false`.
     var error: NSError? { get }
+
 }
 
 /// A type that can reflect an either-or state for a given event, though not
