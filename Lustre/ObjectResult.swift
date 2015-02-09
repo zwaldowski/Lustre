@@ -59,14 +59,14 @@ extension ObjectResult: Printable {
 
 extension VoidResult {
 
-    public func map<U: AnyObject>(getValue: @autoclosure () -> U) -> ObjectResult<U> {
+    public func map<U: AnyObject>(getValue: () -> U) -> ObjectResult<U> {
         switch self {
         case Success: return .Success(getValue())
         case Failure(let error): return .Failure(error)
         }
     }
 
-    public func flatMap<U: AnyObject>(getValue: @autoclosure () -> ObjectResult<U>) -> ObjectResult<U> {
+    public func flatMap<U: AnyObject>(getValue: () -> ObjectResult<U>) -> ObjectResult<U> {
         switch self {
         case Success(let value): return getValue()
         case Failure(let error): return .Failure(error)
@@ -141,7 +141,7 @@ public func try<T: AnyObject>(f: NSErrorPointer -> T?, file: String = __FILE__, 
 
 // MARK: Free maps
 
-public func map<U: AnyObject, IR: _ResultType>(result: IR, value: @autoclosure () -> U) -> ObjectResult<U> {
+public func map<U: AnyObject, IR: _ResultType>(result: IR, value: () -> U) -> ObjectResult<U> {
     if result.isSuccess {
         return .Success(value())
     }

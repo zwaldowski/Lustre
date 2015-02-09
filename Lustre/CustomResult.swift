@@ -21,14 +21,14 @@ public protocol CustomResult: ResultType {
 
 extension VoidResult {
 
-    public func map<U, R: CustomResult where R.Value == U>(getValue: @autoclosure () -> U) -> R {
+    public func map<U, R: CustomResult where R.Value == U>(getValue: () -> U) -> R {
         switch self {
         case Success: return R(success: getValue())
         case Failure(let error): return R(failure: error)
         }
     }
 
-    public func flatMap<U, R: ResultType where R.Value == U>(getValue: @autoclosure () -> R) -> R {
+    public func flatMap<U, R: ResultType where R.Value == U>(getValue: () -> R) -> R {
         switch self {
         case Success(let value): return getValue()
         case Failure(let error): return R(failure: error)
@@ -117,7 +117,7 @@ public func flatMap<T, U, IR: ResultType, RR: CustomResult where IR.Value == T, 
     }
 }
 
-public func map<U, IR: _ResultType, RR: CustomResult where RR.Value == U>(result: IR, value: @autoclosure () -> U) -> RR {
+public func map<U, IR: _ResultType, RR: CustomResult where RR.Value == U>(result: IR, value: () -> U) -> RR {
     if result.isSuccess {
         return RR(success: value())
     }
