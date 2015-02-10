@@ -85,6 +85,6 @@ public func != <LResult: ResultType, RResult: ResultType where LResult.Value: Eq
 /// Result failure coalescing
 ///    success(42) ?? 0 ==> 42
 ///    failure(error()) ?? 0 ==> 0
-public func ??<T, Result: ResultType where Result.Value == T>(result: Result, defaultValue: @autoclosure () -> T) -> T {
+public func ??<T, Result: ResultType where Result.Value == T>(result: Result, @autoclosure defaultValue: () -> T) -> T {
     return result.value ?? defaultValue()
 }

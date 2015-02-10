@@ -11,7 +11,7 @@ import Foundation
 public protocol ErrorRepresentable: Printable {
     typealias ErrorCode: SignedIntegerType
 
-    class var domain: String { get }
+    static var domain: String { get }
     var code: ErrorCode { get }
     var failureReason: String? { get }
 }
