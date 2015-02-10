@@ -100,14 +100,14 @@ extension AnyResult {
 
     public func map(fn: T -> ()) -> VoidResult {
         switch self {
-        case Success(let value): fn(value as T); return .Success
+        case Success(let value): fn(value as! T); return .Success
         case Failure(let error): return .Failure(error)
         }
     }
 
     public func flatMap(transform: T -> VoidResult) -> VoidResult {
         switch self {
-        case Success(let value): return transform(value as T)
+        case Success(let value): return transform(value as! T)
         case Failure(let error): return .Failure(error)
         }
     }

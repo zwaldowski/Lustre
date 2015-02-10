@@ -97,14 +97,14 @@ extension AnyResult {
 
     public func map<U: AnyObject>(transform: T -> U) -> ObjectResult<U> {
         switch self {
-        case Success(let value): return .Success(transform(value as T))
+        case Success(let value): return .Success(transform(value as! T))
         case Failure(let error): return .Failure(error)
         }
     }
 
     public func flatMap<U: AnyObject>(transform:T -> ObjectResult<U>) -> ObjectResult<U> {
         switch self {
-        case Success(let value): return transform(value as T)
+        case Success(let value): return transform(value as! T)
         case Failure(let error): return .Failure(error)
         }
     }

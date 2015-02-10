@@ -59,14 +59,14 @@ extension AnyResult {
 
     public func map<U, R: CustomResult where R.Value == U>(transform: T -> U) -> R {
         switch self {
-        case Success(let value): return R(success: transform(value as T))
+        case Success(let value): return R(success: transform(value as! T))
         case Failure(let error): return R(failure: error)
         }
     }
 
     public func flatMap<U, R: ResultType where R.Value == U>(transform: T -> R) -> R {
         switch self {
-        case Success(let value): return transform(value as T)
+        case Success(let value): return transform(value as! T)
         case Failure(let error): return R(failure: error)
         }
     }

@@ -31,7 +31,7 @@ extension AnyResult: ResultType {
 
     public var value: T? {
         switch self {
-        case .Success(let value): return (value as T)
+        case .Success(let value): return (value as! T)
         case .Failure: return nil
         }
     }
@@ -50,7 +50,7 @@ extension AnyResult: Printable {
     /// A textual representation of `self`.
     public var description: String {
         switch self {
-        case .Success(let value): return "Success: \(value as T)"
+        case .Success(let value): return "Success: \(value as! T)"
         case .Failure(let error): return "Failure: \(error)"
         }
     }
@@ -99,14 +99,14 @@ extension AnyResult {
 
     public func map<U>(transform: T -> U) -> AnyResult<U> {
         switch self {
-        case Success(let value): return .Success(transform(value as T))
+        case Success(let value): return .Success(transform(value as! T))
         case Failure(let error): return .Failure(error)
         }
     }
 
     public func flatMap<U>(transform: T -> AnyResult<U>) -> AnyResult<U> {
         switch self {
-        case Success(let value): return transform(value as T)
+        case Success(let value): return transform(value as! T)
         case Failure(let error): return .Failure(error)
         }
     }
