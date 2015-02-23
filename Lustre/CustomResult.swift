@@ -89,9 +89,9 @@ public func failure<R: CustomResult>(message: String? = nil, file: String = __FI
 
 // MARK: Free try
 
-public func try<T, R: CustomResult where R.Value == T>(f: NSErrorPointer -> T?, file: String = __FILE__, line: Int = __LINE__) -> R {
+public func try<T, R: CustomResult where R.Value == T>(file: String = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> T?) -> R {
     var err: NSError?
-    switch (f(&err), err) {
+    switch (fn(&err), err) {
     case (.Some(let value), _):
         return R(success: value)
     case (.None, .Some(let error)):

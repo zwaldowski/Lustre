@@ -129,9 +129,9 @@ public func failure<T>(message: String? = nil, file: String = __FILE__, line: In
 
 // MARK: Free try
 
-public func try<T>(f: NSErrorPointer -> T?, file: String = __FILE__, line: Int = __LINE__) -> AnyResult<T> {
+public func try<T>(file: String = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> T?) -> AnyResult<T> {
     var err: NSError?
-    switch (f(&err), err) {
+    switch (fn(&err), err) {
     case (.Some(let value), _):
         return .Success(value)
     case (.None, .Some(let error)):

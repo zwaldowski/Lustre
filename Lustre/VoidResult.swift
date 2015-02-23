@@ -130,9 +130,9 @@ public func failure(message: String? = nil, file: String = __FILE__, line: Int =
 
 // MARK: Free try
 
-public func try(f: NSErrorPointer -> Bool, file: String = __FILE__, line: Int = __LINE__) -> VoidResult {
+public func try(file: String = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> Bool) -> VoidResult {
     var err: NSError?
-    switch (f(&err), err) {
+    switch (fn(&err), err) {
     case (true, _):
         return .Success
     case (false, .Some(let error)):
