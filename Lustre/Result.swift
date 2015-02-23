@@ -65,7 +65,7 @@ func error(message: String?, file: String = __FILE__, line: Int = __LINE__) -> N
 /// `Equatable` type, results cannot themselves be `Equatable`. This is because
 /// `T` may not be `Equatable`, and there is no way yet in Swift to define
 /// define protocol conformance based on specialization.
-public func == <T: Equatable, LResult: ResultType, RResult: ResultType where LResult.Value == T, RResult.Value == T>(lhs: LResult, rhs: RResult) -> Bool {
+public func == <LResult: ResultType, RResult: ResultType where LResult.Value: Equatable, RResult.Value == LResult.Value>(lhs: LResult, rhs: RResult) -> Bool {
     switch (lhs.isSuccess, rhs.isSuccess) {
     case (true, true): return lhs.value == rhs.value
     case (false, false): return lhs.error == rhs.error
@@ -74,7 +74,7 @@ public func == <T: Equatable, LResult: ResultType, RResult: ResultType where LRe
 }
 
 /// Same rules apply as `==`.
-public func != <T: Equatable, LResult: ResultType, RResult: ResultType where LResult.Value == T, RResult.Value == T>(lhs: LResult, rhs: RResult) -> Bool {
+public func != <LResult: ResultType, RResult: ResultType where LResult.Value: Equatable, RResult.Value == LResult.Value>(lhs: LResult, rhs: RResult) -> Bool {
     switch (lhs.isSuccess, rhs.isSuccess) {
     case (true, true): return lhs.value != rhs.value
     case (false, false): return lhs.error != rhs.error
