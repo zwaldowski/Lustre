@@ -16,6 +16,10 @@ public enum VoidResult {
 
 extension VoidResult: _ResultType {
 
+    public init(_ success: ()) {
+        self = .Success
+    }
+
     public init(failure: NSError) {
         self = .Failure(failure)
     }
@@ -114,18 +118,10 @@ extension AnyResult {
 
 }
 
-// MARK: Free initializes
+// MARK: Free initializers
 
 public func success() -> VoidResult {
     return .Success
-}
-
-public func failure(error: NSError) -> VoidResult {
-    return .Failure(error)
-}
-
-public func failure(message: String? = nil, file: String = __FILE__, line: Int = __LINE__) -> VoidResult {
-    return .Failure(error(message, file: file, line: line))
 }
 
 // MARK: Free try

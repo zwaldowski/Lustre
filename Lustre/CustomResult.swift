@@ -13,8 +13,6 @@ import Foundation
 /// A custom result type that can be created with some kind of success value
 public protocol CustomResult: ResultType {
 
-    init(success: Value)
-
 }
 
 // MARK: Remote map/flatMap
@@ -23,7 +21,7 @@ extension VoidResult {
 
     public func map<U, R: CustomResult where R.Value == U>(getValue: () -> U) -> R {
         switch self {
-        case Success: return R(success: getValue())
+        case Success: return R(getValue())
         case Failure(let error): return R(failure: error)
         }
     }
@@ -41,7 +39,7 @@ extension ObjectResult {
 
     public func map<U, R: CustomResult where R.Value == U>(transform: T -> U) -> R {
         switch self {
-        case Success(let value): return R(success: transform(value))
+        case Success(let value): return R(transform(value))
         case Failure(let error): return R(failure: error)
         }
     }
@@ -59,7 +57,7 @@ extension AnyResult {
 
     public func map<U, R: CustomResult where R.Value == U>(transform: T -> U) -> R {
         switch self {
-        case Success(let value): return R(success: transform(value as! T))
+        case Success(let value): return R(transform(value as! T))
         case Failure(let error): return R(failure: error)
         }
     }
@@ -73,27 +71,13 @@ extension AnyResult {
 
 }
 
-// MARK: Free initializers
-
-public func success<T, R: CustomResult where R.Value == T>(value: T) -> R {
-    return R(success: value)
-}
-
-public func failure<R: CustomResult>(error: NSError) -> R {
-    return R(failure: error)
-}
-
-public func failure<R: CustomResult>(message: String? = nil, file: String = __FILE__, line: Int = __LINE__) -> R {
-    return R(failure: error(message, file: file, line: line))
-}
-
 // MARK: Free try
 
 public func try<T, R: CustomResult where R.Value == T>(file: String = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> T?) -> R {
     var err: NSError?
     switch (fn(&err), err) {
     case (.Some(let value), _):
-        return R(success: value)
+        return R(value)
     case (.None, .Some(let error)):
         return R(failure: error)
     default:
@@ -105,7 +89,7 @@ public func try<T, R: CustomResult where R.Value == T>(file: String = __FILE__, 
 
 public func map<T, U, IR: ResultType, RR: CustomResult where IR.Value == T, RR.Value == U>(result: IR, transform: T -> U) -> RR {
     switch result.value {
-    case .Some(let value): return RR(success: transform(value))
+    case .Some(let value): return RR(transform(value))
     case .None: return RR(failure: result.error!)
     }
 }
@@ -119,7 +103,7 @@ public func flatMap<T, U, IR: ResultType, RR: CustomResult where IR.Value == T, 
 
 public func map<U, IR: _ResultType, RR: CustomResult where RR.Value == U>(result: IR, value: () -> U) -> RR {
     if result.isSuccess {
-        return RR(success: value())
+        return RR(value())
     }
     return RR(failure: result.error!)
 }

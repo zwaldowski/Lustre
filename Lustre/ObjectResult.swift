@@ -16,6 +16,10 @@ public enum ObjectResult<T: AnyObject> {
 
 extension ObjectResult: ResultType {
 
+    public init(_ success: T) {
+        self = .Success(success)
+    }
+
     public init(failure: NSError) {
         self = .Failure(failure)
     }
@@ -109,20 +113,6 @@ extension AnyResult {
         }
     }
 
-}
-
-// MARK: Free initializes
-
-public func success<T: AnyObject>(value: T) -> ObjectResult<T> {
-    return .Success(value)
-}
-
-public func failure<T: AnyObject>(error: NSError) -> ObjectResult<T> {
-    return .Failure(error)
-}
-
-public func failure<T: AnyObject>(message: String? = nil, file: String = __FILE__, line: Int = __LINE__) -> ObjectResult<T> {
-    return .Failure(error(message, file: file, line: line))
 }
 
 // MARK: Free try
