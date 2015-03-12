@@ -88,3 +88,13 @@ public func != <LResult: ResultType, RResult: ResultType where LResult.Value: Eq
 public func ??<T, Result: ResultType where Result.Value == T>(result: Result, @autoclosure defaultValue: () -> T) -> T {
     return result.value ?? defaultValue()
 }
+
+// MARK: Pattern matching
+
+func ~=<LR: ResultType, RR: ResultType where LR.Value: Equatable, LR.Value == RR.Value>(lhs: LR, rhs: RR) -> Bool {
+    switch (lhs.isSuccess, rhs.isSuccess) {
+    case (true, true): return lhs.value == rhs.value
+    case (false, false): return lhs.error == rhs.error
+    default: return false
+    }
+}
