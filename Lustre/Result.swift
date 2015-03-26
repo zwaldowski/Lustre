@@ -103,6 +103,14 @@ func ~=<Inner: ResultType, Outer: ResultType where Inner.Value: Equatable, Inner
     }
 }
 
+func ~=<R: ResultType>(lhs: VoidResult, rhs: R) -> Bool {
+    switch (lhs.isSuccess, rhs.isSuccess) {
+    case (true, true): return true
+    case (false, false): return lhs.error == rhs.error
+    default: return false
+    }
+}
+
 // MARK: Generic free initializers
 
 public func success<T, Result: ResultType where Result.Value == T>(value: T) -> Result {
