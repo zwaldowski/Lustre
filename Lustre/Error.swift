@@ -1,9 +1,9 @@
 //
 //  Error.swift
-//  URLGrey
+//  Lustre
 //
 //  Created by Zachary Waldowski on 12/10/14.
-//  Copyright (c) 2014 Zachary Waldowski. All rights reserved.
+//  Copyright (c) 2014-2015. All rights reserved.
 //
 
 import Foundation
