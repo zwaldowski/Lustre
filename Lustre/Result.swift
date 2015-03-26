@@ -95,7 +95,7 @@ public func ??<T, Result: ResultType where Result.Value == T>(result: Result, @a
 
 // MARK: Pattern matching
 
-func ~=<LR: ResultType, RR: ResultType where LR.Value: Equatable, LR.Value == RR.Value>(lhs: LR, rhs: RR) -> Bool {
+func ~=<Inner: ResultType, Outer: ResultType where Inner.Value: Equatable, Inner.Value == Outer.Value>(lhs: Inner, rhs: Outer) -> Bool {
     switch (lhs.isSuccess, rhs.isSuccess) {
     case (true, true): return lhs.value == rhs.value
     case (false, false): return lhs.error == rhs.error
