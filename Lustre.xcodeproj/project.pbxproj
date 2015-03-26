@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DBDF88211AC49659000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DBDF88271AC49659000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF881B1AC49659000AA16F /* Lustre.framework */; };
+		DBDF88471AC49669000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF883C1AC49669000AA16F /* Lustre.framework */; };
+		DBDF88551AC496F6000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DBDF885D1AC49B85000AA16F /* AnyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* AnyResult.swift */; };
+		DBDF885E1AC49B85000AA16F /* AnyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* AnyResult.swift */; };
+		DBDF885F1AC49B85000AA16F /* CustomResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88581AC49B85000AA16F /* CustomResult.swift */; };
+		DBDF88601AC49B85000AA16F /* CustomResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88581AC49B85000AA16F /* CustomResult.swift */; };
+		DBDF88611AC49B85000AA16F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88591AC49B85000AA16F /* Error.swift */; };
+		DBDF88621AC49B85000AA16F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88591AC49B85000AA16F /* Error.swift */; };
+		DBDF88631AC49B85000AA16F /* ObjectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885A1AC49B85000AA16F /* ObjectResult.swift */; };
+		DBDF88641AC49B85000AA16F /* ObjectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885A1AC49B85000AA16F /* ObjectResult.swift */; };
+		DBDF88651AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* Result.swift */; };
+		DBDF88661AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* Result.swift */; };
+		DBDF88671AC49B85000AA16F /* VoidResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885C1AC49B85000AA16F /* VoidResult.swift */; };
+		DBDF88681AC49B85000AA16F /* VoidResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885C1AC49B85000AA16F /* VoidResult.swift */; };
+		DBDF886A1AC49B95000AA16F /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* ResultTests.swift */; };
+		DBDF886B1AC49B95000AA16F /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* ResultTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DBDF88281AC49659000AA16F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBDF88121AC49659000AA16F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBDF881A1AC49659000AA16F;
+			remoteInfo = Lustre;
+		};
+		DBDF88481AC49669000AA16F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBDF88121AC49659000AA16F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBDF883B1AC49669000AA16F;
+			remoteInfo = LustreMac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DBDF881B1AC49659000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBDF881F1AC49659000AA16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBDF88201AC49659000AA16F /* Lustre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lustre.h; sourceTree = "<group>"; };
+		DBDF88261AC49659000AA16F /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBDF882C1AC49659000AA16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBDF883C1AC49669000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBDF88461AC49669000AA16F /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBDF88571AC49B85000AA16F /* AnyResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResult.swift; sourceTree = "<group>"; };
+		DBDF88581AC49B85000AA16F /* CustomResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResult.swift; sourceTree = "<group>"; };
+		DBDF88591AC49B85000AA16F /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		DBDF885A1AC49B85000AA16F /* ObjectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResult.swift; sourceTree = "<group>"; };
+		DBDF885B1AC49B85000AA16F /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		DBDF885C1AC49B85000AA16F /* VoidResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResult.swift; sourceTree = "<group>"; };
+		DBDF88691AC49B95000AA16F /* ResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DBDF88171AC49659000AA16F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88231AC49659000AA16F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBDF88271AC49659000AA16F /* Lustre.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88381AC49669000AA16F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88431AC49669000AA16F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBDF88471AC49669000AA16F /* Lustre.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DBDF88111AC49659000AA16F = {
+			isa = PBXGroup;
+			children = (
+				DBDF881D1AC49659000AA16F /* Lustre */,
+				DBDF882A1AC49659000AA16F /* LustreTests */,
+				DBDF881C1AC49659000AA16F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DBDF881C1AC49659000AA16F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DBDF881B1AC49659000AA16F /* Lustre.framework */,
+				DBDF88261AC49659000AA16F /* LustreTests.xctest */,
+				DBDF883C1AC49669000AA16F /* Lustre.framework */,
+				DBDF88461AC49669000AA16F /* LustreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DBDF881D1AC49659000AA16F /* Lustre */ = {
+			isa = PBXGroup;
+			children = (
+				DBDF88201AC49659000AA16F /* Lustre.h */,
+				DBDF88571AC49B85000AA16F /* AnyResult.swift */,
+				DBDF88581AC49B85000AA16F /* CustomResult.swift */,
+				DBDF88591AC49B85000AA16F /* Error.swift */,
+				DBDF885A1AC49B85000AA16F /* ObjectResult.swift */,
+				DBDF885B1AC49B85000AA16F /* Result.swift */,
+				DBDF885C1AC49B85000AA16F /* VoidResult.swift */,
+				DBDF881E1AC49659000AA16F /* Supporting Files */,
+			);
+			path = Lustre;
+			sourceTree = "<group>";
+		};
+		DBDF881E1AC49659000AA16F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DBDF881F1AC49659000AA16F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DBDF882A1AC49659000AA16F /* LustreTests */ = {
+			isa = PBXGroup;
+			children = (
+				DBDF88691AC49B95000AA16F /* ResultTests.swift */,
+				DBDF882B1AC49659000AA16F /* Supporting Files */,
+			);
+			path = LustreTests;
+			sourceTree = "<group>";
+		};
+		DBDF882B1AC49659000AA16F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DBDF882C1AC49659000AA16F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DBDF88181AC49659000AA16F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBDF88211AC49659000AA16F /* Lustre.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88391AC49669000AA16F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBDF88551AC496F6000AA16F /* Lustre.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DBDF881A1AC49659000AA16F /* MobileLustre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBDF88311AC49659000AA16F /* Build configuration list for PBXNativeTarget "MobileLustre" */;
+			buildPhases = (
+				DBDF88161AC49659000AA16F /* Sources */,
+				DBDF88171AC49659000AA16F /* Frameworks */,
+				DBDF88181AC49659000AA16F /* Headers */,
+				DBDF88191AC49659000AA16F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileLustre;
+			productName = Lustre;
+			productReference = DBDF881B1AC49659000AA16F /* Lustre.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DBDF88251AC49659000AA16F /* MobileLustreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBDF88341AC49659000AA16F /* Build configuration list for PBXNativeTarget "MobileLustreTests" */;
+			buildPhases = (
+				DBDF88221AC49659000AA16F /* Sources */,
+				DBDF88231AC49659000AA16F /* Frameworks */,
+				DBDF88241AC49659000AA16F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBDF88291AC49659000AA16F /* PBXTargetDependency */,
+			);
+			name = MobileLustreTests;
+			productName = LustreTests;
+			productReference = DBDF88261AC49659000AA16F /* LustreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DBDF883B1AC49669000AA16F /* Lustre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBDF884F1AC49669000AA16F /* Build configuration list for PBXNativeTarget "Lustre" */;
+			buildPhases = (
+				DBDF88371AC49669000AA16F /* Sources */,
+				DBDF88381AC49669000AA16F /* Frameworks */,
+				DBDF88391AC49669000AA16F /* Headers */,
+				DBDF883A1AC49669000AA16F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lustre;
+			productName = LustreMac;
+			productReference = DBDF883C1AC49669000AA16F /* Lustre.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DBDF88451AC49669000AA16F /* LustreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBDF88521AC49669000AA16F /* Build configuration list for PBXNativeTarget "LustreTests" */;
+			buildPhases = (
+				DBDF88421AC49669000AA16F /* Sources */,
+				DBDF88431AC49669000AA16F /* Frameworks */,
+				DBDF88441AC49669000AA16F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBDF88491AC49669000AA16F /* PBXTargetDependency */,
+			);
+			name = LustreTests;
+			productName = LustreMacTests;
+			productReference = DBDF88461AC49669000AA16F /* LustreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DBDF88121AC49659000AA16F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Zachary Waldowski";
+				TargetAttributes = {
+					DBDF881A1AC49659000AA16F = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					DBDF88251AC49659000AA16F = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					DBDF883B1AC49669000AA16F = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					DBDF88451AC49669000AA16F = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = DBDF88151AC49659000AA16F /* Build configuration list for PBXProject "Lustre" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DBDF88111AC49659000AA16F;
+			productRefGroup = DBDF881C1AC49659000AA16F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DBDF883B1AC49669000AA16F /* Lustre */,
+				DBDF88451AC49669000AA16F /* LustreTests */,
+				DBDF881A1AC49659000AA16F /* MobileLustre */,
+				DBDF88251AC49659000AA16F /* MobileLustreTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DBDF88191AC49659000AA16F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88241AC49659000AA16F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF883A1AC49669000AA16F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88441AC49669000AA16F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DBDF88161AC49659000AA16F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBDF885E1AC49B85000AA16F /* AnyResult.swift in Sources */,
+				DBDF88661AC49B85000AA16F /* Result.swift in Sources */,
+				DBDF88681AC49B85000AA16F /* VoidResult.swift in Sources */,
+				DBDF88621AC49B85000AA16F /* Error.swift in Sources */,
+				DBDF88601AC49B85000AA16F /* CustomResult.swift in Sources */,
+				DBDF88641AC49B85000AA16F /* ObjectResult.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88221AC49659000AA16F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBDF886B1AC49B95000AA16F /* ResultTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88371AC49669000AA16F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBDF885D1AC49B85000AA16F /* AnyResult.swift in Sources */,
+				DBDF88651AC49B85000AA16F /* Result.swift in Sources */,
+				DBDF88671AC49B85000AA16F /* VoidResult.swift in Sources */,
+				DBDF88611AC49B85000AA16F /* Error.swift in Sources */,
+				DBDF885F1AC49B85000AA16F /* CustomResult.swift in Sources */,
+				DBDF88631AC49B85000AA16F /* ObjectResult.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBDF88421AC49669000AA16F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBDF886A1AC49B95000AA16F /* ResultTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DBDF88291AC49659000AA16F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBDF881A1AC49659000AA16F /* MobileLustre */;
+			targetProxy = DBDF88281AC49659000AA16F /* PBXContainerItemProxy */;
+		};
+		DBDF88491AC49669000AA16F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBDF883B1AC49669000AA16F /* Lustre */;
+			targetProxy = DBDF88481AC49669000AA16F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DBDF882F1AC49659000AA16F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DBDF88301AC49659000AA16F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DBDF88321AC49659000AA16F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Lustre/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = Lustre;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DBDF88331AC49659000AA16F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Lustre/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = Lustre;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DBDF88351AC49659000AA16F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LustreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = LustreTests;
+			};
+			name = Debug;
+		};
+		DBDF88361AC49659000AA16F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LustreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = LustreTests;
+			};
+			name = Release;
+		};
+		DBDF88501AC49669000AA16F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Lustre/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = Lustre;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DBDF88511AC49669000AA16F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Lustre/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = Lustre;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DBDF88531AC49669000AA16F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LustreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = LustreTests;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DBDF88541AC49669000AA16F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LustreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = LustreTests;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DBDF88151AC49659000AA16F /* Build configuration list for PBXProject "Lustre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBDF882F1AC49659000AA16F /* Debug */,
+				DBDF88301AC49659000AA16F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBDF88311AC49659000AA16F /* Build configuration list for PBXNativeTarget "MobileLustre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBDF88321AC49659000AA16F /* Debug */,
+				DBDF88331AC49659000AA16F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBDF88341AC49659000AA16F /* Build configuration list for PBXNativeTarget "MobileLustreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBDF88351AC49659000AA16F /* Debug */,
+				DBDF88361AC49659000AA16F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBDF884F1AC49669000AA16F /* Build configuration list for PBXNativeTarget "Lustre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBDF88501AC49669000AA16F /* Debug */,
+				DBDF88511AC49669000AA16F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBDF88521AC49669000AA16F /* Build configuration list for PBXNativeTarget "LustreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBDF88531AC49669000AA16F /* Debug */,
+				DBDF88541AC49669000AA16F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DBDF88121AC49659000AA16F /* Project object */;
+}
