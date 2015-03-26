@@ -43,26 +43,6 @@ public protocol ResultType: _ResultType {
 
 }
 
-/// Key for the __FILE__ constant in generated errors
-public let ErrorFileKey = "errorFile"
-
-/// Key for the __LINE__ constant in generated errors
-public let ErrorLineKey = "errorLine"
-
-/// Generate an automatic domainless `NSError`.
-func error(message: String?, file: String = __FILE__, line: Int = __LINE__) -> NSError {
-    var userInfo: [String: AnyObject] = [
-        ErrorFileKey: file,
-        ErrorLineKey: line
-    ]
-
-    if let message = message {
-        userInfo[NSLocalizedDescriptionKey] = message
-    }
-
-    return NSError(domain: "", code: 0, userInfo: userInfo)
-}
-
 // MARK: Operators
 
 /// Note that while it is possible to use `==` on results that contain an
@@ -121,6 +101,6 @@ public func failure<Result: _ResultType>(error: NSError) -> Result {
     return Result(failure: error)
 }
 
-public func failure<Result: _ResultType>(message: String? = nil, file: String = __FILE__, line: Int = __LINE__) -> Result {
+public func failure<Result: _ResultType>(message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> Result {
     return Result(failure: error(message, file: file, line: line))
 }

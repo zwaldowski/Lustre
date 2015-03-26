@@ -126,7 +126,7 @@ public func success() -> VoidResult {
 
 // MARK: Free try
 
-public func try(file: String = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> Bool) -> VoidResult {
+public func try(file: StaticString = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> Bool) -> VoidResult {
     var err: NSError?
     switch (fn(&err), err) {
     case (true, _):

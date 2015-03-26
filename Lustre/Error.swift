@@ -13,15 +13,19 @@ public protocol ErrorRepresentable: Printable {
 
     static var domain: String { get }
     var code: ErrorCode { get }
-    var failureReason: String? { get }
+    var failureReason: String { get }
 }
 
 public func error<T: ErrorRepresentable>(#code: T, underlying: NSError? = nil) -> NSError {
     var userInfo = [NSObject: AnyObject]()
 
-    userInfo[NSLocalizedDescriptionKey] = code.description
+    let description = code.description
+    if !description.isEmpty {
+        userInfo[NSLocalizedDescriptionKey] = description
+    }
 
-    if let reason = code.failureReason {
+    let reason = code.failureReason
+    if !reason.isEmpty {
         userInfo[NSLocalizedFailureReasonErrorKey] = reason
     }
 
@@ -30,4 +34,24 @@ public func error<T: ErrorRepresentable>(#code: T, underlying: NSError? = nil) -
     }
 
     return NSError(domain: T.domain, code: numericCast(code.code), userInfo: userInfo)
+}
+
+/// Key for the __FILE__ constant in generated errors
+public let ErrorFileKey = "errorFile"
+
+/// Key for the __LINE__ constant in generated errors
+public let ErrorLineKey = "errorLine"
+
+/// Generate an automatic domainless `NSError`.
+public func error(_ message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> NSError {
+    var userInfo: [String: AnyObject] = [
+        ErrorFileKey: file.stringValue,
+        ErrorLineKey: line
+    ]
+    
+    if let message = message {
+        userInfo[NSLocalizedDescriptionKey] = message
+    }
+    
+    return NSError(domain: "", code: -1, userInfo: userInfo)
 }
