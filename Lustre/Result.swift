@@ -39,7 +39,7 @@ public protocol ResultType: _ResultType {
 
     /// The value contained by this result. If `isSuccess` is `true`, this
     /// should not be `nil`.
-    var value: Value? { get }
+    var value: Value! { get }
 
 }
 

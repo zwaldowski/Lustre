@@ -31,7 +31,7 @@ extension ObjectResult: ResultType {
         }
     }
 
-    public var value: T? {
+    public var value: T! {
         switch self {
         case .Success(let value): return value
         case .Failure: return nil

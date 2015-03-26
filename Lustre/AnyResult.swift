@@ -33,7 +33,7 @@ extension AnyResult: ResultType {
         }
     }
 
-    public var value: T? {
+    public var value: T! {
         switch self {
         case .Success(let value): return (value as! T)
         case .Failure: return nil
