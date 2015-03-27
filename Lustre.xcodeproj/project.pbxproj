@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB76F13F1AC4CB7400C068FC /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */; };
+		DB76F1401AC4CB7400C068FC /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */; };
+		DB76F1421AC5B17A00C068FC /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */; };
+		DB76F1431AC5B17A00C068FC /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */; };
+		DB76F1451AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */; };
+		DB76F1461AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */; };
+		DB76F1471AC5DD7900C068FC /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
 		DBDF88211AC49659000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBDF88271AC49659000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF881B1AC49659000AA16F /* Lustre.framework */; };
 		DBDF88471AC49669000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF883C1AC49669000AA16F /* Lustre.framework */; };
@@ -23,8 +30,7 @@
 		DBDF88661AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* Result.swift */; };
 		DBDF88671AC49B85000AA16F /* VoidResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885C1AC49B85000AA16F /* VoidResult.swift */; };
 		DBDF88681AC49B85000AA16F /* VoidResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885C1AC49B85000AA16F /* VoidResult.swift */; };
-		DBDF886A1AC49B95000AA16F /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* ResultTests.swift */; };
-		DBDF886B1AC49B95000AA16F /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* ResultTests.swift */; };
+		DBDF886B1AC49B95000AA16F /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResultTests.swift; sourceTree = "<group>"; };
+		DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResultTests.swift; sourceTree = "<group>"; };
+		DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResultTests.swift; sourceTree = "<group>"; };
 		DBDF881B1AC49659000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF881F1AC49659000AA16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBDF88201AC49659000AA16F /* Lustre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lustre.h; sourceTree = "<group>"; };
@@ -58,7 +67,7 @@
 		DBDF885A1AC49B85000AA16F /* ObjectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResult.swift; sourceTree = "<group>"; };
 		DBDF885B1AC49B85000AA16F /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DBDF885C1AC49B85000AA16F /* VoidResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResult.swift; sourceTree = "<group>"; };
-		DBDF88691AC49B95000AA16F /* ResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
+		DBDF88691AC49B95000AA16F /* AnyResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResultTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +150,10 @@
 		DBDF882A1AC49659000AA16F /* LustreTests */ = {
 			isa = PBXGroup;
 			children = (
-				DBDF88691AC49B95000AA16F /* ResultTests.swift */,
+				DBDF88691AC49B95000AA16F /* AnyResultTests.swift */,
+				DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */,
+				DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */,
+				DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */,
 				DBDF882B1AC49659000AA16F /* Supporting Files */,
 			);
 			path = LustreTests;
@@ -341,7 +353,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF886B1AC49B95000AA16F /* ResultTests.swift in Sources */,
+				DBDF886B1AC49B95000AA16F /* AnyResultTests.swift in Sources */,
+				DB76F1431AC5B17A00C068FC /* VoidResultTests.swift in Sources */,
+				DB76F1401AC4CB7400C068FC /* CustomResultTests.swift in Sources */,
+				DB76F1461AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +377,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF886A1AC49B95000AA16F /* ResultTests.swift in Sources */,
+				DB76F1421AC5B17A00C068FC /* VoidResultTests.swift in Sources */,
+				DB76F1471AC5DD7900C068FC /* AnyResultTests.swift in Sources */,
+				DB76F13F1AC4CB7400C068FC /* CustomResultTests.swift in Sources */,
+				DB76F1451AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
