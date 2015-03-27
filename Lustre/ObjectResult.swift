@@ -16,6 +16,10 @@ public enum ObjectResult<T: AnyObject> {
 
 extension ObjectResult: ResultType {
 
+    public init(failure: NSError) {
+        self = .Failure(failure)
+    }
+
     public var isSuccess: Bool {
         switch self {
         case .Success: return true
@@ -123,7 +127,7 @@ public func try<T: AnyObject>(file: StaticString = __FILE__, line: UWord = __LIN
 
 // MARK: Free maps
 
-public func map<U: AnyObject, IR: _ResultType>(result: IR, value: () -> U) -> ObjectResult<U> {
+public func map<U: AnyObject, IR: ResultType>(result: IR, value: () -> U) -> ObjectResult<U> {
     if result.isSuccess {
         return .Success(value())
     }
@@ -148,12 +152,4 @@ public func map<T, U: AnyObject, IR: ResultType where IR.Value == T>(result: IR,
 
 public func success<T: AnyObject>(value: T) -> ObjectResult<T> {
     return .Success(value)
-}
-
-public func failure<T: AnyObject>(error: NSError) -> ObjectResult<T> {
-    return .Failure(error)
-}
-
-public func failure<T: AnyObject>(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> ObjectResult<T> {
-    return .Failure(error(message, file: file, line: line))
 }

@@ -14,13 +14,21 @@ public enum VoidResult {
     case Failure(NSError)
 }
 
-extension VoidResult: _ResultType {
+extension VoidResult: ResultType {
+
+    public init(failure: NSError) {
+        self = .Failure(failure)
+    }
 
     public var isSuccess: Bool {
         switch self {
         case .Success: return true
         case .Failure: return false
         }
+    }
+    
+    public var value: ()! {
+        return nil
     }
 
     public var error: NSError? {
@@ -124,14 +132,6 @@ public func try(file: StaticString = __FILE__, line: UWord = __LINE__, fn: NSErr
     }
 }
 
-public func map<U: AnyObject, IR: _ResultType>(result: IR, fn: () -> ()) -> VoidResult {
-    if result.isSuccess {
-        fn()
-        return .Success
-    }
-    return .Failure(result.error!)
-}
-
 // MARK: Free maps
 
 public func map<T, IR: ResultType where IR.Value == T>(result: IR, fn: T -> ()) -> VoidResult {
@@ -153,12 +153,4 @@ public func flatMap<T, IR: ResultType where IR.Value == T>(result: IR, transform
 
 public func success() -> VoidResult {
     return .Success
-}
-
-public func failure(error: NSError) -> VoidResult {
-    return .Failure(error)
-}
-
-public func failure(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> VoidResult {
-    return .Failure(error(message, file: file, line: line))
 }

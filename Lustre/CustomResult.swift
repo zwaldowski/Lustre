@@ -15,9 +15,6 @@ public protocol CustomResult: ResultType {
     
     /// Creates a result in a success state
     init(_ success: Value)
-    
-    /// Creates a result in a failure state
-    init(failure: NSError)
 
 }
 
@@ -107,7 +104,7 @@ public func flatMap<T, U, IR: ResultType, RR: CustomResult where IR.Value == T, 
     }
 }
 
-public func map<U, IR: _ResultType, RR: CustomResult where RR.Value == U>(result: IR, value: () -> U) -> RR {
+public func map<U, IR: ResultType, RR: CustomResult where RR.Value == U>(result: IR, value: () -> U) -> RR {
     if result.isSuccess {
         return RR(value())
     }
@@ -118,12 +115,4 @@ public func map<U, IR: _ResultType, RR: CustomResult where RR.Value == U>(result
 
 public func success<T, Result: CustomResult where Result.Value == T>(value: T) -> Result {
     return Result(value)
-}
-
-public func failure<Result: CustomResult>(error: NSError) -> Result {
-    return Result(failure: error)
-}
-
-public func failure<Result: CustomResult>(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> Result {
-    return Result(failure: error(message, file: file, line: line))
 }
