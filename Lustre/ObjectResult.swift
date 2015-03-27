@@ -16,14 +16,6 @@ public enum ObjectResult<T: AnyObject> {
 
 extension ObjectResult: ResultType {
 
-    public init(_ success: T) {
-        self = .Success(success)
-    }
-
-    public init(failure: NSError) {
-        self = .Failure(failure)
-    }
-
     public var isSuccess: Bool {
         switch self {
         case .Success: return true
@@ -150,4 +142,18 @@ public func map<T, U: AnyObject, IR: ResultType where IR.Value == T>(result: IR,
     case .Some(let value): return .Success(transform(value))
     case .None: return .Failure(result.error!)
     }
+}
+
+// MARK: Free constructors
+
+public func success<T: AnyObject>(value: T) -> ObjectResult<T> {
+    return .Success(value)
+}
+
+public func failure<T: AnyObject>(error: NSError) -> ObjectResult<T> {
+    return .Failure(error)
+}
+
+public func failure<T: AnyObject>(_ message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> ObjectResult<T> {
+    return .Failure(error(message, file: file, line: line))
 }

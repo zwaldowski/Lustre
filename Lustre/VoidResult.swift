@@ -16,14 +16,6 @@ public enum VoidResult {
 
 extension VoidResult: _ResultType {
 
-    public init(_ success: ()) {
-        self = .Success
-    }
-
-    public init(failure: NSError) {
-        self = .Failure(failure)
-    }
-
     public var isSuccess: Bool {
         switch self {
         case .Success: return true
@@ -118,12 +110,6 @@ extension AnyResult {
 
 }
 
-// MARK: Free initializers
-
-public func success() -> VoidResult {
-    return .Success
-}
-
 // MARK: Free try
 
 public func try(file: StaticString = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> Bool) -> VoidResult {
@@ -160,4 +146,19 @@ public func flatMap<T, IR: ResultType where IR.Value == T>(result: IR, transform
     case .Some(let value): return transform(value)
     case .None: return .Failure(result.error!)
     }
+}
+
+
+// MARK: Free constructors
+
+public func success() -> VoidResult {
+    return .Success
+}
+
+public func failure(error: NSError) -> VoidResult {
+    return .Failure(error)
+}
+
+public func failure(_ message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> VoidResult {
+    return .Failure(error(message, file: file, line: line))
 }

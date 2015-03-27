@@ -15,15 +15,6 @@ import Foundation
 /// be satisfied by types conforming to that protocol.
 public protocol _ResultType {
 
-    /// Any contained value returns from the event.
-    typealias Value
-
-    /// Creates a result in a success state
-    init(_ success: Value)
-
-    /// Creates a result in a failure state
-    init(failure: NSError)
-
     /// Returns true if the event succeeded.
     var isSuccess: Bool { get }
 
@@ -36,6 +27,9 @@ public protocol _ResultType {
 /// necessarily mutually exclusively due to limitations in Swift. Ideally,
 /// implementations of this type are an `enum` with two cases.
 public protocol ResultType: _ResultType {
+    
+    /// Any contained value returns from the event.
+    typealias Value
 
     /// The value contained by this result. If `isSuccess` is `true`, this
     /// should not be `nil`.
@@ -89,18 +83,4 @@ func ~=<R: ResultType>(lhs: VoidResult, rhs: R) -> Bool {
     case (false, false): return lhs.error == rhs.error
     default: return false
     }
-}
-
-// MARK: Generic free initializers
-
-public func success<T, Result: ResultType where Result.Value == T>(value: T) -> Result {
-    return Result(value)
-}
-
-public func failure<Result: _ResultType>(error: NSError) -> Result {
-    return Result(failure: error)
-}
-
-public func failure<Result: _ResultType>(message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> Result {
-    return Result(failure: error(message, file: file, line: line))
 }

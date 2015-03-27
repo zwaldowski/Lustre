@@ -12,6 +12,12 @@ import Foundation
 
 /// A custom result type that can be created with some kind of success value
 public protocol CustomResult: ResultType {
+    
+    /// Creates a result in a success state
+    init(_ success: Value)
+    
+    /// Creates a result in a failure state
+    init(failure: NSError)
 
 }
 
@@ -26,7 +32,7 @@ extension VoidResult {
         }
     }
 
-    public func flatMap<U, R: ResultType where R.Value == U>(getValue: () -> R) -> R {
+    public func flatMap<U, R: CustomResult where R.Value == U>(getValue: () -> R) -> R {
         switch self {
         case Success(let value): return getValue()
         case Failure(let error): return R(failure: error)
@@ -44,7 +50,7 @@ extension ObjectResult {
         }
     }
 
-    public func flatMap<U, R: ResultType where R.Value == U>(transform: T -> R) -> R {
+    public func flatMap<U, R: CustomResult where R.Value == U>(transform: T -> R) -> R {
         switch self {
         case Success(let value): return transform(value)
         case Failure(let error): return R(failure: error)
@@ -62,7 +68,7 @@ extension AnyResult {
         }
     }
 
-    public func flatMap<U, R: ResultType where R.Value == U>(transform: T -> R) -> R {
+    public func flatMap<U, R: CustomResult where R.Value == U>(transform: T -> R) -> R {
         switch self {
         case Success(let value): return transform(value as! T)
         case Failure(let error): return R(failure: error)
@@ -106,4 +112,18 @@ public func map<U, IR: _ResultType, RR: CustomResult where RR.Value == U>(result
         return RR(value())
     }
     return RR(failure: result.error!)
+}
+
+// MARK: Generic free constructors
+
+public func success<T, Result: CustomResult where Result.Value == T>(value: T) -> Result {
+    return Result(value)
+}
+
+public func failure<Result: CustomResult>(error: NSError) -> Result {
+    return Result(failure: error)
+}
+
+public func failure<Result: CustomResult>(_ message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> Result {
+    return Result(failure: error(message, file: file, line: line))
 }
