@@ -43,7 +43,7 @@ public let ErrorFileKey = "errorFile"
 public let ErrorLineKey = "errorLine"
 
 /// Generate an automatic domainless `NSError`.
-public func error(_ message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> NSError {
+public func error(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> NSError {
     var userInfo: [String: AnyObject] = [
         ErrorFileKey: file.stringValue,
         ErrorLineKey: line

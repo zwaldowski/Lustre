@@ -79,7 +79,7 @@ extension AnyResult {
 
 // MARK: Free try
 
-public func try<T, R: CustomResult where R.Value == T>(file: StaticString = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> T?) -> R {
+public func try<T, R: CustomResult where R.Value == T>(file: StaticString = __FILE__, line: UWord = __LINE__, fn: NSErrorPointer -> T?) -> R {
     var err: NSError?
     switch (fn(&err), err) {
     case (.Some(let value), _):
@@ -124,6 +124,6 @@ public func failure<Result: CustomResult>(error: NSError) -> Result {
     return Result(failure: error)
 }
 
-public func failure<Result: CustomResult>(_ message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> Result {
+public func failure<Result: CustomResult>(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> Result {
     return Result(failure: error(message, file: file, line: line))
 }

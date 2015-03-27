@@ -112,7 +112,7 @@ extension AnyResult {
 
 // MARK: Free try
 
-public func try(file: StaticString = __FILE__, line: Int = __LINE__, fn: NSErrorPointer -> Bool) -> VoidResult {
+public func try(file: StaticString = __FILE__, line: UWord = __LINE__, fn: NSErrorPointer -> Bool) -> VoidResult {
     var err: NSError?
     switch (fn(&err), err) {
     case (true, _):
@@ -159,6 +159,6 @@ public func failure(error: NSError) -> VoidResult {
     return .Failure(error)
 }
 
-public func failure(_ message: String? = nil, file: StaticString = __FILE__, line: Int = __LINE__) -> VoidResult {
+public func failure(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> VoidResult {
     return .Failure(error(message, file: file, line: line))
 }
