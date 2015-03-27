@@ -32,3 +32,7 @@ performance problems around using a `Box<T>`-based Result type.
 
 Lustre is intended for Swift 1.2. Compatibility with future versions is not
 guaranteed.
+
+## What's up with the name?
+
+Result `=>` Lustre. It's an anagram.
