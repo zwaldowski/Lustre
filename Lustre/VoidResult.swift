@@ -28,7 +28,7 @@ extension VoidResult: ResultType {
     }
     
     public var value: ()! {
-        return nil
+        return ()
     }
 
     public var error: NSError? {
