@@ -84,7 +84,7 @@ public func try<T, R: CustomResult where R.Value == T>(file: StaticString = __FI
     case (.None, .Some(let error)):
         return R(failure: error)
     default:
-        return R(failure: error(nil, file: file, line: line))
+        return R(failure: error(file: file, line: line))
     }
 }
 

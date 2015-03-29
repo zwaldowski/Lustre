@@ -123,7 +123,7 @@ public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, fn: NS
     case (.None, .Some(let error)):
         return .Failure(error)
     default:
-        return .Failure(error(nil, file: file, line: line))
+        return .Failure(error(file: file, line: line))
     }
 }
 

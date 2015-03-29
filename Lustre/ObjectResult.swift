@@ -121,7 +121,7 @@ public func try<T: AnyObject>(file: StaticString = __FILE__, line: UWord = __LIN
     case (.None, .Some(let error)):
         return .Failure(error)
     default:
-        return .Failure(error(nil, file: file, line: line))
+        return .Failure(error(file: file, line: line))
     }
 }
 
