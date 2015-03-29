@@ -120,7 +120,7 @@ extension AnyResult {
 
 // MARK: Free try
 
-public func try(file: StaticString = __FILE__, line: UWord = __LINE__, fn: NSErrorPointer -> Bool) -> VoidResult {
+public func try(file: StaticString = __FILE__, line: UWord = __LINE__, @noescape fn: NSErrorPointer -> Bool) -> VoidResult {
     var err: NSError?
     switch (fn(&err), err) {
     case (true, _):
