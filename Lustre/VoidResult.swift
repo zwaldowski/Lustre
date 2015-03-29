@@ -141,14 +141,6 @@ public func map<T, IR: ResultType where IR.Value == T>(result: IR, fn: T -> ()) 
     }
 }
 
-public func flatMap<T, IR: ResultType where IR.Value == T>(result: IR, transform: T -> VoidResult) -> VoidResult {
-    switch result.value {
-    case .Some(let value): return transform(value)
-    case .None: return .Failure(result.error!)
-    }
-}
-
-
 // MARK: Free constructors
 
 public func success() -> VoidResult {

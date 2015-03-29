@@ -134,13 +134,6 @@ public func map<U: AnyObject, IR: ResultType>(result: IR, value: () -> U) -> Obj
     return .Failure(result.error!)
 }
 
-public func flatMap<T, U: AnyObject, IR: ResultType where IR.Value == T>(result: IR, transform: T -> ObjectResult<U>) -> ObjectResult<U> {
-    switch result.value {
-    case .Some(let value): return transform(value)
-    case .None: return .Failure(result.error!)
-    }
-}
-
 public func map<T, U: AnyObject, IR: ResultType where IR.Value == T>(result: IR, transform: T -> U) -> ObjectResult<U> {
     switch result.value {
     case .Some(let value): return .Success(transform(value))

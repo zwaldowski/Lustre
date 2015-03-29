@@ -54,23 +54,32 @@ class ObjectResultTests: XCTestCase {
     }
 
     func testFlatMapSuccessSuccess() {
-        let y = successResult.flatMap(doubleSuccess)
+        let x = successResult.flatMap(doubleSuccess)
+        let y = flatMap(successResult, doubleSuccess)
+        XCTAssert(x.value != nil)
+        XCTAssert(x.value !== testValue)
         XCTAssert(y.value != nil)
-        XCTAssert(y.value != testValue)
+        XCTAssert(y.value !== testValue)
     }
 
     func testFlatMapSuccessFailure() {
-        let y = successResult.flatMap(doubleFailure)
+        let x = successResult.flatMap(doubleFailure)
+        let y = flatMap(successResult, doubleFailure)
+        XCTAssert(x.error == testError)
         XCTAssert(y.error == testError)
     }
 
     func testFlatMapFailureSuccess() {
-        let y = failureResult2.flatMap(doubleSuccess)
+        let x = failureResult2.flatMap(doubleSuccess)
+        let y = flatMap(failureResult2, doubleSuccess)
+        XCTAssert(x.error == testError2)
         XCTAssert(y.error == testError2)
     }
 
     func testFlatMapFailureFailure() {
-        let y = failureResult2.flatMap(doubleFailure)
+        let x = failureResult2.flatMap(doubleFailure)
+        let y = flatMap(failureResult2, doubleFailure)
+        XCTAssert(x.error == testError2)
         XCTAssert(y.error == testError2)
     }
 

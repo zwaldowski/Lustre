@@ -110,3 +110,13 @@ public func failure<Result: ResultType>(_ message: String? = nil, file: StaticSt
     return Result(failure: error(message, file: file, line: line))
 }
 
+
+// MARK: Free map/flatMap
+
+public func flatMap<IR: ResultType, RR: ResultType>(result: IR, transform: IR.Value -> RR) -> RR {
+    if result.isSuccess {
+        return transform(result.value)
+    }
+    return failure(result.error!)
+}
+

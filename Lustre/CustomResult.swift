@@ -16,6 +16,8 @@ public protocol CustomResult: ResultType {
     /// Creates a result in a success state
     init(_ success: Value)
 
+    func flatMap<RR: ResultType>(transform: Value -> RR) -> RR
+
 }
 
 // MARK: Remote map/flatMap
@@ -93,13 +95,6 @@ public func try<T, R: CustomResult where R.Value == T>(file: StaticString = __FI
 public func map<T, U, IR: ResultType, RR: CustomResult where IR.Value == T, RR.Value == U>(result: IR, transform: T -> U) -> RR {
     switch result.value {
     case .Some(let value): return RR(transform(value))
-    case .None: return RR(failure: result.error!)
-    }
-}
-
-public func flatMap<T, U, IR: ResultType, RR: CustomResult where IR.Value == T, RR.Value == U>(result: IR, transform: T -> RR) -> RR {
-    switch result.value {
-    case .Some(let value): return transform(value)
     case .None: return RR(failure: result.error!)
     }
 }
