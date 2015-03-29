@@ -14,6 +14,8 @@
 		DB76F1451AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */; };
 		DB76F1461AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */; };
 		DB76F1471AC5DD7900C068FC /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
+		DB7D4AA31AC8AC2F00C54623 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D4AA21AC8AC2F00C54623 /* Operators.swift */; };
+		DB7D4AA41AC8AC2F00C54623 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D4AA21AC8AC2F00C54623 /* Operators.swift */; };
 		DBDF88211AC49659000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBDF88271AC49659000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF881B1AC49659000AA16F /* Lustre.framework */; };
 		DBDF88471AC49669000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF883C1AC49669000AA16F /* Lustre.framework */; };
@@ -54,6 +56,7 @@
 		DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResultTests.swift; sourceTree = "<group>"; };
 		DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResultTests.swift; sourceTree = "<group>"; };
 		DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResultTests.swift; sourceTree = "<group>"; };
+		DB7D4AA21AC8AC2F00C54623 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		DBDF881B1AC49659000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF881F1AC49659000AA16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBDF88201AC49659000AA16F /* Lustre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lustre.h; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 				DBDF885A1AC49B85000AA16F /* ObjectResult.swift */,
 				DBDF885B1AC49B85000AA16F /* Result.swift */,
 				DBDF885C1AC49B85000AA16F /* VoidResult.swift */,
+				DB7D4AA21AC8AC2F00C54623 /* Operators.swift */,
 				DBDF881E1AC49659000AA16F /* Supporting Files */,
 			);
 			path = Lustre;
@@ -342,6 +346,7 @@
 			files = (
 				DBDF885E1AC49B85000AA16F /* AnyResult.swift in Sources */,
 				DBDF88661AC49B85000AA16F /* Result.swift in Sources */,
+				DB7D4AA41AC8AC2F00C54623 /* Operators.swift in Sources */,
 				DBDF88681AC49B85000AA16F /* VoidResult.swift in Sources */,
 				DBDF88621AC49B85000AA16F /* Error.swift in Sources */,
 				DBDF88601AC49B85000AA16F /* CustomResult.swift in Sources */,
@@ -366,6 +371,7 @@
 			files = (
 				DBDF885D1AC49B85000AA16F /* AnyResult.swift in Sources */,
 				DBDF88651AC49B85000AA16F /* Result.swift in Sources */,
+				DB7D4AA31AC8AC2F00C54623 /* Operators.swift in Sources */,
 				DBDF88671AC49B85000AA16F /* VoidResult.swift in Sources */,
 				DBDF88611AC49B85000AA16F /* Error.swift in Sources */,
 				DBDF885F1AC49B85000AA16F /* CustomResult.swift in Sources */,

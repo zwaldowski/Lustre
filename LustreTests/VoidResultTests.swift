@@ -62,29 +62,37 @@ class VoidResultTests: XCTestCase {
     func testFlatMapSuccessSuccess() {
         let x = successResult.flatMap(doubleSuccess)
         let y = flatMap(successResult, doubleSuccess)
+        let z = successResult >>== doubleSuccess
         XCTAssert(x.value != nil)
         XCTAssert(y.value != nil)
+        XCTAssert(z.value != nil)
     }
 
     func testFlatMapSuccessFailure() {
         let x = successResult.flatMap(doubleFailure)
         let y = flatMap(successResult, doubleFailure)
+        let z = successResult >>== doubleFailure
         XCTAssert(x.error == testError)
         XCTAssert(y.error == testError)
+        XCTAssert(z.error == testError)
     }
 
     func testFlatMapFailureSuccess() {
         let x = failureResult2.flatMap(doubleSuccess)
         let y = flatMap(failureResult2, doubleSuccess)
+        let z = failureResult2 >>== doubleSuccess
         XCTAssert(x.error == testError2)
         XCTAssert(y.error == testError2)
+        XCTAssert(z.error == testError2)
     }
 
     func testFlatMapFailureFailure() {
         let x = failureResult2.flatMap(doubleFailure)
         let y = flatMap(failureResult2, doubleFailure)
+        let z = failureResult2 >>== doubleFailure
         XCTAssert(x.error == testError2)
         XCTAssert(y.error == testError2)
+        XCTAssert(z.error == testError2)
     }
 
     func testDescriptionSuccess() {
