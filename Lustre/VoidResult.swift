@@ -134,10 +134,12 @@ public func try(file: StaticString = __FILE__, line: UWord = __LINE__, fn: NSErr
 
 // MARK: Free maps
 
-public func map<T, IR: ResultType where IR.Value == T>(result: IR, fn: T -> ()) -> VoidResult {
-    switch result.value {
-    case .Some(let value): fn(value); return .Success
-    case .None: return .Failure(result.error!)
+public func map<IR: ResultType>(result: IR, fn: IR.Value -> ()) -> VoidResult {
+    if result.isSuccess {
+        fn(result.value)
+        return success()
+    } else {
+        return failure(result.error!)
     }
 }
 

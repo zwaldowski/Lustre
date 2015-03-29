@@ -92,18 +92,12 @@ public func try<T, R: CustomResult where R.Value == T>(file: StaticString = __FI
 
 // MARK: Free maps
 
-public func map<T, U, IR: ResultType, RR: CustomResult where IR.Value == T, RR.Value == U>(result: IR, transform: T -> U) -> RR {
-    switch result.value {
-    case .Some(let value): return RR(transform(value))
-    case .None: return RR(failure: result.error!)
-    }
-}
-
-public func map<U, IR: ResultType, RR: CustomResult where RR.Value == U>(result: IR, value: () -> U) -> RR {
+public func map<IR: ResultType, RR: CustomResult>(result: IR, transform: IR.Value -> RR.Value) -> RR {
     if result.isSuccess {
-        return RR(value())
+        return RR(transform(result.value))
+    } else {
+        return RR(failure: result.error!)
     }
-    return RR(failure: result.error!)
 }
 
 // MARK: Generic free constructors

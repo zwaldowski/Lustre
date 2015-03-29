@@ -129,17 +129,11 @@ public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, fn: NS
 
 // MARK: Free maps
 
-public func map<U, IR: ResultType>(result: IR, value: () -> U) -> AnyResult<U> {
+public func map<IR: ResultType, U>(result: IR, transform: IR.Value -> U) -> AnyResult<U> {
     if result.isSuccess {
-        return .Success(value())
-    }
-    return .Failure(result.error!)
-}
-
-public func map<T, U, IR: ResultType where IR.Value == T>(result: IR, transform: T -> U) -> AnyResult<U> {
-    switch result.value {
-    case .Some(let value): return .Success(transform(value))
-    case .None: return .Failure(result.error!)
+        return success(transform(result.value))
+    } else {
+        return failure(result.error!)
     }
 }
 
