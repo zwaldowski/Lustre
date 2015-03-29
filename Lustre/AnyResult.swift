@@ -43,6 +43,13 @@ extension AnyResult: ResultType {
         }
     }
 
+    public func flatMap<R: ResultType>(transform: T -> R) -> R {
+        switch self {
+            case Success(let value): return transform(value as! T)
+            case Failure(let error): return failure(error)
+        }
+    }
+
 }
 
 extension AnyResult: Printable {
@@ -68,13 +75,6 @@ extension VoidResult {
         }
     }
 
-    public func flatMap<U>(getValue: () -> AnyResult<U>) -> AnyResult<U> {
-        switch self {
-        case Success(let value): return getValue()
-        case Failure(let error): return .Failure(error)
-        }
-    }
-
 }
 
 extension ObjectResult {
@@ -86,13 +86,6 @@ extension ObjectResult {
         }
     }
 
-    public func flatMap<U>(transform: T -> AnyResult<U>) -> AnyResult<U> {
-        switch self {
-        case Success(let value): return transform(value)
-        case Failure(let error): return .Failure(error)
-        }
-    }
-
 }
 
 extension AnyResult {
@@ -100,13 +93,6 @@ extension AnyResult {
     public func map<U>(transform: T -> U) -> AnyResult<U> {
         switch self {
         case Success(let value): return .Success(transform(value as! T))
-        case Failure(let error): return .Failure(error)
-        }
-    }
-
-    public func flatMap<U>(transform: T -> AnyResult<U>) -> AnyResult<U> {
-        switch self {
-        case Success(let value): return transform(value as! T)
         case Failure(let error): return .Failure(error)
         }
     }

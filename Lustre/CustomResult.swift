@@ -16,8 +16,6 @@ public protocol CustomResult: ResultType {
     /// Creates a result in a success state
     init(_ success: Value)
 
-    func flatMap<RR: ResultType>(transform: Value -> RR) -> RR
-
 }
 
 // MARK: Remote map/flatMap
@@ -27,13 +25,6 @@ extension VoidResult {
     public func map<U, R: CustomResult where R.Value == U>(getValue: () -> U) -> R {
         switch self {
         case Success: return R(getValue())
-        case Failure(let error): return R(failure: error)
-        }
-    }
-
-    public func flatMap<U, R: CustomResult where R.Value == U>(getValue: () -> R) -> R {
-        switch self {
-        case Success(let value): return getValue()
         case Failure(let error): return R(failure: error)
         }
     }
@@ -49,13 +40,6 @@ extension ObjectResult {
         }
     }
 
-    public func flatMap<U, R: CustomResult where R.Value == U>(transform: T -> R) -> R {
-        switch self {
-        case Success(let value): return transform(value)
-        case Failure(let error): return R(failure: error)
-        }
-    }
-
 }
 
 extension AnyResult {
@@ -63,13 +47,6 @@ extension AnyResult {
     public func map<U, R: CustomResult where R.Value == U>(transform: T -> U) -> R {
         switch self {
         case Success(let value): return R(transform(value as! T))
-        case Failure(let error): return R(failure: error)
-        }
-    }
-
-    public func flatMap<U, R: CustomResult where R.Value == U>(transform: T -> R) -> R {
-        switch self {
-        case Success(let value): return transform(value as! T)
         case Failure(let error): return R(failure: error)
         }
     }

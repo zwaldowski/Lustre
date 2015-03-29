@@ -16,8 +16,5 @@ infix operator >>== {
 }
 
 public func >>==<IR: ResultType, RR: ResultType>(result: IR, transform: IR.Value -> RR) -> RR {
-    if result.isSuccess {
-        return transform(result.value)
-    }
-    return failure(result.error!)
+    return result.flatMap(transform)
 }

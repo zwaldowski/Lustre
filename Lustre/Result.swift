@@ -28,6 +28,9 @@ public protocol ResultType {
     
     /// The error object iff the event failed and `isSuccess` is `false`.
     var error: NSError? { get }
+    
+    /// Return the Result of mapping `transform` over `self`.
+    func flatMap<Result: ResultType>(transform: Value -> Result) -> Result
 
 }
 
@@ -109,14 +112,3 @@ public func failure<Result: ResultType>(error: NSError) -> Result {
 public func failure<Result: ResultType>(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> Result {
     return Result(failure: error(message, file: file, line: line))
 }
-
-
-// MARK: Free map/flatMap
-
-public func flatMap<IR: ResultType, RR: ResultType>(result: IR, transform: IR.Value -> RR) -> RR {
-    if result.isSuccess {
-        return transform(result.value)
-    }
-    return failure(result.error!)
-}
-

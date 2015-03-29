@@ -37,6 +37,13 @@ extension VoidResult: ResultType {
         case .Failure(let error): return error
         }
     }
+    
+    public func flatMap<R: ResultType>(transform: () -> R) -> R {
+        switch self {
+        case .Success: return transform()
+        case .Failure(let error): return failure(error)
+        }
+    }
 
 }
 
@@ -73,13 +80,6 @@ extension VoidResult {
         }
     }
 
-    public func flatMap(getValue: () -> VoidResult) -> VoidResult {
-        switch self {
-        case Success(let value): return getValue()
-        case Failure(let error): return .Failure(error)
-        }
-    }
-
 }
 
 extension ObjectResult {
@@ -91,13 +91,6 @@ extension ObjectResult {
         }
     }
 
-    public func flatMap(transform: T -> VoidResult) -> VoidResult {
-        switch self {
-        case Success(let value): return transform(value)
-        case Failure(let error): return .Failure(error)
-        }
-    }
-
 }
 
 extension AnyResult {
@@ -105,13 +98,6 @@ extension AnyResult {
     public func map(fn: T -> ()) -> VoidResult {
         switch self {
         case Success(let value): fn(value as! T); return .Success
-        case Failure(let error): return .Failure(error)
-        }
-    }
-
-    public func flatMap(transform: T -> VoidResult) -> VoidResult {
-        switch self {
-        case Success(let value): return transform(value as! T)
         case Failure(let error): return .Failure(error)
         }
     }
