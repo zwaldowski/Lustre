@@ -22,7 +22,7 @@ public protocol CustomResult: ResultType {
 
 extension VoidResult {
 
-    public func map<R: CustomResult>(getValue: () -> R.Value) -> R {
+    public func map<R: CustomResult>(@noescape getValue: () -> R.Value) -> R {
         switch self {
         case Success:            return success(getValue())
         case Failure(let error): return failure(error)
@@ -33,7 +33,7 @@ extension VoidResult {
 
 extension ObjectResult {
 
-    public func map<R: CustomResult>(transform: T -> R.Value) -> R {
+    public func map<R: CustomResult>(@noescape transform: T -> R.Value) -> R {
         switch self {
         case Success(let value): return success(transform(value))
         case Failure(let error): return failure(error)
@@ -44,7 +44,7 @@ extension ObjectResult {
 
 extension AnyResult {
 
-    public func map<R: CustomResult>(transform: T -> R.Value) -> R {
+    public func map<R: CustomResult>(@noescape transform: T -> R.Value) -> R {
         switch self {
         case Success(let value): return success(transform(value as! T))
         case Failure(let error): return failure(error)
@@ -69,7 +69,7 @@ public func try<R: CustomResult>(file: StaticString = __FILE__, line: UWord = __
 
 // MARK: Free maps
 
-public func map<IR: ResultType, RR: CustomResult>(result: IR, transform: IR.Value -> RR.Value) -> RR {
+public func map<IR: ResultType, RR: CustomResult>(result: IR, @noescape transform: IR.Value -> RR.Value) -> RR {
     if result.isSuccess {
         return success(transform(result.value))
     } else {

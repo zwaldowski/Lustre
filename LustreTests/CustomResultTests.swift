@@ -48,7 +48,7 @@ private enum StringResult: CustomResult {
         }
     }
     
-    func flatMap<RR: ResultType>(transform: String -> RR) -> RR {
+    func flatMap<RR: ResultType>(@noescape transform: String -> RR) -> RR {
         switch self {
         case .Success(let value): return transform(value)
         case .Failure(let error): return failure(error)

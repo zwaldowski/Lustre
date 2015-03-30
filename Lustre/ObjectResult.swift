@@ -41,7 +41,7 @@ extension ObjectResult: ResultType {
         }
     }
 
-    public func flatMap<R: ResultType>(transform: T -> R) -> R {
+    public func flatMap<R: ResultType>(@noescape transform: T -> R) -> R {
         switch self {
         case .Success(let value): return transform(value)
         case .Failure(let error): return failure(error)
@@ -66,7 +66,7 @@ extension ObjectResult: Printable {
 
 extension VoidResult {
 
-    public func map<U: AnyObject>(getValue: () -> U) -> ObjectResult<U> {
+    public func map<U: AnyObject>(@noescape getValue: () -> U) -> ObjectResult<U> {
         switch self {
         case Success:            return success(getValue())
         case Failure(let error): return failure(error)
@@ -77,7 +77,7 @@ extension VoidResult {
 
 extension ObjectResult {
 
-    public func map<U: AnyObject>(transform: T -> U) -> ObjectResult<U> {
+    public func map<U: AnyObject>(@noescape transform: T -> U) -> ObjectResult<U> {
         switch self {
         case Success(let value): return success(transform(value))
         case Failure(let error): return failure(error)
@@ -88,7 +88,7 @@ extension ObjectResult {
 
 extension AnyResult {
 
-    public func map<U: AnyObject>(transform: T -> U) -> ObjectResult<U> {
+    public func map<U: AnyObject>(@noescape transform: T -> U) -> ObjectResult<U> {
         switch self {
         case Success(let value): return success(transform(value as! T))
         case Failure(let error): return failure(error)
@@ -113,7 +113,7 @@ public func try<T: AnyObject>(file: StaticString = __FILE__, line: UWord = __LIN
 
 // MARK: Free maps
 
-public func map<IR: ResultType, U: AnyObject>(result: IR, transform: IR.Value -> U) -> ObjectResult<U> {
+public func map<IR: ResultType, U: AnyObject>(result: IR, @noescape transform: IR.Value -> U) -> ObjectResult<U> {
     if result.isSuccess {
         return success(transform(result.value))
     } else {

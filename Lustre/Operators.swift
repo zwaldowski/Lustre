@@ -15,6 +15,6 @@ infix operator >>== {
     precedence 150
 }
 
-public func >>==<IR: ResultType, RR: ResultType>(result: IR, transform: IR.Value -> RR) -> RR {
+public func >>==<IR: ResultType, RR: ResultType>(result: IR, @noescape transform: IR.Value -> RR) -> RR {
     return result.flatMap(transform)
 }

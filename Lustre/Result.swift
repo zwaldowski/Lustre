@@ -30,7 +30,7 @@ public protocol ResultType {
     var error: NSError? { get }
     
     /// Return the Result of mapping `transform` over `self`.
-    func flatMap<Result: ResultType>(transform: Value -> Result) -> Result
+    func flatMap<Result: ResultType>(@noescape transform: Value -> Result) -> Result
 
 }
 
