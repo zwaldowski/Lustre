@@ -71,8 +71,9 @@ public func try<R: CustomResult>(file: StaticString = __FILE__, line: UWord = __
     var value: R.Value!
     var err: NSError?
     
-    let didSucceed = withUnsafeMutablePointer(&value) {
-        fn(UnsafeMutablePointer($0), &err)
+    let didSucceed = withUnsafeMutablePointer(&value) { (ptr) -> Bool in
+        bzero(UnsafeMutablePointer(ptr), sizeof(ImplicitlyUnwrappedOptional<R.Value>))
+        fn(UnsafeMutablePointer(ptr), &err)
     }
     
     switch (didSucceed, err) {
