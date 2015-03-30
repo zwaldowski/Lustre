@@ -55,15 +55,15 @@ extension AnyResult {
 
 // MARK: Free try
 
-public func try<R: CustomResult>(file: StaticString = __FILE__, line: UWord = __LINE__, @noescape fn: NSErrorPointer -> R.Value?) -> R {
+public func try<R: CustomResult>(file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: (NSError -> NSError) = identityError, @noescape fn: NSErrorPointer -> R.Value?) -> R {
     var err: NSError?
     switch (fn(&err), err) {
     case (.Some(let value), _):
         return R(value)
     case (.None, .Some(let error)):
-        return R(failure: error)
+        return R(failure: transform(error))
     default:
-        return R(failure: error(file: file, line: line))
+        return R(failure: transform(error(file: file, line: line)))
     }
 }
 

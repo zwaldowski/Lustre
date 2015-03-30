@@ -55,3 +55,7 @@ public func error(_ message: String? = nil, file: StaticString = __FILE__, line:
     
     return NSError(domain: "", code: -1, userInfo: userInfo)
 }
+
+func identityError(error: NSError) -> NSError {
+    return error
+}
