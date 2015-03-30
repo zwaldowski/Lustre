@@ -117,8 +117,9 @@ public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noesc
     var value: T!
     var err: NSError?
     
-    let didSucceed = withUnsafeMutablePointer(&value) {
-        fn(UnsafeMutablePointer($0), &err)
+    let didSucceed = withUnsafeMutablePointer(&value) { (ptr) -> Bool in
+        bzero(UnsafeMutablePointer(ptr), sizeof(ImplicitlyUnwrappedOptional<T>))
+        return fn(UnsafeMutablePointer(ptr), &err)
     }
     
     switch (didSucceed, err) {
