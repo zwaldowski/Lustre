@@ -22,7 +22,7 @@ public protocol CustomResult: ResultType {
 
 extension VoidResult {
 
-    public func map<U, R: CustomResult where R.Value == U>(getValue: () -> U) -> R {
+    public func map<R: CustomResult>(getValue: () -> R.Value) -> R {
         switch self {
         case Success:            return success(getValue())
         case Failure(let error): return failure(error)
@@ -33,7 +33,7 @@ extension VoidResult {
 
 extension ObjectResult {
 
-    public func map<U, R: CustomResult where R.Value == U>(transform: T -> U) -> R {
+    public func map<R: CustomResult>(transform: T -> R.Value) -> R {
         switch self {
         case Success(let value): return success(transform(value))
         case Failure(let error): return failure(error)
@@ -44,7 +44,7 @@ extension ObjectResult {
 
 extension AnyResult {
 
-    public func map<U, R: CustomResult where R.Value == U>(transform: T -> U) -> R {
+    public func map<R: CustomResult>(transform: T -> R.Value) -> R {
         switch self {
         case Success(let value): return success(transform(value as! T))
         case Failure(let error): return failure(error)
@@ -79,6 +79,6 @@ public func map<IR: ResultType, RR: CustomResult>(result: IR, transform: IR.Valu
 
 // MARK: Generic free constructors
 
-public func success<T, Result: CustomResult where Result.Value == T>(value: T) -> Result {
-    return Result(value)
+public func success<R: CustomResult>(value: R.Value) -> R {
+    return R(value)
 }

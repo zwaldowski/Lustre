@@ -81,7 +81,7 @@ public func != <Result: ResultType where Result.Value: Equatable>(lhs: Result, r
 /// Result failure coalescing
 ///    success(42) ?? 0 ==> 42
 ///    failure(error()) ?? 0 ==> 0
-public func ??<T, Result: ResultType where Result.Value == T>(result: Result, @autoclosure defaultValue: () -> T) -> T {
+public func ??<Result: ResultType>(result: Result, @autoclosure defaultValue: () -> Result.Value) -> Result.Value {
     return result.value ?? defaultValue()
 }
 
