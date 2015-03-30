@@ -59,14 +59,31 @@ extension VoidResult: Printable {
 
 }
 
-extension VoidResult: Equatable {}
+/**
+    Unlike result types on the whole, all `VoidResult`s are inherently
+    equatable.
 
+    :returns: `true` if both results are successes, or if they both contain
+    identical errors.
+**/
 public func == (lhs: VoidResult, rhs: VoidResult) -> Bool {
     switch (lhs.isSuccess, rhs.isSuccess) {
     case (true, true): return true
     case (false, false): return lhs.error == rhs.error
     default: return false
     }
+}
+
+extension VoidResult: Hashable {
+
+    /// An integer hash value describing a unique instance.
+    public var hashValue: Int {
+        switch self {
+        case .Success:            return 0
+        case .Failure(let error): return error.hash
+        }
+    }
+
 }
 
 // MARK: Remote map/flatMap
