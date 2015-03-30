@@ -24,8 +24,8 @@ extension VoidResult {
 
     public func map<U, R: CustomResult where R.Value == U>(getValue: () -> U) -> R {
         switch self {
-        case Success: return R(getValue())
-        case Failure(let error): return R(failure: error)
+        case Success:            return success(getValue())
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -35,8 +35,8 @@ extension ObjectResult {
 
     public func map<U, R: CustomResult where R.Value == U>(transform: T -> U) -> R {
         switch self {
-        case Success(let value): return R(transform(value))
-        case Failure(let error): return R(failure: error)
+        case Success(let value): return success(transform(value))
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -46,8 +46,8 @@ extension AnyResult {
 
     public func map<U, R: CustomResult where R.Value == U>(transform: T -> U) -> R {
         switch self {
-        case Success(let value): return R(transform(value as! T))
-        case Failure(let error): return R(failure: error)
+        case Success(let value): return success(transform(value as! T))
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -59,11 +59,11 @@ public func try<R: CustomResult>(file: StaticString = __FILE__, line: UWord = __
     var err: NSError?
     switch (fn(&err), err) {
     case (.Some(let value), _):
-        return R(value)
+        return success(value)
     case (.None, .Some(let error)):
-        return R(failure: transform(error))
+        return failure(transform(error))
     default:
-        return R(failure: transform(error(file: file, line: line)))
+        return failure(transform(error(file: file, line: line)))
     }
 }
 
@@ -71,9 +71,9 @@ public func try<R: CustomResult>(file: StaticString = __FILE__, line: UWord = __
 
 public func map<IR: ResultType, RR: CustomResult>(result: IR, transform: IR.Value -> RR.Value) -> RR {
     if result.isSuccess {
-        return RR(transform(result.value))
+        return success(transform(result.value))
     } else {
-        return RR(failure: result.error!)
+        return failure(result.error!)
     }
 }
 

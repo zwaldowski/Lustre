@@ -68,8 +68,8 @@ extension VoidResult {
 
     public func map<U: AnyObject>(getValue: () -> U) -> ObjectResult<U> {
         switch self {
-        case Success: return .Success(getValue())
-        case Failure(let error): return .Failure(error)
+        case Success:            return success(getValue())
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -79,8 +79,8 @@ extension ObjectResult {
 
     public func map<U: AnyObject>(transform: T -> U) -> ObjectResult<U> {
         switch self {
-        case Success(let value): return .Success(transform(value))
-        case Failure(let error): return .Failure(error)
+        case Success(let value): return success(transform(value))
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -90,8 +90,8 @@ extension AnyResult {
 
     public func map<U: AnyObject>(transform: T -> U) -> ObjectResult<U> {
         switch self {
-        case Success(let value): return .Success(transform(value as! T))
-        case Failure(let error): return .Failure(error)
+        case Success(let value): return success(transform(value as! T))
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -105,9 +105,9 @@ public func try<T: AnyObject>(file: StaticString = __FILE__, line: UWord = __LIN
     case (.Some(let value), _):
         return success(value)
     case (.None, .Some(let error)):
-        return .Failure(transform(error))
+        return failure(transform(error))
     default:
-        return .Failure(transform(error(file: file, line: line)))
+        return failure(transform(error(file: file, line: line)))
     }
 }
 

@@ -75,8 +75,10 @@ extension VoidResult {
 
     public func map(fn: () -> ()) -> VoidResult {
         switch self {
-        case Success: fn(); return .Success
-        case Failure(let error): return .Failure(error)
+        case Success:
+            fn();
+            return success()
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -86,8 +88,10 @@ extension ObjectResult {
 
     public func map<U: AnyObject>(fn: T -> ()) -> VoidResult {
         switch self {
-        case Success(let value): fn(value); return .Success
-        case Failure(let error): return .Failure(error)
+        case Success(let value):
+            fn(value);
+            return success()
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -97,8 +101,10 @@ extension AnyResult {
 
     public func map(fn: T -> ()) -> VoidResult {
         switch self {
-        case Success(let value): fn(value as! T); return .Success
-        case Failure(let error): return .Failure(error)
+        case Success(let value):
+            fn(value as! T);
+            return success()
+        case Failure(let error): return failure(error)
         }
     }
 
@@ -110,11 +116,11 @@ public func try(file: StaticString = __FILE__, line: UWord = __LINE__, @noescape
     var err: NSError?
     switch (fn(&err), err) {
     case (true, _):
-        return .Success
+        return success()
     case (false, .Some(let error)):
-        return .Failure(transform(error))
+        return failure(transform(error))
     default:
-        return .Failure(transform(error(file: file, line: line)))
+        return failure(transform(error(file: file, line: line)))
     }
 }
 
