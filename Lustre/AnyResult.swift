@@ -113,6 +113,24 @@ public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noesc
     }
 }
 
+public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: (NSError -> NSError) = identityError, @noescape fn: (UnsafeMutablePointer<T>, NSErrorPointer) -> Bool) -> AnyResult<T> {
+    var value: T!
+    var err: NSError?
+    
+    let didSucceed = withUnsafeMutablePointer(&value) {
+        fn(UnsafeMutablePointer($0), &err)
+    }
+    
+    switch (didSucceed, err) {
+    case (true, _):
+        return success(value)
+    case (false, .Some(let error)):
+        return failure(transform(error))
+    default:
+        return failure(transform(error(file: file, line: line)))
+    }
+}
+
 // MARK: Free maps
 
 public func map<IR: ResultType, U>(result: IR, @noescape transform: IR.Value -> U) -> AnyResult<U> {
