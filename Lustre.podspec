@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Lustre"
-  s.version      = "0.6.1"
+  s.version      = "0.6.3"
   s.summary      = "An imperfect but more performant Result pattern in Swift."
   s.description  = <<-DESC
                    An imperfect but more performant implementation of the Result
