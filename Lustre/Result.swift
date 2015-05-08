@@ -156,9 +156,13 @@ public func failure<Result: ResultType>(error: NSError) -> Result {
     For example:
        let failure: AnyResult<Bool> = failure("Parsing the object failed!")
 
-    :param: An instance of an `NSError`
+    :param: message An optional description of the problem.
+    :param: function A statically-known version of the calling function.
+    :param: file A statically-known version of the calling file in the project.
+    :param: line A statically-known version of the calling line in code.
     :returns: A suitable result type for the given context.
+
 **/
-public func failure<Result: ResultType>(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> Result {
-    return Result(failure: error(message, file: file, line: line))
+public func failure<Result: ResultType>(_ message: String? = nil, function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__) -> Result {
+    return Result(failure: error(message, function: function, file: file, line: line))
 }

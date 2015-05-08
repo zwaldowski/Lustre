@@ -142,7 +142,7 @@ class CustomResultTests: XCTestCase {
     
     func testDescriptionFailure() {
         let x: AnyResult<String> = failure()
-        XCTAssert(x.description.hasPrefix("Failure: Error Domain= Code=-1 "))
+        XCTAssert(x.description.hasPrefix("Failure: Error Domain=\(ResultErrorDomain) Code=-1 "))
     }
     
     func testCoalesceSuccess() {

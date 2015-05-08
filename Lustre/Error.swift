@@ -69,15 +69,28 @@ public func error<T: ErrorRepresentable>(#code: T, underlying: NSError? = nil) -
     return NSError(domain: T.domain, code: numericCast(code.code), userInfo: userInfo)
 }
 
-/// Key for the `__FILE__` constant in generated errors
-public let ErrorFileKey = "errorFile"
+/// Key for the __FILE__ constant in generated errors
+public let ResultErrorDomain = "me.waldowski.Lustre"
 
-/// Key for the `__LINE__` constant in generated errors
-public let ErrorLineKey = "errorLine"
+/// Key for the __FILE__ constant in generated errors
+public var ErrorFileKey: String {
+    return ResultErrorDomain + ".error-file"
+}
+
+/// Key for the __LINE__ constant in generated errors
+public var ErrorLineKey: String {
+    return ResultErrorDomain + ".error-line"
+}
+
+/// Key for the __FUNCTION__ constant in generated errors
+public var ErrorFunctionKey: String {
+    return ResultErrorDomain + ".error-function"
+}
 
 /// Generate an automatic domainless `NSError`.
-public func error(_ message: String? = nil, file: StaticString = __FILE__, line: UWord = __LINE__) -> NSError {
+public func error(_ message: String? = nil, function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__) -> NSError {
     var userInfo: [String: AnyObject] = [
+        ErrorFunctionKey: "\(function)",
         ErrorFileKey: "\(file)",
         ErrorLineKey: line
     ]
@@ -86,7 +99,7 @@ public func error(_ message: String? = nil, file: StaticString = __FILE__, line:
         userInfo[NSLocalizedDescriptionKey] = message
     }
     
-    return NSError(domain: "", code: -1, userInfo: userInfo)
+    return NSError(domain: ResultErrorDomain, code: -1, userInfo: userInfo)
 }
 
 func identityError(error: NSError) -> NSError {

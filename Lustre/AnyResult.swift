@@ -114,6 +114,7 @@ extension AnyResult {
     Wrap the result of a Cocoa-style function signature into a result type,
     either through currying or inline with a trailing closure.
 
+    :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
     :param: makeError A transform to wrap the resulting error, such as in a
@@ -121,7 +122,7 @@ extension AnyResult {
     :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
     :returns: A result type created by wrapping the returned optional.
 **/
-public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: (NSError -> NSError) = identityError, @noescape fn: NSErrorPointer -> T?) -> AnyResult<T> {
+public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: NSError -> NSError = identityError, @noescape fn: NSErrorPointer -> T?) -> AnyResult<T> {
     var err: NSError?
     switch (fn(&err), err) {
     case (.Some(let value), _):
@@ -129,7 +130,7 @@ public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noesc
     case (.None, .Some(let error)):
         return failure(transform(error))
     default:
-        return failure(transform(error(file: file, line: line)))
+        return failure(transform(error(function: function, file: file, line: line)))
     }
 }
 
@@ -138,6 +139,7 @@ public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noesc
     output parameter into a result type, either through currying or inline with
     a trailing closure.
 
+    :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
     :param: makeError A transform to wrap the resulting error, such as in a
@@ -145,11 +147,11 @@ public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noesc
     :param: fn A function with a Cocoa-style signature of many output pointers.
     :returns: A result type created by wrapping the returned byref value.
 **/
-public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: (NSError -> NSError) = identityError, @noescape fn: (UnsafeMutablePointer<T>, NSErrorPointer) -> Bool) -> AnyResult<T> {
+public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: NSError -> NSError = identityError, @noescape fn: (UnsafeMutablePointer<T>, NSErrorPointer) -> Bool) -> AnyResult<T> {
     var value: T!
     var err: NSError?
     
-    let didSucceed = withUnsafeMutablePointer(&value) { (ptr) -> Bool in
+    let didSucceed = withUnsafeMutablePointer(&value) { ptr -> Bool in
         bzero(UnsafeMutablePointer(ptr), sizeof(ImplicitlyUnwrappedOptional<T>))
         return fn(UnsafeMutablePointer(ptr), &err)
     }
@@ -160,7 +162,7 @@ public func try<T>(file: StaticString = __FILE__, line: UWord = __LINE__, @noesc
     case (false, .Some(let error)):
         return failure(transform(error))
     default:
-        return failure(transform(error(file: file, line: line)))
+        return failure(transform(error(function: function, file: file, line: line)))
     }
 }
 

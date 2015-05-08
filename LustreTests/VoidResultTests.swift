@@ -92,7 +92,7 @@ class VoidResultTests: XCTestCase {
     }
 
     func testDescriptionFailure() {
-        XCTAssert(failureResult.description.hasPrefix("Failure: Error Domain= Code=-1 "))
+        XCTAssert(failureResult.description.hasPrefix("Failure: Error Domain=\(ResultErrorDomain) Code=-1 "))
     }
 
     func testSuccessEquality() {
