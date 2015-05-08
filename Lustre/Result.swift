@@ -105,28 +105,6 @@ public func ??<Result: ResultType>(result: Result, @autoclosure defaultValue: ()
     return result.value ?? defaultValue()
 }
 
-// MARK: Pattern matching
-
-/// Switch over generic result types using an equatable result created through
-/// the free function initializers `success()` and `failure()`.
-public func ~=<Inner: ResultType, Outer: ResultType where Inner.Value: Equatable, Inner.Value == Outer.Value>(lhs: Inner, rhs: Outer) -> Bool {
-    switch (lhs.isSuccess, rhs.isSuccess) {
-    case (true, true): return lhs.value == rhs.value
-    case (false, false): return lhs.error == rhs.error
-    default: return false
-    }
-}
-
-/// Switch over generic result types using a `VoidResult` created through
-/// the free function initializers `success()` and `failure()`.
-public func ~=<R: ResultType>(lhs: VoidResult, rhs: R) -> Bool {
-    switch (lhs.isSuccess, rhs.isSuccess) {
-    case (true, true): return true
-    case (false, false): return lhs.error == rhs.error
-    default: return false
-    }
-}
-
 // MARK: Generic free initializers
 
 /**
