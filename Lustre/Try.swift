@@ -17,7 +17,7 @@ import Foundation
     :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
+    :param: wrapError A transform to wrap the resulting error, such as in a
                       custom domain or with extra context.
     :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
     :returns: A result type created by wrapping the returned optional.
@@ -42,7 +42,7 @@ public func try<R: ResultType>(function: StaticString = __FUNCTION__, file: Stat
     :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
+    :param: wrapError A transform to wrap the resulting error, such as in a
                       custom domain or with extra context.
     :param: fn A function with a Cocoa-style signature of many output pointers.
     :returns: A result type created by wrapping the returned byref value.
@@ -73,7 +73,7 @@ public func try<R: ResultType>(function: StaticString = __FUNCTION__, file: Stat
     :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
+    :param: wrapError A transform to wrap the resulting error, such as in a
                       custom domain or with extra context.
     :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
     :returns: A result type created by wrapping the returned optional.
@@ -99,7 +99,7 @@ public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = _
     :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
+    :param: wrapError A transform to wrap the resulting error, such as in a
                       custom domain or with extra context.
     :param: fn A function with a Cocoa-style signature of many output pointers.
     :returns: A result type created by wrapping the returned byref value.
@@ -130,7 +130,7 @@ public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = _
     :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
+    :param: wrapError A transform to wrap the resulting error, such as in a
                       custom domain or with extra context.
     :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
     :returns: A result type created by wrapping the returned optional.
@@ -155,7 +155,7 @@ public func try<T: AnyObject>(function: StaticString = __FUNCTION__, file: Stati
     :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
+    :param: wrapError A transform to wrap the resulting error, such as in a
                       custom domain or with extra context.
     :param: fn A Cocoa-style function with many output parameters.
     :returns: A result type created by wrapping the object returned by reference.
@@ -180,7 +180,7 @@ public func try<T: AnyObject>(function: StaticString = __FUNCTION__, file: Stati
     :param: function A statically-known version of the calling function.
     :param: file A statically-known version of the calling file in the project.
     :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
+    :param: wrapError A transform to wrap the resulting error, such as in a
                       custom domain or with extra context.
     :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
     :returns: A result type created by wrapping the returned optional.
