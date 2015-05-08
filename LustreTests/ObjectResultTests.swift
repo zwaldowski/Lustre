@@ -25,12 +25,16 @@ class ObjectResultTests: XCTestCase {
     private var failureResult: ObjectResult<NSObject>  { return failure(testError) }
     private var failureResult2: ObjectResult<NSObject> { return failure(testError2) }
 
-    func testSuccessIsSuccess() {
-        XCTAssertTrue(successResult.isSuccess)
+    func testSuccessAnalysis() {
+        successResult.analysis(ifSuccess: { _ in }, ifFailure: {
+            XCTFail("Expected success, found \($0)")
+        })
     }
 
-    func testFailureIsNotSuccess() {
-        XCTAssertFalse(failureResult.isSuccess)
+    func testFailureAnalysis() {
+        failureResult.analysis(ifSuccess: {
+            XCTFail("Expected failure, found \($0)")
+        }, ifFailure: { _ in })
     }
 
     func testSuccessReturnsValue() {

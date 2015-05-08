@@ -14,41 +14,48 @@ public enum VoidResult {
     case Failure(NSError)
 }
 
-extension VoidResult: ResultType {
+extension VoidResult: _ResultType {
+
+    /// Creates a result in a success state
+    public init(_: () = ()) {
+        self = .Success
+    }
 
     /// Creates a result in a failure state
     public init(failure: NSError) {
         self = .Failure(failure)
     }
 
-    /// Returns true if the event succeeded.
-    public var isSuccess: Bool {
+    /// Case analysis.
+    ///
+    /// Returns the value produced by applying a given function in the case of
+    /// success, or an alternate given function in the case of failure.
+    public func analysis<R>(@noescape #ifSuccess: () -> R, @noescape ifFailure: NSError -> R) -> R {
         switch self {
-        case .Success: return true
-        case .Failure: return false
+        case .Success: return ifSuccess()
+        case .Failure(let error): return ifFailure(error)
         }
     }
     
-    /// The value contained by this result. If `isSuccess` is `true`, this
-    /// should not be `nil`.
-    public var value: ()! {
-        return ()
-    }
+}
 
-    /// The error object iff the event failed and `isSuccess` is `false`.
+// A subset of ResultType.
+public extension VoidResult {
+
+    /// The error object iff the event failed, else `nil`.
     public var error: NSError? {
-        switch self {
-        case .Success: return nil
-        case .Failure(let error): return error
-        }
+        return errorOf(self)
     }
     
     /// Return the result of mapping a result `transform` over `self`.
     public func flatMap<R: ResultType>(@noescape transform: () -> R) -> R {
-        switch self {
-        case .Success: return transform()
-        case .Failure(let error): return failure(error)
-        }
+        return Lustre.flatMap(self, transform)
+    }
+
+    /// Returns a new Result by mapping success cases using `transform`, or
+    /// re-wrapping the error.
+    public func map<Result: ResultType>(@noescape transform: () -> Result.Value) -> Result {
+        return Lustre.map(self, transform)
     }
 
 }
@@ -57,10 +64,11 @@ extension VoidResult: Printable {
 
     /// A textual representation of `self`.
     public var description: String {
-        switch self {
-        case .Success(let value): return "Success: ()"
-        case .Failure(let error): return "Failure: \(error)"
-        }
+        return analysis(ifSuccess: { _ in
+            "Success: ()"
+        }, ifFailure: {
+            "Failure: \($0)"
+        })
     }
 
 }
@@ -73,10 +81,13 @@ extension VoidResult: Printable {
     identical errors.
 **/
 public func == (lhs: VoidResult, rhs: VoidResult) -> Bool {
-    switch (lhs.isSuccess, rhs.isSuccess) {
-    case (true, true): return true
-    case (false, false): return lhs.error == rhs.error
-    default: return false
+    switch (lhs, rhs) {
+    case (.Success, .Success):
+        return true
+    case (.Failure(let lError), .Failure(let rError)):
+        return lError == rError
+    default:
+        return false
     }
 }
 
@@ -84,94 +95,30 @@ extension VoidResult: Hashable {
 
     /// An integer hash value describing a unique instance.
     public var hashValue: Int {
-        switch self {
-        case .Success:            return 0
-        case .Failure(let error): return error.hash
-        }
+        return analysis(ifSuccess: { _ in 0 }, ifFailure: { $0.hash })
     }
 
 }
 
-// MARK: Remote map/flatMap
+// MARK: Instance mapping
 
-extension VoidResult {
-
+public extension VoidResult {
+    
+    /// Return the result of mapping a value `transform` over `self`.
+    func map<U>(@noescape transform: () -> U) -> AnyResult<U> {
+        return Lustre.map(self, transform)
+    }
+    
+    /// Return the result of mapping a value `transform` over `self`.
+    func map<U: AnyObject>(@noescape transform: () -> U) -> ObjectResult<U> {
+        return Lustre.map(self, transform)
+    }
+    
     /// Return the result of executing a function if `self` was successful.
-    public func map(@noescape fn: () -> ()) -> VoidResult {
-        switch self {
-        case Success:
-            fn();
-            return success()
-        case Failure(let error): return failure(error)
-        }
+    func map(@noescape fn: () -> ()) -> VoidResult {
+        return Lustre.map(self, fn)
     }
-
-}
-
-extension ObjectResult {
-
-    /// Return the result of executing a function if `self` was successful.
-    public func map<U: AnyObject>(@noescape fn: T -> ()) -> VoidResult {
-        switch self {
-        case Success(let value):
-            fn(value)
-            return success()
-        case Failure(let error): return failure(error)
-        }
-    }
-
-}
-
-extension AnyResult {
-
-    /// Return the result of executing a function if `self` was successful.
-    public func map(@noescape fn: T -> ()) -> VoidResult {
-        switch self {
-        case Success(let value):
-            fn(value as! T);
-            return success()
-        case Failure(let error): return failure(error)
-        }
-    }
-
-}
-
-// MARK: Free try
-
-/**
-    Wrap the result of a Cocoa-style function signature into a result type,
-    either through currying or inline with a trailing closure.
-
-    :param: function A statically-known version of the calling function.
-    :param: file A statically-known version of the calling file in the project.
-    :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
-                      custom domain or with extra context.
-    :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
-    :returns: A result type created by wrapping the returned optional.
-**/
-public func try(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: (NSError -> NSError) = identityError, @noescape fn: NSErrorPointer -> Bool) -> VoidResult {
-    var err: NSError?
-    switch (fn(&err), err) {
-    case (true, _):
-        return success()
-    case (false, .Some(let error)):
-        return failure(transform(error))
-    default:
-        return failure(transform(error(function: function, file: file, line: line)))
-    }
-}
-
-// MARK: Free maps
-
-/// Return the result of executing a function if `result` was successful.
-public func map<IR: ResultType>(result: IR, @noescape fn: IR.Value -> ()) -> VoidResult {
-    if result.isSuccess {
-        fn(result.value)
-        return success()
-    } else {
-        return failure(result.error!)
-    }
+    
 }
 
 // MARK: Free constructors

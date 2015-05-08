@@ -25,12 +25,16 @@ class AnyResultTests: XCTestCase {
     private var failureResult: AnyResult<Int>  { return failure(testError) }
     private var failureResult2: AnyResult<Int> { return failure(testError2) }
 
-    func testSuccessIsSuccess() {
-        XCTAssertTrue(successResult.isSuccess)
+    func testSuccessAnalysis() {
+        successResult.analysis(ifSuccess: { _ in }, ifFailure: {
+            XCTFail("Expected success, found \($0)")
+        })
     }
 
-    func testFailureIsNotSuccess() {
-        XCTAssertFalse(failureResult.isSuccess)
+    func testFailureAnalysis() {
+        failureResult.analysis(ifSuccess: {
+            XCTFail("Expected failure, found \($0)")
+        }, ifFailure: { _ in })
     }
 
     func testSuccessReturnsValue() {
@@ -76,10 +80,8 @@ class AnyResultTests: XCTestCase {
     }
 
     func testFlatMapSuccessSuccess() {
-        let x = successResult.flatMap(doubleSuccess)
-        let y = successResult >>== doubleSuccess
+        let x = successResult >>== doubleSuccess
         XCTAssert(x.value == 84)
-        XCTAssert(y.value == 84)
     }
 
     func testFlatMapSuccessFailure() {
@@ -138,13 +140,19 @@ class AnyResultTests: XCTestCase {
     }
 
     func testTryBoolSuccess() {
-        XCTAssert(try(makeTryFunction(true)).isSuccess)
+        let result = try(makeTryFunction(true))
+        result.analysis(ifSuccess: { _ in }, ifFailure: {
+            XCTFail("Expected success, found \($0)")
+        })
     }
 
     func testTryBoolFailure() {
         let result = try(makeTryFunction(false, false))
-        XCTAssertFalse(result.isSuccess)
-        XCTAssert(result.description.hasPrefix("Failure: Error Domain=domain Code=1 "))
+        result.analysis(ifSuccess: {
+            XCTFail("Expected failure, found \($0)")
+        }, ifFailure: {
+            XCTAssert($0.description.hasPrefix("Error Domain=domain Code=1 "))
+        })
     }
 
     func testSuccessEquality() {

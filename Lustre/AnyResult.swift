@@ -9,8 +9,8 @@
 import Foundation
 
 /// Container for a successful value (`T`) or a failure (`NSError`).
-/// Due to Swift limitations, the `.Success()` case is type-unsafe. Uses should
-/// prefer `ObjectResult` or `CustomResult` instead, or use `value` exclusively.
+/// Due to Swift limitations, the `Success` case is type-unsafe. Users should
+/// prefer `ObjectResult` or a custom type conforming to `ResultType` instead.
 public enum AnyResult<T> {
     case Success(Any)
     case Failure(NSError)
@@ -18,42 +18,40 @@ public enum AnyResult<T> {
 
 extension AnyResult: ResultType {
 
+    /// Creates a result in a success state
+    public init(_ value: T) {
+        self = .Success(value)
+    }
+
     /// Creates a result in a failure state
     public init(failure: NSError) {
         self = .Failure(failure)
     }
-
-    /// Returns `true` if the event succeeded.
-    public var isSuccess: Bool {
+    
+    /// Case analysis.
+    ///
+    /// Returns the value produced by applying a given function in the case of
+    /// success, or an alternate given function in the case of failure.
+    public func analysis<R>(@noescape #ifSuccess: T -> R, @noescape ifFailure: NSError -> R) -> R {
         switch self {
-        case .Success: return true
-        case .Failure: return false
+        case .Success(let box): return ifSuccess(box as! T)
+        case .Failure(let error): return ifFailure(error)
         }
     }
 
-    /// The value contained by this result. If `isSuccess` is `true`, this
-    /// should never be `nil`.
-    public var value: T! {
-        switch self {
-        case .Success(let value): return (value as! T)
-        case .Failure: return nil
-        }
+    /// The value contained by this result iff the event succeeded, else `nil`.
+    public var value: T? {
+        return unbox(self)
     }
-
-    /// The error object iff the event failed and `isSuccess` is `false`.
+    
+    /// The error object iff the event failed, else `nil`.
     public var error: NSError? {
-        switch self {
-        case .Success: return nil
-        case .Failure(let error): return error
-        }
+        return errorOf(self)
     }
 
-    /// Return the result of mapping a result `transform` over `self`.
-    public func flatMap<R: ResultType>(@noescape transform: T -> R) -> R {
-        switch self {
-            case Success(let value): return transform(value as! T)
-            case Failure(let error): return failure(error)
-        }
+    /// Return the Result of mapping `transform` over `self`.
+    public func flatMap<Result: ResultType>(@noescape transform: T -> Result) -> Result {
+        return Lustre.flatMap(self, transform)
     }
 
 }
@@ -62,119 +60,43 @@ extension AnyResult: Printable {
 
     /// A textual representation of `self`.
     public var description: String {
-        switch self {
-        case .Success(let value): return "Success: \(value as! T)"
-        case .Failure(let error): return "Failure: \(error)"
-        }
+        return analysis(ifSuccess: {
+            "Success: \($0)"
+        }, ifFailure: {
+            "Failure: \($0)"
+        })
     }
 
 }
 
-// MARK: Remote map/flatMap
+// MARK: Instance mapping
 
-extension VoidResult {
-
-    /// Return the result of mapping a value `transform` over `self`.
-    public func map<U>(@noescape getValue: () -> U) -> AnyResult<U> {
-        switch self {
-        case Success(let value): return success(getValue())
-        case Failure(let error): return failure(error)
-        }
-    }
-
-}
-
-extension ObjectResult {
-
-    /// Return the result of mapping a value `transform` over `self`.
-    public func map<U>(@noescape transform: T -> U) -> AnyResult<U> {
-        switch self {
-        case Success(let value): return success(transform(value))
-        case Failure(let error): return failure(error)
-        }
-    }
-
-}
-
-extension AnyResult {
-
-    /// Return the result of mapping a value `transform` over `self`.
-    public func map<U>(@noescape transform: T -> U) -> AnyResult<U> {
-        switch self {
-        case Success(let value): return success(transform(value as! T))
-        case Failure(let error): return failure(error)
-        }
-    }
-
-}
-
-// MARK: Free try
-
-/**
-    Wrap the result of a Cocoa-style function signature into a result type,
-    either through currying or inline with a trailing closure.
-
-    :param: function A statically-known version of the calling function.
-    :param: file A statically-known version of the calling file in the project.
-    :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
-                      custom domain or with extra context.
-    :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
-    :returns: A result type created by wrapping the returned optional.
-**/
-public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: NSError -> NSError = identityError, @noescape fn: NSErrorPointer -> T?) -> AnyResult<T> {
-    var err: NSError?
-    switch (fn(&err), err) {
-    case (.Some(let value), _):
-        return success(value)
-    case (.None, .Some(let error)):
-        return failure(transform(error))
-    default:
-        return failure(transform(error(function: function, file: file, line: line)))
-    }
-}
-
-/**
-    Wrap the result of a Cocoa-style function signature returning its value via
-    output parameter into a result type, either through currying or inline with
-    a trailing closure.
-
-    :param: function A statically-known version of the calling function.
-    :param: file A statically-known version of the calling file in the project.
-    :param: line A statically-known version of the calling line in code.
-    :param: makeError A transform to wrap the resulting error, such as in a
-                      custom domain or with extra context.
-    :param: fn A function with a Cocoa-style signature of many output pointers.
-    :returns: A result type created by wrapping the returned byref value.
-**/
-public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape makeError transform: NSError -> NSError = identityError, @noescape fn: (UnsafeMutablePointer<T>, NSErrorPointer) -> Bool) -> AnyResult<T> {
-    var value: T!
-    var err: NSError?
+public extension AnyResult {
     
-    let didSucceed = withUnsafeMutablePointer(&value) { ptr -> Bool in
-        bzero(UnsafeMutablePointer(ptr), sizeof(ImplicitlyUnwrappedOptional<T>))
-        return fn(UnsafeMutablePointer(ptr), &err)
+    /// Returns a new Result by mapping success cases using `transform`, or
+    /// re-wrapping the error.
+    public func map<Result: ResultType>(@noescape transform: T -> Result.Value) -> Result {
+        return Lustre.map(self, transform)
     }
     
-    switch (didSucceed, err) {
-    case (true, _):
-        return success(value)
-    case (false, .Some(let error)):
-        return failure(transform(error))
-    default:
-        return failure(transform(error(function: function, file: file, line: line)))
+    /// Returns a new Result by mapping success cases using `transform`, or
+    /// re-wrapping the error.
+    func map<U>(@noescape transform: T -> U) -> AnyResult<U> {
+        return Lustre.map(self, transform)
     }
-}
-
-// MARK: Free maps
-
-/// Return the result of mapping a value `transform` over `result`.
-public func map<IR: ResultType, U>(result: IR, @noescape transform: IR.Value -> U) -> AnyResult<U> {
-    if result.isSuccess {
-        return success(transform(result.value))
-    } else {
-        return failure(result.error!)
+    
+    /// Returns a new Result by mapping success cases using `transform`, or
+    /// re-wrapping the error.
+    func map<U: AnyObject>(@noescape transform: T -> U) -> ObjectResult<U> {
+        return Lustre.map(self, transform)
     }
+    
+    /// Returns a new Result by mapping success cases using `transform`, or
+    /// re-wrapping the error.
+    func map(@noescape transform: T -> ()) -> VoidResult {
+        return Lustre.map(self, transform)
+    }
+    
 }
 
 // MARK: Free constructors

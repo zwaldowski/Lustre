@@ -15,7 +15,7 @@ import Cocoa
 import UIKit
 #endif
 
-private enum StringResult: CustomResult {
+private enum StringResult: ResultType {
     case Success(String)
     case Failure(NSError)
     
@@ -27,31 +27,26 @@ private enum StringResult: CustomResult {
         self = .Failure(failure)
     }
     
-    var isSuccess: Bool {
-        switch self {
-        case .Success: return true
-        case .Failure: return false
-        }
-    }
-    
-    var value: String! {
-        switch self {
-        case .Success(let value): return value
-        case .Failure: return nil
-        }
+    var value: String? {
+        return unbox(self)
     }
     
     var error: NSError? {
-        switch self {
-        case .Success: return nil
-        case .Failure(let error): return error
-        }
+        return errorOf(self)
     }
     
-    func flatMap<RR: ResultType>(@noescape transform: String -> RR) -> RR {
+    func flatMap<Result: ResultType>(@noescape transform: String -> Result) -> Result {
+        return Lustre.flatMap(self, transform)
+    }
+
+    func map<Result: ResultType>(@noescape transform: String -> Result.Value) -> Result {
+        return Lustre.map(self, transform)
+    }
+    
+    func analysis<R>(@noescape #ifSuccess: String -> R, @noescape ifFailure: NSError -> R) -> R {
         switch self {
-        case .Success(let value): return transform(value)
-        case .Failure(let error): return failure(error)
+        case .Success(let string): return ifSuccess(string)
+        case .Failure(let error): return ifFailure(error)
         }
     }
 
@@ -67,16 +62,20 @@ class CustomResultTests: XCTestCase {
     private var failureResult: StringResult  { return failure(testError) }
     private var failureResult2: StringResult { return failure(testError2) }
     
-    func testSuccessIsSuccess() {
-        XCTAssertTrue(successResult.isSuccess)
+    func testSuccessAnalysis() {
+        successResult.analysis(ifSuccess: { _ in }, ifFailure: {
+            XCTFail("Expected success, found \($0)")
+        })
     }
     
-    func testFailureIsNotSuccess() {
-        XCTAssertFalse(failureResult.isSuccess)
+    func testFailureAnalysis() {
+        failureResult.analysis(ifSuccess: {
+            XCTFail("Expected failure, found \($0)")
+        }, ifFailure: { _ in })
     }
     
     func testSuccessReturnsValue() {
-        XCTAssertEqual(successResult.value, testValue)
+        XCTAssert(successResult.value == testValue)
     }
     
     func testSuccessReturnsNoError() {

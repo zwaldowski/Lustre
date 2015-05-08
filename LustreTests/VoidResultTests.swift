@@ -24,12 +24,16 @@ class VoidResultTests: XCTestCase {
     private var failureResult: VoidResult  { return failure(testError) }
     private var failureResult2: VoidResult { return failure(testError2) }
 
-    func testSuccessIsSuccess() {
-        XCTAssertTrue(successResult.isSuccess)
+    func testSuccessAnalysis() {
+        successResult.analysis(ifSuccess: { }, ifFailure: {
+            XCTFail("Expected success, found \($0)")
+        })
     }
 
-    func testFailureIsNotSuccess() {
-        XCTAssertFalse(failureResult.isSuccess)
+    func testFailureAnalysis() {
+        failureResult.analysis(ifSuccess: {
+            XCTFail("Expected failure")
+        }, ifFailure: { _ in })
     }
 
     func testSuccessReturnsNoError() {
@@ -47,7 +51,7 @@ class VoidResultTests: XCTestCase {
 
     func testMapFailureNewType() {
         let result = failureResult.map { return "Test" }
-        XCTAssert(result.value == nil)
+        XCTAssertNil(result.value)
         XCTAssert(result.error == testError)
     }
 
