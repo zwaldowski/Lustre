@@ -51,23 +51,15 @@ public struct Result<T>: ResultType {
     public var error: NSError? {
         return errorOf(self)
     }
+    
+    /// A textual representation of `self`.
+    public var description: String {
+        return descriptionOf(self)
+    }
 
     /// Return the Result of mapping `transform` over `self`.
     public func flatMap<Result: ResultType>(@noescape transform: T -> Result) -> Result {
         return Lustre.flatMap(self, transform)
-    }
-
-}
-
-extension Result: Printable {
-
-    /// A textual representation of `self`.
-    public var description: String {
-        return analysis(ifSuccess: {
-            "Success: \($0)"
-        }, ifFailure: {
-            "Failure: \($0)"
-        })
     }
 
 }

@@ -35,6 +35,10 @@ private enum StringResult: ResultType {
         return errorOf(self)
     }
     
+    var description: String {
+        return descriptionOf(self)
+    }
+    
     func flatMap<Result: ResultType>(@noescape transform: String -> Result) -> Result {
         return Lustre.flatMap(self, transform)
     }

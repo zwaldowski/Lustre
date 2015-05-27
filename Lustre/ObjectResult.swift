@@ -46,6 +46,11 @@ extension ObjectResult: ResultType {
     public var error: NSError? {
         return errorOf(self)
     }
+    
+    /// A textual representation of `self`.
+    public var description: String {
+        return descriptionOf(self)
+    }
 
     /// Return the Result of mapping `transform` over `self`.
     public func flatMap<Result: ResultType>(@noescape transform: T -> Result) -> Result {
@@ -56,19 +61,6 @@ extension ObjectResult: ResultType {
     /// re-wrapping the error.
     public func map<Result: ResultType>(@noescape transform: T -> Result.Value) -> Result {
         return Lustre.map(self, transform)
-    }
-
-}
-
-extension ObjectResult: Printable {
-
-    /// A textual representation of `self`.
-    public var description: String {
-        return analysis(ifSuccess: {
-            "Success: \($0)"
-        }, ifFailure: {
-            "Failure: \($0)"
-        })
     }
 
 }

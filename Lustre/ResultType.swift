@@ -38,3 +38,12 @@ public protocol ResultType: _ResultType {
 public func valueOf<Result: ResultType>(result: Result) -> Result.Value? {
     return result.analysis(ifSuccess: { $0 }, ifFailure: { _ in nil })
 }
+
+/// A description of the value or error contained by the given result.
+public func descriptionOf<Result: ResultType>(result: Result) -> String {
+    return result.analysis(ifSuccess: {
+        "Success: \($0)"
+    }, ifFailure: {
+        "Failure: \($0)"
+    })
+}

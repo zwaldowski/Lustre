@@ -13,7 +13,7 @@ import Foundation
 ///
 /// Its requirements are inherited by `ResultType` and thus must
 /// be satisfied by types conforming to that protocol.
-public protocol _ResultType {
+public protocol _ResultType: Printable {
     
     /// Any contained value returns from the event.
     typealias Value

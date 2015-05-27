@@ -46,6 +46,15 @@ public extension VoidResult {
     public var error: NSError? {
         return errorOf(self)
     }
+
+    /// A textual representation of `self`.
+    public var description: String {
+        return analysis(ifSuccess: { _ in
+            "Success: ()"
+        }, ifFailure: {
+            "Failure: \($0)"
+        })
+    }
     
     /// Return the result of mapping a result `transform` over `self`.
     public func flatMap<R: ResultType>(@noescape transform: () -> R) -> R {
@@ -56,19 +65,6 @@ public extension VoidResult {
     /// re-wrapping the error.
     public func map<Result: ResultType>(@noescape transform: () -> Result.Value) -> Result {
         return Lustre.map(self, transform)
-    }
-
-}
-
-extension VoidResult: Printable {
-
-    /// A textual representation of `self`.
-    public var description: String {
-        return analysis(ifSuccess: { _ in
-            "Success: ()"
-        }, ifFailure: {
-            "Failure: \($0)"
-        })
     }
 
 }
