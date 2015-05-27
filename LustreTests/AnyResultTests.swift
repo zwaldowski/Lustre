@@ -171,11 +171,4 @@ class AnyResultTests: XCTestCase {
         XCTAssert(failureResult != failureResult2)
     }
     
-    func testVoidSwitchFailure() {
-        switch failureResult {
-        case .Success: XCTFail("Not a success case")
-        case .Failure(let err): break
-        }
-    }
-    
 }

@@ -8,24 +8,27 @@
 
 import Foundation
 
-/// Container for a successful value (`T`) or a failure (`NSError`).
-/// Due to Swift limitations, the `Success` case is type-unsafe. Users should
-/// prefer `ObjectResult` or a custom type conforming to `ResultType` instead.
-public enum Result<T> {
+private enum ResultStorage {
     case Success(Any)
     case Failure(NSError)
 }
 
-extension Result: ResultType {
+/// Container for a successful value (`T`) or a failure (`NSError`).
+/// Due to Swift limitations, success values are stored unsafely. For objects or
+/// non-primitive types, users would ideally prefer `ObjectResult` or a
+/// custom type conforming to `ResultType`, respectively.
+public struct Result<T>: ResultType {
+    
+    private let storage: ResultStorage
 
     /// Creates a result in a success state
     public init(_ value: T) {
-        self = .Success(value)
+        storage = .Success(value)
     }
 
     /// Creates a result in a failure state
     public init(failure: NSError) {
-        self = .Failure(failure)
+        storage = .Failure(failure)
     }
     
     /// Case analysis.
@@ -33,7 +36,7 @@ extension Result: ResultType {
     /// Returns the value produced by applying a given function in the case of
     /// success, or an alternate given function in the case of failure.
     public func analysis<R>(@noescape #ifSuccess: T -> R, @noescape ifFailure: NSError -> R) -> R {
-        switch self {
+        switch storage {
         case .Success(let box): return ifSuccess(box as! T)
         case .Failure(let error): return ifFailure(error)
         }
@@ -103,5 +106,5 @@ public extension Result {
 
 /// A success `Result` returning `value`.
 public func success<T>(value: T) -> Result<T> {
-    return .Success(value)
+    return Result(value)
 }
