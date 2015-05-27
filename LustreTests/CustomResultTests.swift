@@ -28,7 +28,7 @@ private enum StringResult: ResultType {
     }
     
     var value: String? {
-        return unbox(self)
+        return valueOf(self)
     }
     
     var error: NSError? {

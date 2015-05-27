@@ -35,6 +35,6 @@ public protocol ResultType: _ResultType {
 // MARK: Value analysis
 
 /// The value contained by this result iff the event succeeded, else `nil`.
-public func unbox<Result: ResultType>(result: Result) -> Result.Value? {
+public func valueOf<Result: ResultType>(result: Result) -> Result.Value? {
     return result.analysis(ifSuccess: { $0 }, ifFailure: { _ in nil })
 }

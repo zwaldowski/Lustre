@@ -39,7 +39,7 @@ extension ObjectResult: ResultType {
 
     /// The value contained by this result iff the event succeeded, else `nil`.
     public var value: T? {
-        return unbox(self)
+        return valueOf(self)
     }
 
     /// The error object iff the event failed, else `nil`.
