@@ -62,7 +62,7 @@ public func flatMap<InResult: _ResultType, OutResult: _ResultType>(result: InRes
     as type, otherwise Swift has no information to decide.
 
     For example:
-       let failure: AnyResult<Bool> = failure(error)
+       let failure: Result<Bool> = failure(error)
 
     :param: An instance of an `NSError`
     :returns: A suitable result type for the given context.
@@ -79,7 +79,7 @@ public func failure<Result: _ResultType>(error: NSError) -> Result {
     as type, otherwise Swift has no information to decide.
 
     For example:
-       let failure: AnyResult<Bool> = failure("Parsing the object failed!")
+       let failure: Result<Bool> = failure("Parsing the object failed!")
 
     :param: message An optional description of the problem.
     :param: function A statically-known version of the calling function.

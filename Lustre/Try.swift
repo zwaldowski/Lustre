@@ -78,7 +78,7 @@ public func try<R: ResultType>(function: StaticString = __FUNCTION__, file: Stat
     :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
     :returns: A result type created by wrapping the returned optional.
 **/
-public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape wrapError transform: NSError -> NSError = identityError, @noescape fn: NSErrorPointer -> T?) -> AnyResult<T> {
+public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape wrapError transform: NSError -> NSError = identityError, @noescape fn: NSErrorPointer -> T?) -> Result<T> {
     var err: NSError?
     switch (fn(&err), err) {
     case (.Some(let value), _):
@@ -104,7 +104,7 @@ public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = _
     :param: fn A function with a Cocoa-style signature of many output pointers.
     :returns: A result type created by wrapping the returned byref value.
 **/
-public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape wrapError transform: NSError -> NSError = identityError, @noescape fn: (UnsafeMutablePointer<T>, NSErrorPointer) -> Bool) -> AnyResult<T> {
+public func try<T>(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape wrapError transform: NSError -> NSError = identityError, @noescape fn: (UnsafeMutablePointer<T>, NSErrorPointer) -> Bool) -> Result<T> {
     var value: T!
     var err: NSError?
     

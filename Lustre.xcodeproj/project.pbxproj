@@ -26,8 +26,8 @@
 		DBDF88271AC49659000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF881B1AC49659000AA16F /* Lustre.framework */; };
 		DBDF88471AC49669000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF883C1AC49669000AA16F /* Lustre.framework */; };
 		DBDF88551AC496F6000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DBDF885D1AC49B85000AA16F /* AnyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* AnyResult.swift */; };
-		DBDF885E1AC49B85000AA16F /* AnyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* AnyResult.swift */; };
+		DBDF885D1AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* Result.swift */; };
+		DBDF885E1AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* Result.swift */; };
 		DBDF88611AC49B85000AA16F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88591AC49B85000AA16F /* Error.swift */; };
 		DBDF88621AC49B85000AA16F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88591AC49B85000AA16F /* Error.swift */; };
 		DBDF88631AC49B85000AA16F /* ObjectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885A1AC49B85000AA16F /* ObjectResult.swift */; };
@@ -71,7 +71,7 @@
 		DBDF882C1AC49659000AA16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBDF883C1AC49669000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF88461AC49669000AA16F /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBDF88571AC49B85000AA16F /* AnyResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResult.swift; sourceTree = "<group>"; };
+		DBDF88571AC49B85000AA16F /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DBDF88591AC49B85000AA16F /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		DBDF885A1AC49B85000AA16F /* ObjectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResult.swift; sourceTree = "<group>"; };
 		DBDF885B1AC49B85000AA16F /* ResultType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
@@ -137,15 +137,15 @@
 			isa = PBXGroup;
 			children = (
 				DBDF88201AC49659000AA16F /* Lustre.h */,
-				DBDF88571AC49B85000AA16F /* AnyResult.swift */,
 				DBDF88591AC49B85000AA16F /* Error.swift */,
+				DBCBEF681AFD5462006CA8CA /* Map.swift */,
 				DBDF885A1AC49B85000AA16F /* ObjectResult.swift */,
 				DB7D4AA21AC8AC2F00C54623 /* Operators.swift */,
+				DBDF88571AC49B85000AA16F /* Result.swift */,
 				DBCBEF5F1AFD45F8006CA8CA /* ResultBase.swift */,
 				DBDF885B1AC49B85000AA16F /* ResultType.swift */,
-				DBDF885C1AC49B85000AA16F /* VoidResult.swift */,
 				DBCBEF621AFD4A68006CA8CA /* Try.swift */,
-				DBCBEF681AFD5462006CA8CA /* Map.swift */,
+				DBDF885C1AC49B85000AA16F /* VoidResult.swift */,
 				DBDF881E1AC49659000AA16F /* Supporting Files */,
 			);
 			path = Lustre;
@@ -279,7 +279,7 @@
 		DBDF88121AC49659000AA16F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Zachary Waldowski";
 				TargetAttributes = {
 					DBDF881A1AC49659000AA16F = {
@@ -352,7 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF885E1AC49B85000AA16F /* AnyResult.swift in Sources */,
+				DBDF885E1AC49B85000AA16F /* Result.swift in Sources */,
 				DBDF88661AC49B85000AA16F /* ResultType.swift in Sources */,
 				DB7D4AA41AC8AC2F00C54623 /* Operators.swift in Sources */,
 				DBCBEF641AFD4A68006CA8CA /* Try.swift in Sources */,
@@ -379,7 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF885D1AC49B85000AA16F /* AnyResult.swift in Sources */,
+				DBDF885D1AC49B85000AA16F /* Result.swift in Sources */,
 				DBDF88651AC49B85000AA16F /* ResultType.swift in Sources */,
 				DB7D4AA31AC8AC2F00C54623 /* Operators.swift in Sources */,
 				DBCBEF631AFD4A68006CA8CA /* Try.swift in Sources */,

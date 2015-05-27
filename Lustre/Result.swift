@@ -1,5 +1,5 @@
 //
-//  AnyResult.swift
+//  Result.swift
 //  Lustre
 //
 //  Created by Zachary Waldowski on 2/7/15.
@@ -11,12 +11,12 @@ import Foundation
 /// Container for a successful value (`T`) or a failure (`NSError`).
 /// Due to Swift limitations, the `Success` case is type-unsafe. Users should
 /// prefer `ObjectResult` or a custom type conforming to `ResultType` instead.
-public enum AnyResult<T> {
+public enum Result<T> {
     case Success(Any)
     case Failure(NSError)
 }
 
-extension AnyResult: ResultType {
+extension Result: ResultType {
 
     /// Creates a result in a success state
     public init(_ value: T) {
@@ -56,7 +56,7 @@ extension AnyResult: ResultType {
 
 }
 
-extension AnyResult: Printable {
+extension Result: Printable {
 
     /// A textual representation of `self`.
     public var description: String {
@@ -71,7 +71,7 @@ extension AnyResult: Printable {
 
 // MARK: Instance mapping
 
-public extension AnyResult {
+public extension Result {
     
     /// Returns a new Result by mapping success cases using `transform`, or
     /// re-wrapping the error.
@@ -81,7 +81,7 @@ public extension AnyResult {
     
     /// Returns a new Result by mapping success cases using `transform`, or
     /// re-wrapping the error.
-    func map<U>(@noescape transform: T -> U) -> AnyResult<U> {
+    func map<U>(@noescape transform: T -> U) -> Result<U> {
         return Lustre.map(self, transform)
     }
     
@@ -101,7 +101,7 @@ public extension AnyResult {
 
 // MARK: Free constructors
 
-/// A success `AnyResult` returning `value`.
-public func success<T>(value: T) -> AnyResult<T> {
+/// A success `Result` returning `value`.
+public func success<T>(value: T) -> Result<T> {
     return .Success(value)
 }

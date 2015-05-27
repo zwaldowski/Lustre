@@ -78,7 +78,7 @@ extension ObjectResult: Printable {
 public extension ObjectResult {
     
     /// Return the result of mapping a value `transform` over `self`.
-    func map<U>(@noescape transform: T -> U) -> AnyResult<U> {
+    func map<U>(@noescape transform: T -> U) -> Result<U> {
         return Lustre.map(self, transform)
     }
 

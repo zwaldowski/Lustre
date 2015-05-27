@@ -134,26 +134,16 @@ class CustomResultTests: XCTestCase {
         XCTAssert(y.error == testError2)
     }
     
-    func testDescriptionSuccess() {
-        let x: AnyResult<Int> = success(42)
-        XCTAssertEqual(x.description, "Success: 42")
-    }
-    
-    func testDescriptionFailure() {
-        let x: AnyResult<String> = failure()
-        XCTAssert(x.description.hasPrefix("Failure: Error Domain=\(ResultErrorDomain) Code=-1 "))
-    }
-    
     func testCoalesceSuccess() {
-        let r: AnyResult<Int> = success(42)
-        let x = r ?? 43
-        XCTAssertEqual(x, 42)
+        let r: StringResult = success("42")
+        let x = r ?? "43"
+        XCTAssertEqual(x, "42")
     }
     
     func testCoalesceFailure() {
-        let r: AnyResult<Int> = failure()
-        let x = r ?? 43
-        XCTAssertEqual(x, 43)
+        let r: StringResult = failure()
+        let x = r ?? "43"
+        XCTAssertEqual(x, "43")
     }
     
     func testSuccessEquality() {

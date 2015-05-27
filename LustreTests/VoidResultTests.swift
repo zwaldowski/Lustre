@@ -55,11 +55,11 @@ class VoidResultTests: XCTestCase {
         XCTAssert(result.error == testError)
     }
 
-    func doubleSuccess() -> AnyResult<Int> {
+    func doubleSuccess() -> Result<Int> {
         return success(42)
     }
 
-    func doubleFailure() -> AnyResult<Int> {
+    func doubleFailure() -> Result<Int> {
         return failure(testError)
     }
 

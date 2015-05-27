@@ -21,9 +21,9 @@ class AnyResultTests: XCTestCase {
     let testError = NSError(domain: "", code: 11, userInfo: nil)
     let testError2 = NSError(domain: "", code: 12, userInfo: nil)
     
-    private var successResult: AnyResult<Int>  { return success(testValue) }
-    private var failureResult: AnyResult<Int>  { return failure(testError) }
-    private var failureResult2: AnyResult<Int> { return failure(testError2) }
+    private var successResult: Result<Int>  { return success(testValue) }
+    private var failureResult: Result<Int>  { return failure(testError) }
+    private var failureResult2: Result<Int> { return failure(testError2) }
 
     func testSuccessAnalysis() {
         successResult.analysis(ifSuccess: { _ in }, ifFailure: {
@@ -66,16 +66,16 @@ class AnyResultTests: XCTestCase {
     }
 
     func testMapFailureNewType() {
-        let x: AnyResult<String> = failure(testError)
+        let x: Result<String> = failure(testError)
         let y = x.map(count)
         XCTAssert(y.error == testError)
     }
 
-    func doubleSuccess(x: Int) -> AnyResult<Int> {
+    func doubleSuccess(x: Int) -> Result<Int> {
         return success(x * 2)
     }
 
-    func doubleFailure(x: Int) -> AnyResult<Int> {
+    func doubleFailure(x: Int) -> Result<Int> {
         return failure(testError)
     }
 

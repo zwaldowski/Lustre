@@ -105,7 +105,7 @@ extension VoidResult: Hashable {
 public extension VoidResult {
     
     /// Return the result of mapping a value `transform` over `self`.
-    func map<U>(@noescape transform: () -> U) -> AnyResult<U> {
+    func map<U>(@noescape transform: () -> U) -> Result<U> {
         return Lustre.map(self, transform)
     }
     
