@@ -86,12 +86,6 @@ public extension Result {
         return Lustre.map(self, transform)
     }
     
-    /// Returns a new Result by mapping success cases using `transform`, or
-    /// re-wrapping the error.
-    func map(@noescape transform: T -> ()) -> VoidResult {
-        return Lustre.map(self, transform)
-    }
-    
 }
 
 // MARK: Free constructors
@@ -100,3 +94,8 @@ public extension Result {
 public func success<T>(value: T) -> Result<T> {
     return Result(value)
 }
+
+// MARK: Pre-0.8 compatibility
+
+@availability(*, deprecated=0.8)
+public typealias VoidResult = Result<Void>

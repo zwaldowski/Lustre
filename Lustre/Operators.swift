@@ -74,6 +74,24 @@ public func != <LResult: ResultType, RResult: ResultType where LResult.Value: Eq
     return !(lhs == rhs)
 }
 
+/// Type-qualified equality operator over two compatible void-result types.
+public func == <LResult: ResultType, RResult: ResultType where LResult.Value == Void, RResult.Value == Void>(lhs: LResult, rhs: RResult) -> Bool {
+    return lhs.analysis(ifSuccess: { lValue in
+        rhs.analysis(ifSuccess: { _ in true }, ifFailure: { _ in false })
+    }, ifFailure: { lError in
+        rhs.analysis(ifSuccess: { _ in false }, ifFailure: { lError == $0 })
+    })
+}
+
+/**
+    Type-specific inequality operator over two compatible void-result types.
+
+    The same rules apply as the `==` operator over the same types.
+**/
+public func != <LResult: ResultType, RResult: ResultType where LResult.Value == Void, RResult.Value == Void>(lhs: LResult, rhs: RResult) -> Bool {
+    return !(lhs == rhs)
+}
+
 /**
     Type-specific equality operator over two identical result types.
 
@@ -98,5 +116,19 @@ public func == <Result: ResultType where Result.Value: Equatable>(lhs: Result, r
     The same rules apply as the `==` operator over the same types.
 **/
 public func != <Result: ResultType where Result.Value: Equatable>(lhs: Result, rhs: Result) -> Bool {
+    return !(lhs == rhs)
+}
+
+/// Type-specific equality operator over two identical void-result types.
+public func == <Result: ResultType where Result.Value == Void>(lhs: Result, rhs: Result) -> Bool {
+    return lhs.analysis(ifSuccess: { lValue in
+        rhs.analysis(ifSuccess: { _ in true }, ifFailure: { _ in false })
+    }, ifFailure: { lError in
+        rhs.analysis(ifSuccess: { _ in false }, ifFailure: { lError == $0 })
+    })
+}
+
+/// Type-specific inequality operator over two identical void-result types.
+public func != <Result: ResultType where Result.Value == Void>(lhs: Result, rhs: Result) -> Bool {
     return !(lhs == rhs)
 }

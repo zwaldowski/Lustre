@@ -20,9 +20,9 @@ class VoidResultTests: XCTestCase {
     let testError = error("This is a test.")
     let testError2 = error("Ce ne est pas un test.")
     
-    private var successResult: VoidResult  { return success() }
-    private var failureResult: VoidResult  { return failure(testError) }
-    private var failureResult2: VoidResult { return failure(testError2) }
+    private var successResult: Result<Void>  { return success() }
+    private var failureResult: Result<Void>  { return failure(testError) }
+    private var failureResult2: Result<Void> { return failure(testError2) }
 
     func testSuccessAnalysis() {
         successResult.analysis(ifSuccess: { }, ifFailure: {

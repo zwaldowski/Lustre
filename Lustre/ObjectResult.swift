@@ -80,11 +80,6 @@ public extension ObjectResult {
     func map<U: AnyObject>(@noescape transform: T -> U) -> ObjectResult<U> {
         return Lustre.map(self, transform)
     }
-    
-    /// Return the result of executing a function if `self` was successful.
-    func map(@noescape fn: T -> ()) -> VoidResult {
-        return Lustre.map(self, fn)
-    }
 
 }
 

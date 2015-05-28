@@ -185,7 +185,7 @@ public func try<T: AnyObject>(function: StaticString = __FUNCTION__, file: Stati
     :param: fn A function with a Cocoa-style `NSErrorPointer` signature.
     :returns: A result type created by wrapping the returned optional.
 **/
-public func try(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape wrapError transform: (NSError -> NSError) = identityError, @noescape fn: NSErrorPointer -> Bool) -> VoidResult {
+public func try(function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: UWord = __LINE__, @noescape wrapError transform: (NSError -> NSError) = identityError, @noescape fn: NSErrorPointer -> Bool) -> Result<Void> {
     var err: NSError?
     switch (fn(&err), err) {
     case (true, _):
