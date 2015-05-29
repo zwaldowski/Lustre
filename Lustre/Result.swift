@@ -14,9 +14,8 @@ private enum ResultStorage {
 }
 
 /// Container for a successful value (`T`) or a failure (`NSError`).
-/// Due to Swift limitations, success values are stored unsafely. For objects or
-/// non-primitive types, users would ideally prefer `ObjectResult` or a
-/// custom type conforming to `ResultType`, respectively.
+/// For concrete types, users might ideally prefer a custom type conforming to
+/// `ResultType`.
 public struct Result<T>: ResultType {
     
     private let storage: ResultStorage
@@ -61,18 +60,18 @@ public struct Result<T>: ResultType {
     public func flatMap<Result: ResultType>(@noescape transform: T -> Result) -> Result {
         return Lustre.flatMap(self, transform)
     }
-
-}
-
-// MARK: Instance mapping
-
-public extension Result {
     
     /// Returns a new Result by mapping success cases using `transform`, or
     /// re-wrapping the error.
     public func map<Result: ResultType>(@noescape transform: T -> Result.Value) -> Result {
         return Lustre.map(self, transform)
     }
+
+}
+
+// MARK: Instance mapping
+
+public extension Result {
     
     /// Returns a new Result by mapping success cases using `transform`, or
     /// re-wrapping the error.
