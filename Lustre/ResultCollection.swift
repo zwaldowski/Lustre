@@ -30,6 +30,8 @@ public func partitionResults<InResult: ResultType, Seq: SequenceType where Seq.G
 */
 public func collectAllSuccesses<InResult: ResultType, Seq: SequenceType where Seq.Generator.Element == InResult>(results: Seq) -> Result<[InResult.Value]> {
     var successes = Array<InResult.Value>()
+    successes.reserveCapacity(underestimateCount(results))
+    
     for result in results {
         if let error = result.analysis(ifSuccess: {
             successes.append($0)
