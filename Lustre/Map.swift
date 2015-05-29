@@ -19,9 +19,3 @@ public func map<InResult: _ResultType, OutResult: _ResultType>(result: InResult,
 public func map<IR: ResultType, U>(result: IR, @noescape transform: IR.Value -> U) -> Result<U> {
     return result.map(transform)
 }
-
-/// Returns a new Result by mapping success cases using `transform`, or
-/// re-wrapping the error.
-public func map<IR: ResultType, U: AnyObject>(result: IR, @noescape transform: IR.Value -> U) -> ObjectResult<U> {
-    return result.map(transform)
-}

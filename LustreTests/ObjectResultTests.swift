@@ -21,9 +21,9 @@ class ObjectResultTests: XCTestCase {
     let testError = error("This is a test.")
     let testError2 = error("Ce ne est pas un test.")
     
-    private var successResult: ObjectResult<NSObject>  { return success(testValue) }
-    private var failureResult: ObjectResult<NSObject>  { return failure(testError) }
-    private var failureResult2: ObjectResult<NSObject> { return failure(testError2) }
+    private var successResult: Result<NSObject>  { return success(testValue) }
+    private var failureResult: Result<NSObject>  { return failure(testError) }
+    private var failureResult2: Result<NSObject> { return failure(testError2) }
 
     func testSuccessAnalysis() {
         successResult.analysis(ifSuccess: { _ in }, ifFailure: {
@@ -49,11 +49,11 @@ class ObjectResultTests: XCTestCase {
         XCTAssert(failureResult.error == testError)
     }
 
-    func doubleSuccess(x: NSObject) -> ObjectResult<NSString> {
+    func doubleSuccess(x: NSObject) -> Result<NSString> {
         return success(x.description)
     }
 
-    func doubleFailure(x: NSObject) -> ObjectResult<NSString> {
+    func doubleFailure(x: NSObject) -> Result<NSString> {
         return failure(testError)
     }
 

@@ -30,8 +30,6 @@
 		DBDF885E1AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* Result.swift */; };
 		DBDF88611AC49B85000AA16F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88591AC49B85000AA16F /* Error.swift */; };
 		DBDF88621AC49B85000AA16F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88591AC49B85000AA16F /* Error.swift */; };
-		DBDF88631AC49B85000AA16F /* ObjectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885A1AC49B85000AA16F /* ObjectResult.swift */; };
-		DBDF88641AC49B85000AA16F /* ObjectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885A1AC49B85000AA16F /* ObjectResult.swift */; };
 		DBDF88651AC49B85000AA16F /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* ResultType.swift */; };
 		DBDF88661AC49B85000AA16F /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* ResultType.swift */; };
 		DBDF886B1AC49B95000AA16F /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
@@ -71,7 +69,6 @@
 		DBDF88461AC49669000AA16F /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF88571AC49B85000AA16F /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DBDF88591AC49B85000AA16F /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		DBDF885A1AC49B85000AA16F /* ObjectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResult.swift; sourceTree = "<group>"; };
 		DBDF885B1AC49B85000AA16F /* ResultType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		DBDF88691AC49B95000AA16F /* AnyResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResultTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,7 +133,6 @@
 				DBDF88201AC49659000AA16F /* Lustre.h */,
 				DBDF88591AC49B85000AA16F /* Error.swift */,
 				DBCBEF681AFD5462006CA8CA /* Map.swift */,
-				DBDF885A1AC49B85000AA16F /* ObjectResult.swift */,
 				DB7D4AA21AC8AC2F00C54623 /* Operators.swift */,
 				DBDF88571AC49B85000AA16F /* Result.swift */,
 				DBCBEF5F1AFD45F8006CA8CA /* ResultBase.swift */,
@@ -355,7 +351,6 @@
 				DBCBEF611AFD45F8006CA8CA /* ResultBase.swift in Sources */,
 				DBDF88621AC49B85000AA16F /* Error.swift in Sources */,
 				DBCBEF6A1AFD5462006CA8CA /* Map.swift in Sources */,
-				DBDF88641AC49B85000AA16F /* ObjectResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +376,6 @@
 				DBCBEF601AFD45F8006CA8CA /* ResultBase.swift in Sources */,
 				DBDF88611AC49B85000AA16F /* Error.swift in Sources */,
 				DBCBEF691AFD5462006CA8CA /* Map.swift in Sources */,
-				DBDF88631AC49B85000AA16F /* ObjectResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -79,12 +79,6 @@ public extension Result {
         return Lustre.map(self, transform)
     }
     
-    /// Returns a new Result by mapping success cases using `transform`, or
-    /// re-wrapping the error.
-    func map<U: AnyObject>(@noescape transform: T -> U) -> ObjectResult<U> {
-        return Lustre.map(self, transform)
-    }
-    
 }
 
 // MARK: Free constructors
