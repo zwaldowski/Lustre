@@ -11,7 +11,7 @@ import Foundation
 /// A type that can reflect an either-or state for a given event, though not
 /// necessarily mutually exclusively due to limitations in Swift. Ideally,
 /// implementations of this type are an `enum` with two cases.
-public protocol ResultType: _ResultType {
+public protocol ResultType: _ResultType, Printable {
 
     /// The value contained by this result iff the event succeeded, else `nil`.
     /// The free function `unbox` can be used to provide an implementation.
