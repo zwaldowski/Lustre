@@ -33,6 +33,10 @@
 		DBDF88651AC49B85000AA16F /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* ResultType.swift */; };
 		DBDF88661AC49B85000AA16F /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* ResultType.swift */; };
 		DBDF886B1AC49B95000AA16F /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
+		DBE2CDF91B180294007E1499 /* MapAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CDF71B180294007E1499 /* MapAll.swift */; };
+		DBE2CDFA1B180294007E1499 /* MapAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CDF71B180294007E1499 /* MapAll.swift */; };
+		DBE2CDFB1B180294007E1499 /* Partition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CDF81B180294007E1499 /* Partition.swift */; };
+		DBE2CDFC1B180294007E1499 /* Partition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CDF81B180294007E1499 /* Partition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,8 @@
 		DBDF88591AC49B85000AA16F /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		DBDF885B1AC49B85000AA16F /* ResultType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		DBDF88691AC49B95000AA16F /* AnyResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResultTests.swift; sourceTree = "<group>"; };
+		DBE2CDF71B180294007E1499 /* MapAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAll.swift; sourceTree = "<group>"; };
+		DBE2CDF81B180294007E1499 /* Partition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,8 @@
 				DBCBEF5F1AFD45F8006CA8CA /* ResultBase.swift */,
 				DBDF885B1AC49B85000AA16F /* ResultType.swift */,
 				DBCBEF621AFD4A68006CA8CA /* Try.swift */,
+				DBE2CDF71B180294007E1499 /* MapAll.swift */,
+				DBE2CDF81B180294007E1499 /* Partition.swift */,
 				DBDF881E1AC49659000AA16F /* Supporting Files */,
 			);
 			path = Lustre;
@@ -349,7 +357,9 @@
 				DB7D4AA41AC8AC2F00C54623 /* Operators.swift in Sources */,
 				DBCBEF641AFD4A68006CA8CA /* Try.swift in Sources */,
 				DBCBEF611AFD45F8006CA8CA /* ResultBase.swift in Sources */,
+				DBE2CDFC1B180294007E1499 /* Partition.swift in Sources */,
 				DBDF88621AC49B85000AA16F /* Error.swift in Sources */,
+				DBE2CDFA1B180294007E1499 /* MapAll.swift in Sources */,
 				DBCBEF6A1AFD5462006CA8CA /* Map.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +384,9 @@
 				DB7D4AA31AC8AC2F00C54623 /* Operators.swift in Sources */,
 				DBCBEF631AFD4A68006CA8CA /* Try.swift in Sources */,
 				DBCBEF601AFD45F8006CA8CA /* ResultBase.swift in Sources */,
+				DBE2CDFB1B180294007E1499 /* Partition.swift in Sources */,
 				DBDF88611AC49B85000AA16F /* Error.swift in Sources */,
+				DBE2CDF91B180294007E1499 /* MapAll.swift in Sources */,
 				DBCBEF691AFD5462006CA8CA /* Map.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
