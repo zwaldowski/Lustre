@@ -93,8 +93,3 @@ public extension Result {
 public func success<T>(value: T) -> Result<T> {
     return Result(value)
 }
-
-// MARK: Pre-0.8 compatibility
-
-@availability(*, deprecated=0.8)
-public typealias VoidResult = Result<Void>
