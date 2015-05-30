@@ -105,3 +105,9 @@ public func error(_ message: String? = nil, function: StaticString = __FUNCTION_
 func identityError(error: NSError) -> NSError {
     return error
 }
+
+/// Checks whether the domain and code match the given error. The descriptions
+/// are not checked.
+public func errorsMatch<T: ErrorRepresentable>(error: NSError, code: T) -> Bool {
+    return error.domain == T.domain && error.code == numericCast(code.code)
+}
