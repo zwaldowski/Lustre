@@ -1,14 +1,9 @@
 Pod::Spec.new do |s|
   s.name         = "Lustre"
-  s.version      = "0.8"
-  s.summary      = "An imperfect but more performant Result pattern in Swift."
+  s.version      = "0.9"
+  s.summary      = "An alternative, protocol-based Result pattern for Swift."
   s.description  = <<-DESC
-                   An imperfect but more performant implementation of the Result
-                   pattern in Swift.
-
-                   The common-case implementation of `Result<T>` is clearly the
-                   future, but until Swift supports multi-payload generic enums,
-                   Lustre mitigates the problems of a `Box<T>` Result type.
+                   An alternative, protocol-based Result pattern for Swift.
                    DESC
   s.homepage     = "https://github.com/zwaldowski/Lustre"
   s.license      = { :type => "MIT", :file => "LICENSE" }
