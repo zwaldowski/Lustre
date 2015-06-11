@@ -102,7 +102,3 @@ public func success<Result: ResultType>(value: Result.Value) -> Result {
 public func failure<Result: ResultType>(error: Result.Error) -> Result {
     return Result(failure: error)
 }
-
-public enum NoError: Equatable, ErrorType {}
-
-public func ==(lhs: NoError, rhs: NoError) -> Bool { return true }
