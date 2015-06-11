@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBDF883B1AC49669000AA16F"
+               BlueprintIdentifier = "DB5EC6591B2A022C00A16157"
                BuildableName = "Lustre.framework"
                BlueprintName = "Lustre"
-               ReferencedContainer = "container:Lustre.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBDF88451AC49669000AA16F"
-               BuildableName = "LustreTests.xctest"
-               BlueprintName = "LustreTests"
                ReferencedContainer = "container:Lustre.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBDF88451AC49669000AA16F"
+               BlueprintIdentifier = "DB5EC6631B2A022C00A16157"
                BuildableName = "LustreTests.xctest"
                BlueprintName = "LustreTests"
                ReferencedContainer = "container:Lustre.xcodeproj">
@@ -57,7 +43,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DBDF883B1AC49669000AA16F"
+            BlueprintIdentifier = "DB5EC6591B2A022C00A16157"
             BuildableName = "Lustre.framework"
             BlueprintName = "Lustre"
             ReferencedContainer = "container:Lustre.xcodeproj">
@@ -79,7 +65,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DBDF883B1AC49669000AA16F"
+            BlueprintIdentifier = "DB5EC6591B2A022C00A16157"
             BuildableName = "Lustre.framework"
             BlueprintName = "Lustre"
             ReferencedContainer = "container:Lustre.xcodeproj">
@@ -97,7 +83,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DBDF883B1AC49669000AA16F"
+            BlueprintIdentifier = "DB5EC6591B2A022C00A16157"
             BuildableName = "Lustre.framework"
             BlueprintName = "Lustre"
             ReferencedContainer = "container:Lustre.xcodeproj">

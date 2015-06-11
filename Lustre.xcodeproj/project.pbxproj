@@ -7,331 +7,315 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB5EC6091B29062D00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6081B29062D00A16157 /* Fixtures.swift */; };
-		DB5EC60A1B29062D00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6081B29062D00A16157 /* Fixtures.swift */; };
-		DB5EC60C1B29097B00A16157 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC60B1B29097B00A16157 /* NSError.swift */; };
-		DB5EC60D1B29097B00A16157 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC60B1B29097B00A16157 /* NSError.swift */; };
-		DB76F13F1AC4CB7400C068FC /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */; };
-		DB76F1401AC4CB7400C068FC /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */; };
-		DB76F1421AC5B17A00C068FC /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */; };
-		DB76F1431AC5B17A00C068FC /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */; };
-		DB76F1451AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */; };
-		DB76F1461AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */; };
-		DB76F1471AC5DD7900C068FC /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
-		DB7D4AA31AC8AC2F00C54623 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D4AA21AC8AC2F00C54623 /* Operators.swift */; };
-		DB7D4AA41AC8AC2F00C54623 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D4AA21AC8AC2F00C54623 /* Operators.swift */; };
-		DBDF88211AC49659000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DBDF88271AC49659000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF881B1AC49659000AA16F /* Lustre.framework */; };
-		DBDF88471AC49669000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF883C1AC49669000AA16F /* Lustre.framework */; };
-		DBDF88551AC496F6000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DBDF885D1AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* Result.swift */; };
-		DBDF885E1AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* Result.swift */; };
-		DBDF88651AC49B85000AA16F /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* ResultType.swift */; };
-		DBDF88661AC49B85000AA16F /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* ResultType.swift */; };
-		DBDF886B1AC49B95000AA16F /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
-		DBE2CDF91B180294007E1499 /* MapAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CDF71B180294007E1499 /* MapAll.swift */; };
-		DBE2CDFA1B180294007E1499 /* MapAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CDF71B180294007E1499 /* MapAll.swift */; };
-		DBE2CDFB1B180294007E1499 /* ResultCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CDF81B180294007E1499 /* ResultCollection.swift */; };
-		DBE2CDFC1B180294007E1499 /* ResultCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2CDF81B180294007E1499 /* ResultCollection.swift */; };
+		DB5EC65E1B2A022C00A16157 /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5EC65D1B2A022C00A16157 /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB5EC6651B2A022C00A16157 /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5EC65A1B2A022C00A16157 /* Lustre.framework */; };
+		DB5EC6831B2A023600A16157 /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5EC6791B2A023600A16157 /* Lustre.framework */; };
+		DB5EC6901B2A026800A16157 /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5EC65D1B2A022C00A16157 /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB5EC6981B2A032100A16157 /* MapAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6921B2A032100A16157 /* MapAll.swift */; };
+		DB5EC6991B2A032100A16157 /* MapAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6921B2A032100A16157 /* MapAll.swift */; };
+		DB5EC69A1B2A032100A16157 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6931B2A032100A16157 /* NSError.swift */; };
+		DB5EC69B1B2A032100A16157 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6931B2A032100A16157 /* NSError.swift */; };
+		DB5EC69C1B2A032100A16157 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6941B2A032100A16157 /* Operators.swift */; };
+		DB5EC69D1B2A032100A16157 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6941B2A032100A16157 /* Operators.swift */; };
+		DB5EC69E1B2A032100A16157 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6951B2A032100A16157 /* Result.swift */; };
+		DB5EC69F1B2A032100A16157 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6951B2A032100A16157 /* Result.swift */; };
+		DB5EC6A01B2A032100A16157 /* ResultCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6961B2A032100A16157 /* ResultCollection.swift */; };
+		DB5EC6A11B2A032100A16157 /* ResultCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6961B2A032100A16157 /* ResultCollection.swift */; };
+		DB5EC6A21B2A032100A16157 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6971B2A032100A16157 /* ResultType.swift */; };
+		DB5EC6A31B2A032100A16157 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6971B2A032100A16157 /* ResultType.swift */; };
+		DB5EC6A91B2A035C00A16157 /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */; };
+		DB5EC6AA1B2A035C00A16157 /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */; };
+		DB5EC6AB1B2A035C00A16157 /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */; };
+		DB5EC6AC1B2A035C00A16157 /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */; };
+		DB5EC6AD1B2A035C00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A61B2A035C00A16157 /* Fixtures.swift */; };
+		DB5EC6AE1B2A035C00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A61B2A035C00A16157 /* Fixtures.swift */; };
+		DB5EC6AF1B2A035C00A16157 /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A71B2A035C00A16157 /* ObjectResultTests.swift */; };
+		DB5EC6B01B2A035C00A16157 /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A71B2A035C00A16157 /* ObjectResultTests.swift */; };
+		DB5EC6B11B2A035C00A16157 /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */; };
+		DB5EC6B21B2A035C00A16157 /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DBDF88281AC49659000AA16F /* PBXContainerItemProxy */ = {
+		DB5EC6661B2A022C00A16157 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DBDF88121AC49659000AA16F /* Project object */;
+			containerPortal = DB5EC6511B2A022C00A16157 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DBDF881A1AC49659000AA16F;
+			remoteGlobalIDString = DB5EC6591B2A022C00A16157;
 			remoteInfo = Lustre;
 		};
-		DBDF88481AC49669000AA16F /* PBXContainerItemProxy */ = {
+		DB5EC6841B2A023600A16157 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DBDF88121AC49659000AA16F /* Project object */;
+			containerPortal = DB5EC6511B2A022C00A16157 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DBDF883B1AC49669000AA16F;
-			remoteInfo = LustreMac;
+			remoteGlobalIDString = DB5EC6781B2A023600A16157;
+			remoteInfo = MobileLustre;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DB5EC6081B29062D00A16157 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
-		DB5EC60B1B29097B00A16157 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
-		DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResultTests.swift; sourceTree = "<group>"; };
-		DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResultTests.swift; sourceTree = "<group>"; };
-		DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResultTests.swift; sourceTree = "<group>"; };
-		DB7D4AA21AC8AC2F00C54623 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
-		DBDF881B1AC49659000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBDF881F1AC49659000AA16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBDF88201AC49659000AA16F /* Lustre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lustre.h; sourceTree = "<group>"; };
-		DBDF88261AC49659000AA16F /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBDF882C1AC49659000AA16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBDF883C1AC49669000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBDF88461AC49669000AA16F /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBDF88571AC49B85000AA16F /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		DBDF885B1AC49B85000AA16F /* ResultType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
-		DBDF88691AC49B95000AA16F /* AnyResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResultTests.swift; sourceTree = "<group>"; };
-		DBE2CDF71B180294007E1499 /* MapAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAll.swift; sourceTree = "<group>"; };
-		DBE2CDF81B180294007E1499 /* ResultCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCollection.swift; sourceTree = "<group>"; };
+		DB5EC65A1B2A022C00A16157 /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5EC65D1B2A022C00A16157 /* Lustre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lustre.h; sourceTree = "<group>"; };
+		DB5EC65F1B2A022C00A16157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5EC6641B2A022C00A16157 /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5EC66B1B2A022C00A16157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5EC6791B2A023600A16157 /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5EC6821B2A023600A16157 /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5EC6921B2A032100A16157 /* MapAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAll.swift; sourceTree = "<group>"; };
+		DB5EC6931B2A032100A16157 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
+		DB5EC6941B2A032100A16157 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		DB5EC6951B2A032100A16157 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		DB5EC6961B2A032100A16157 /* ResultCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCollection.swift; sourceTree = "<group>"; };
+		DB5EC6971B2A032100A16157 /* ResultType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
+		DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResultTests.swift; sourceTree = "<group>"; };
+		DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResultTests.swift; sourceTree = "<group>"; };
+		DB5EC6A61B2A035C00A16157 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		DB5EC6A71B2A035C00A16157 /* ObjectResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResultTests.swift; sourceTree = "<group>"; };
+		DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResultTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DBDF88171AC49659000AA16F /* Frameworks */ = {
+		DB5EC6561B2A022C00A16157 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88231AC49659000AA16F /* Frameworks */ = {
+		DB5EC6611B2A022C00A16157 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF88271AC49659000AA16F /* Lustre.framework in Frameworks */,
+				DB5EC6651B2A022C00A16157 /* Lustre.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88381AC49669000AA16F /* Frameworks */ = {
+		DB5EC6751B2A023600A16157 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88431AC49669000AA16F /* Frameworks */ = {
+		DB5EC67F1B2A023600A16157 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF88471AC49669000AA16F /* Lustre.framework in Frameworks */,
+				DB5EC6831B2A023600A16157 /* Lustre.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DBDF88111AC49659000AA16F = {
+		DB5EC6501B2A022C00A16157 = {
 			isa = PBXGroup;
 			children = (
-				DBDF881D1AC49659000AA16F /* Lustre */,
-				DBDF882A1AC49659000AA16F /* LustreTests */,
-				DBDF881C1AC49659000AA16F /* Products */,
+				DB5EC65C1B2A022C00A16157 /* Lustre */,
+				DB5EC6681B2A022C00A16157 /* LustreTests */,
+				DB5EC65B1B2A022C00A16157 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		DBDF881C1AC49659000AA16F /* Products */ = {
+		DB5EC65B1B2A022C00A16157 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DBDF881B1AC49659000AA16F /* Lustre.framework */,
-				DBDF88261AC49659000AA16F /* LustreTests.xctest */,
-				DBDF883C1AC49669000AA16F /* Lustre.framework */,
-				DBDF88461AC49669000AA16F /* LustreTests.xctest */,
+				DB5EC65A1B2A022C00A16157 /* Lustre.framework */,
+				DB5EC6641B2A022C00A16157 /* LustreTests.xctest */,
+				DB5EC6791B2A023600A16157 /* Lustre.framework */,
+				DB5EC6821B2A023600A16157 /* LustreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DBDF881D1AC49659000AA16F /* Lustre */ = {
+		DB5EC65C1B2A022C00A16157 /* Lustre */ = {
 			isa = PBXGroup;
 			children = (
-				DBDF88201AC49659000AA16F /* Lustre.h */,
-				DB7D4AA21AC8AC2F00C54623 /* Operators.swift */,
-				DBDF88571AC49B85000AA16F /* Result.swift */,
-				DBDF885B1AC49B85000AA16F /* ResultType.swift */,
-				DB5EC60B1B29097B00A16157 /* NSError.swift */,
-				DBE2CDF71B180294007E1499 /* MapAll.swift */,
-				DBE2CDF81B180294007E1499 /* ResultCollection.swift */,
-				DBDF881E1AC49659000AA16F /* Supporting Files */,
+				DB5EC65D1B2A022C00A16157 /* Lustre.h */,
+				DB5EC6921B2A032100A16157 /* MapAll.swift */,
+				DB5EC6931B2A032100A16157 /* NSError.swift */,
+				DB5EC6941B2A032100A16157 /* Operators.swift */,
+				DB5EC6951B2A032100A16157 /* Result.swift */,
+				DB5EC6961B2A032100A16157 /* ResultCollection.swift */,
+				DB5EC6971B2A032100A16157 /* ResultType.swift */,
+				DB5EC65F1B2A022C00A16157 /* Info.plist */,
 			);
 			path = Lustre;
 			sourceTree = "<group>";
 		};
-		DBDF881E1AC49659000AA16F /* Supporting Files */ = {
+		DB5EC6681B2A022C00A16157 /* LustreTests */ = {
 			isa = PBXGroup;
 			children = (
-				DBDF881F1AC49659000AA16F /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DBDF882A1AC49659000AA16F /* LustreTests */ = {
-			isa = PBXGroup;
-			children = (
-				DBDF88691AC49B95000AA16F /* AnyResultTests.swift */,
-				DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */,
-				DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */,
-				DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */,
-				DB5EC6081B29062D00A16157 /* Fixtures.swift */,
-				DBDF882B1AC49659000AA16F /* Supporting Files */,
+				DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */,
+				DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */,
+				DB5EC6A61B2A035C00A16157 /* Fixtures.swift */,
+				DB5EC6A71B2A035C00A16157 /* ObjectResultTests.swift */,
+				DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */,
+				DB5EC66B1B2A022C00A16157 /* Info.plist */,
 			);
 			path = LustreTests;
-			sourceTree = "<group>";
-		};
-		DBDF882B1AC49659000AA16F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DBDF882C1AC49659000AA16F /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		DBDF88181AC49659000AA16F /* Headers */ = {
+		DB5EC6571B2A022C00A16157 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF88211AC49659000AA16F /* Lustre.h in Headers */,
+				DB5EC65E1B2A022C00A16157 /* Lustre.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88391AC49669000AA16F /* Headers */ = {
+		DB5EC6761B2A023600A16157 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF88551AC496F6000AA16F /* Lustre.h in Headers */,
+				DB5EC6901B2A026800A16157 /* Lustre.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		DBDF881A1AC49659000AA16F /* MobileLustre */ = {
+		DB5EC6591B2A022C00A16157 /* Lustre */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBDF88311AC49659000AA16F /* Build configuration list for PBXNativeTarget "MobileLustre" */;
+			buildConfigurationList = DB5EC66E1B2A022C00A16157 /* Build configuration list for PBXNativeTarget "Lustre" */;
 			buildPhases = (
-				DBDF88161AC49659000AA16F /* Sources */,
-				DBDF88171AC49659000AA16F /* Frameworks */,
-				DBDF88181AC49659000AA16F /* Headers */,
-				DBDF88191AC49659000AA16F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MobileLustre;
-			productName = Lustre;
-			productReference = DBDF881B1AC49659000AA16F /* Lustre.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		DBDF88251AC49659000AA16F /* MobileLustreTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DBDF88341AC49659000AA16F /* Build configuration list for PBXNativeTarget "MobileLustreTests" */;
-			buildPhases = (
-				DBDF88221AC49659000AA16F /* Sources */,
-				DBDF88231AC49659000AA16F /* Frameworks */,
-				DBDF88241AC49659000AA16F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DBDF88291AC49659000AA16F /* PBXTargetDependency */,
-			);
-			name = MobileLustreTests;
-			productName = LustreTests;
-			productReference = DBDF88261AC49659000AA16F /* LustreTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		DBDF883B1AC49669000AA16F /* Lustre */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DBDF884F1AC49669000AA16F /* Build configuration list for PBXNativeTarget "Lustre" */;
-			buildPhases = (
-				DBDF88371AC49669000AA16F /* Sources */,
-				DBDF88381AC49669000AA16F /* Frameworks */,
-				DBDF88391AC49669000AA16F /* Headers */,
-				DBDF883A1AC49669000AA16F /* Resources */,
+				DB5EC6551B2A022C00A16157 /* Sources */,
+				DB5EC6561B2A022C00A16157 /* Frameworks */,
+				DB5EC6571B2A022C00A16157 /* Headers */,
+				DB5EC6581B2A022C00A16157 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Lustre;
-			productName = LustreMac;
-			productReference = DBDF883C1AC49669000AA16F /* Lustre.framework */;
+			productName = Lustre;
+			productReference = DB5EC65A1B2A022C00A16157 /* Lustre.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		DBDF88451AC49669000AA16F /* LustreTests */ = {
+		DB5EC6631B2A022C00A16157 /* LustreTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBDF88521AC49669000AA16F /* Build configuration list for PBXNativeTarget "LustreTests" */;
+			buildConfigurationList = DB5EC6711B2A022C00A16157 /* Build configuration list for PBXNativeTarget "LustreTests" */;
 			buildPhases = (
-				DBDF88421AC49669000AA16F /* Sources */,
-				DBDF88431AC49669000AA16F /* Frameworks */,
-				DBDF88441AC49669000AA16F /* Resources */,
+				DB5EC6601B2A022C00A16157 /* Sources */,
+				DB5EC6611B2A022C00A16157 /* Frameworks */,
+				DB5EC6621B2A022C00A16157 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DBDF88491AC49669000AA16F /* PBXTargetDependency */,
+				DB5EC6671B2A022C00A16157 /* PBXTargetDependency */,
 			);
 			name = LustreTests;
-			productName = LustreMacTests;
-			productReference = DBDF88461AC49669000AA16F /* LustreTests.xctest */;
+			productName = LustreTests;
+			productReference = DB5EC6641B2A022C00A16157 /* LustreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB5EC6781B2A023600A16157 /* MobileLustre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB5EC68A1B2A023600A16157 /* Build configuration list for PBXNativeTarget "MobileLustre" */;
+			buildPhases = (
+				DB5EC6741B2A023600A16157 /* Sources */,
+				DB5EC6751B2A023600A16157 /* Frameworks */,
+				DB5EC6761B2A023600A16157 /* Headers */,
+				DB5EC6771B2A023600A16157 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileLustre;
+			productName = MobileLustre;
+			productReference = DB5EC6791B2A023600A16157 /* Lustre.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DB5EC6811B2A023600A16157 /* MobileLustreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB5EC68D1B2A023600A16157 /* Build configuration list for PBXNativeTarget "MobileLustreTests" */;
+			buildPhases = (
+				DB5EC67E1B2A023600A16157 /* Sources */,
+				DB5EC67F1B2A023600A16157 /* Frameworks */,
+				DB5EC6801B2A023600A16157 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB5EC6851B2A023600A16157 /* PBXTargetDependency */,
+			);
+			name = MobileLustreTests;
+			productName = MobileLustreTests;
+			productReference = DB5EC6821B2A023600A16157 /* LustreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		DBDF88121AC49659000AA16F /* Project object */ = {
+		DB5EC6511B2A022C00A16157 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Zachary Waldowski";
 				TargetAttributes = {
-					DBDF881A1AC49659000AA16F = {
-						CreatedOnToolsVersion = 6.3;
+					DB5EC6591B2A022C00A16157 = {
+						CreatedOnToolsVersion = 7.0;
 					};
-					DBDF88251AC49659000AA16F = {
-						CreatedOnToolsVersion = 6.3;
+					DB5EC6631B2A022C00A16157 = {
+						CreatedOnToolsVersion = 7.0;
 					};
-					DBDF883B1AC49669000AA16F = {
-						CreatedOnToolsVersion = 6.3;
+					DB5EC6781B2A023600A16157 = {
+						CreatedOnToolsVersion = 7.0;
 					};
-					DBDF88451AC49669000AA16F = {
-						CreatedOnToolsVersion = 6.3;
+					DB5EC6811B2A023600A16157 = {
+						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
-			buildConfigurationList = DBDF88151AC49659000AA16F /* Build configuration list for PBXProject "Lustre" */;
+			buildConfigurationList = DB5EC6541B2A022C00A16157 /* Build configuration list for PBXProject "Lustre" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = DBDF88111AC49659000AA16F;
-			productRefGroup = DBDF881C1AC49659000AA16F /* Products */;
+			mainGroup = DB5EC6501B2A022C00A16157;
+			productRefGroup = DB5EC65B1B2A022C00A16157 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DBDF883B1AC49669000AA16F /* Lustre */,
-				DBDF88451AC49669000AA16F /* LustreTests */,
-				DBDF881A1AC49659000AA16F /* MobileLustre */,
-				DBDF88251AC49659000AA16F /* MobileLustreTests */,
+				DB5EC6591B2A022C00A16157 /* Lustre */,
+				DB5EC6631B2A022C00A16157 /* LustreTests */,
+				DB5EC6781B2A023600A16157 /* MobileLustre */,
+				DB5EC6811B2A023600A16157 /* MobileLustreTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		DBDF88191AC49659000AA16F /* Resources */ = {
+		DB5EC6581B2A022C00A16157 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88241AC49659000AA16F /* Resources */ = {
+		DB5EC6621B2A022C00A16157 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF883A1AC49669000AA16F /* Resources */ = {
+		DB5EC6771B2A023600A16157 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88441AC49669000AA16F /* Resources */ = {
+		DB5EC6801B2A023600A16157 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -341,73 +325,73 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		DBDF88161AC49659000AA16F /* Sources */ = {
+		DB5EC6551B2A022C00A16157 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF885E1AC49B85000AA16F /* Result.swift in Sources */,
-				DBDF88661AC49B85000AA16F /* ResultType.swift in Sources */,
-				DB7D4AA41AC8AC2F00C54623 /* Operators.swift in Sources */,
-				DBE2CDFC1B180294007E1499 /* ResultCollection.swift in Sources */,
-				DBE2CDFA1B180294007E1499 /* MapAll.swift in Sources */,
-				DB5EC60D1B29097B00A16157 /* NSError.swift in Sources */,
+				DB5EC6A01B2A032100A16157 /* ResultCollection.swift in Sources */,
+				DB5EC6981B2A032100A16157 /* MapAll.swift in Sources */,
+				DB5EC69A1B2A032100A16157 /* NSError.swift in Sources */,
+				DB5EC69E1B2A032100A16157 /* Result.swift in Sources */,
+				DB5EC6A21B2A032100A16157 /* ResultType.swift in Sources */,
+				DB5EC69C1B2A032100A16157 /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88221AC49659000AA16F /* Sources */ = {
+		DB5EC6601B2A022C00A16157 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF886B1AC49B95000AA16F /* AnyResultTests.swift in Sources */,
-				DB76F1431AC5B17A00C068FC /* VoidResultTests.swift in Sources */,
-				DB76F1401AC4CB7400C068FC /* CustomResultTests.swift in Sources */,
-				DB5EC60A1B29062D00A16157 /* Fixtures.swift in Sources */,
-				DB76F1461AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */,
+				DB5EC6B11B2A035C00A16157 /* VoidResultTests.swift in Sources */,
+				DB5EC6A91B2A035C00A16157 /* AnyResultTests.swift in Sources */,
+				DB5EC6AB1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
+				DB5EC6AD1B2A035C00A16157 /* Fixtures.swift in Sources */,
+				DB5EC6AF1B2A035C00A16157 /* ObjectResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88371AC49669000AA16F /* Sources */ = {
+		DB5EC6741B2A023600A16157 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDF885D1AC49B85000AA16F /* Result.swift in Sources */,
-				DBDF88651AC49B85000AA16F /* ResultType.swift in Sources */,
-				DB7D4AA31AC8AC2F00C54623 /* Operators.swift in Sources */,
-				DBE2CDFB1B180294007E1499 /* ResultCollection.swift in Sources */,
-				DBE2CDF91B180294007E1499 /* MapAll.swift in Sources */,
-				DB5EC60C1B29097B00A16157 /* NSError.swift in Sources */,
+				DB5EC6A11B2A032100A16157 /* ResultCollection.swift in Sources */,
+				DB5EC6991B2A032100A16157 /* MapAll.swift in Sources */,
+				DB5EC69B1B2A032100A16157 /* NSError.swift in Sources */,
+				DB5EC69F1B2A032100A16157 /* Result.swift in Sources */,
+				DB5EC6A31B2A032100A16157 /* ResultType.swift in Sources */,
+				DB5EC69D1B2A032100A16157 /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBDF88421AC49669000AA16F /* Sources */ = {
+		DB5EC67E1B2A023600A16157 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB76F1421AC5B17A00C068FC /* VoidResultTests.swift in Sources */,
-				DB76F1471AC5DD7900C068FC /* AnyResultTests.swift in Sources */,
-				DB76F13F1AC4CB7400C068FC /* CustomResultTests.swift in Sources */,
-				DB5EC6091B29062D00A16157 /* Fixtures.swift in Sources */,
-				DB76F1451AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */,
+				DB5EC6B21B2A035C00A16157 /* VoidResultTests.swift in Sources */,
+				DB5EC6AA1B2A035C00A16157 /* AnyResultTests.swift in Sources */,
+				DB5EC6AC1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
+				DB5EC6AE1B2A035C00A16157 /* Fixtures.swift in Sources */,
+				DB5EC6B01B2A035C00A16157 /* ObjectResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DBDF88291AC49659000AA16F /* PBXTargetDependency */ = {
+		DB5EC6671B2A022C00A16157 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DBDF881A1AC49659000AA16F /* MobileLustre */;
-			targetProxy = DBDF88281AC49659000AA16F /* PBXContainerItemProxy */;
+			target = DB5EC6591B2A022C00A16157 /* Lustre */;
+			targetProxy = DB5EC6661B2A022C00A16157 /* PBXContainerItemProxy */;
 		};
-		DBDF88491AC49669000AA16F /* PBXTargetDependency */ = {
+		DB5EC6851B2A023600A16157 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DBDF883B1AC49669000AA16F /* Lustre */;
-			targetProxy = DBDF88481AC49669000AA16F /* PBXContainerItemProxy */;
+			target = DB5EC6781B2A023600A16157 /* MobileLustre */;
+			targetProxy = DB5EC6841B2A023600A16157 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		DBDF882F1AC49659000AA16F /* Debug */ = {
+		DB5EC66C1B2A022C00A16157 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -424,10 +408,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.8.0;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -438,7 +421,6 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -449,15 +431,14 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		DBDF88301AC49659000AA16F /* Release */ = {
+		DB5EC66D1B2A022C00A16157 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -474,9 +455,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.8.0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -491,111 +471,13 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		DBDF88321AC49659000AA16F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Lustre/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
-				PRODUCT_NAME = Lustre;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		DBDF88331AC49659000AA16F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Lustre/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
-				PRODUCT_NAME = Lustre;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		DBDF88351AC49659000AA16F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LustreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.waldowski.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = LustreTests;
-			};
-			name = Debug;
-		};
-		DBDF88361AC49659000AA16F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LustreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.waldowski.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = LustreTests;
-			};
-			name = Release;
-		};
-		DBDF88501AC49669000AA16F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Lustre/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
-				PRODUCT_NAME = Lustre;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		DBDF88511AC49669000AA16F /* Release */ = {
+		DB5EC66F1B2A022C00A16157 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -611,97 +493,177 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
 				PRODUCT_NAME = Lustre;
-				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB5EC6701B2A022C00A16157 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Lustre/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
+				PRODUCT_NAME = Lustre;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		DBDF88531AC49669000AA16F /* Debug */ = {
+		DB5EC6721B2A022C00A16157 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = LustreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.waldowski.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.LustreTests;
 				PRODUCT_NAME = LustreTests;
-				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		DBDF88541AC49669000AA16F /* Release */ = {
+		DB5EC6731B2A022C00A16157 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = LustreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.waldowski.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.LustreTests;
 				PRODUCT_NAME = LustreTests;
-				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DB5EC68B1B2A023600A16157 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Lustre/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
+				PRODUCT_NAME = Lustre;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB5EC68C1B2A023600A16157 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Lustre/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
+				PRODUCT_NAME = Lustre;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB5EC68E1B2A023600A16157 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = LustreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.LustreTests;
+				PRODUCT_NAME = LustreTests;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB5EC68F1B2A023600A16157 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = LustreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.LustreTests;
+				PRODUCT_NAME = LustreTests;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DBDF88151AC49659000AA16F /* Build configuration list for PBXProject "Lustre" */ = {
+		DB5EC6541B2A022C00A16157 /* Build configuration list for PBXProject "Lustre" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBDF882F1AC49659000AA16F /* Debug */,
-				DBDF88301AC49659000AA16F /* Release */,
+				DB5EC66C1B2A022C00A16157 /* Debug */,
+				DB5EC66D1B2A022C00A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBDF88311AC49659000AA16F /* Build configuration list for PBXNativeTarget "MobileLustre" */ = {
+		DB5EC66E1B2A022C00A16157 /* Build configuration list for PBXNativeTarget "Lustre" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBDF88321AC49659000AA16F /* Debug */,
-				DBDF88331AC49659000AA16F /* Release */,
+				DB5EC66F1B2A022C00A16157 /* Debug */,
+				DB5EC6701B2A022C00A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		DBDF88341AC49659000AA16F /* Build configuration list for PBXNativeTarget "MobileLustreTests" */ = {
+		DB5EC6711B2A022C00A16157 /* Build configuration list for PBXNativeTarget "LustreTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBDF88351AC49659000AA16F /* Debug */,
-				DBDF88361AC49659000AA16F /* Release */,
+				DB5EC6721B2A022C00A16157 /* Debug */,
+				DB5EC6731B2A022C00A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		DBDF884F1AC49669000AA16F /* Build configuration list for PBXNativeTarget "Lustre" */ = {
+		DB5EC68A1B2A023600A16157 /* Build configuration list for PBXNativeTarget "MobileLustre" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBDF88501AC49669000AA16F /* Debug */,
-				DBDF88511AC49669000AA16F /* Release */,
+				DB5EC68B1B2A023600A16157 /* Debug */,
+				DB5EC68C1B2A023600A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		DBDF88521AC49669000AA16F /* Build configuration list for PBXNativeTarget "LustreTests" */ = {
+		DB5EC68D1B2A023600A16157 /* Build configuration list for PBXNativeTarget "MobileLustreTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBDF88531AC49669000AA16F /* Debug */,
-				DBDF88541AC49669000AA16F /* Release */,
+				DB5EC68E1B2A023600A16157 /* Debug */,
+				DB5EC68F1B2A023600A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = DBDF88121AC49659000AA16F /* Project object */;
+	rootObject = DB5EC6511B2A022C00A16157 /* Project object */;
 }
