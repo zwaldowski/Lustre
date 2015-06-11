@@ -13,8 +13,8 @@
 		DB5EC6901B2A026800A16157 /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DB5EC65D1B2A022C00A16157 /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB5EC6981B2A032100A16157 /* MapAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6921B2A032100A16157 /* MapAll.swift */; };
 		DB5EC6991B2A032100A16157 /* MapAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6921B2A032100A16157 /* MapAll.swift */; };
-		DB5EC69A1B2A032100A16157 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6931B2A032100A16157 /* Error.swift */; };
-		DB5EC69B1B2A032100A16157 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6931B2A032100A16157 /* Error.swift */; };
+		DB5EC69A1B2A032100A16157 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6931B2A032100A16157 /* NSError.swift */; };
+		DB5EC69B1B2A032100A16157 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6931B2A032100A16157 /* NSError.swift */; };
 		DB5EC69C1B2A032100A16157 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6941B2A032100A16157 /* Operators.swift */; };
 		DB5EC69D1B2A032100A16157 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6941B2A032100A16157 /* Operators.swift */; };
 		DB5EC69E1B2A032100A16157 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6951B2A032100A16157 /* Result.swift */; };
@@ -31,8 +31,14 @@
 		DB5EC6AE1B2A035C00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A61B2A035C00A16157 /* Fixtures.swift */; };
 		DB5EC6B11B2A035C00A16157 /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */; };
 		DB5EC6B21B2A035C00A16157 /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */; };
+		DB5EC6C11B2A2CA400A16157 /* NSErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6BF1B2A2CA400A16157 /* NSErrorTests.swift */; };
+		DB5EC6C21B2A2CA400A16157 /* NSErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6BF1B2A2CA400A16157 /* NSErrorTests.swift */; };
 		DB5EC6C61B2A307800A16157 /* MapAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6C51B2A307800A16157 /* MapAllTests.swift */; };
 		DB5EC6C71B2A307800A16157 /* MapAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6C51B2A307800A16157 /* MapAllTests.swift */; };
+		DBD370A31B2A4203008E428A /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A21B2A4203008E428A /* Optional.swift */; };
+		DBD370A41B2A4203008E428A /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A21B2A4203008E428A /* Optional.swift */; };
+		DBD370A61B2A447A008E428A /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A51B2A447A008E428A /* OptionalTests.swift */; };
+		DBD370A71B2A447A008E428A /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A51B2A447A008E428A /* OptionalTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +67,7 @@
 		DB5EC6791B2A023600A16157 /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5EC6821B2A023600A16157 /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5EC6921B2A032100A16157 /* MapAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAll.swift; sourceTree = "<group>"; };
-		DB5EC6931B2A032100A16157 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		DB5EC6931B2A032100A16157 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
 		DB5EC6941B2A032100A16157 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		DB5EC6951B2A032100A16157 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DB5EC6961B2A032100A16157 /* ResultCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCollection.swift; sourceTree = "<group>"; };
@@ -70,7 +76,10 @@
 		DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResultTests.swift; sourceTree = "<group>"; };
 		DB5EC6A61B2A035C00A16157 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResultTests.swift; sourceTree = "<group>"; };
+		DB5EC6BF1B2A2CA400A16157 /* NSErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSErrorTests.swift; sourceTree = "<group>"; };
 		DB5EC6C51B2A307800A16157 /* MapAllTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAllTests.swift; sourceTree = "<group>"; };
+		DBD370A21B2A4203008E428A /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		DBD370A51B2A447A008E428A /* OptionalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +141,9 @@
 			children = (
 				DB5EC65D1B2A022C00A16157 /* Lustre.h */,
 				DB5EC6921B2A032100A16157 /* MapAll.swift */,
-				DB5EC6931B2A032100A16157 /* Error.swift */,
+				DB5EC6931B2A032100A16157 /* NSError.swift */,
 				DB5EC6941B2A032100A16157 /* Operators.swift */,
+				DBD370A21B2A4203008E428A /* Optional.swift */,
 				DB5EC6951B2A032100A16157 /* Result.swift */,
 				DB5EC6961B2A032100A16157 /* ResultCollection.swift */,
 				DB5EC6971B2A032100A16157 /* ResultType.swift */,
@@ -148,6 +158,8 @@
 				DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */,
 				DB5EC6A61B2A035C00A16157 /* Fixtures.swift */,
 				DB5EC6C51B2A307800A16157 /* MapAllTests.swift */,
+				DB5EC6BF1B2A2CA400A16157 /* NSErrorTests.swift */,
+				DBD370A51B2A447A008E428A /* OptionalTests.swift */,
 				DB5EC6A41B2A035C00A16157 /* ResultTests.swift */,
 				DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */,
 				DB5EC66B1B2A022C00A16157 /* Info.plist */,
@@ -331,7 +343,8 @@
 			files = (
 				DB5EC6A01B2A032100A16157 /* ResultCollection.swift in Sources */,
 				DB5EC6981B2A032100A16157 /* MapAll.swift in Sources */,
-				DB5EC69A1B2A032100A16157 /* Error.swift in Sources */,
+				DB5EC69A1B2A032100A16157 /* NSError.swift in Sources */,
+				DBD370A31B2A4203008E428A /* Optional.swift in Sources */,
 				DB5EC69E1B2A032100A16157 /* Result.swift in Sources */,
 				DB5EC6A21B2A032100A16157 /* ResultType.swift in Sources */,
 				DB5EC69C1B2A032100A16157 /* Operators.swift in Sources */,
@@ -342,10 +355,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5EC6C11B2A2CA400A16157 /* NSErrorTests.swift in Sources */,
 				DB5EC6B11B2A035C00A16157 /* VoidResultTests.swift in Sources */,
 				DB5EC6A91B2A035C00A16157 /* ResultTests.swift in Sources */,
 				DB5EC6AB1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
 				DB5EC6AD1B2A035C00A16157 /* Fixtures.swift in Sources */,
+				DBD370A61B2A447A008E428A /* OptionalTests.swift in Sources */,
 				DB5EC6C61B2A307800A16157 /* MapAllTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +371,8 @@
 			files = (
 				DB5EC6A11B2A032100A16157 /* ResultCollection.swift in Sources */,
 				DB5EC6991B2A032100A16157 /* MapAll.swift in Sources */,
-				DB5EC69B1B2A032100A16157 /* Error.swift in Sources */,
+				DB5EC69B1B2A032100A16157 /* NSError.swift in Sources */,
+				DBD370A41B2A4203008E428A /* Optional.swift in Sources */,
 				DB5EC69F1B2A032100A16157 /* Result.swift in Sources */,
 				DB5EC6A31B2A032100A16157 /* ResultType.swift in Sources */,
 				DB5EC69D1B2A032100A16157 /* Operators.swift in Sources */,
@@ -367,10 +383,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5EC6C21B2A2CA400A16157 /* NSErrorTests.swift in Sources */,
 				DB5EC6B21B2A035C00A16157 /* VoidResultTests.swift in Sources */,
 				DB5EC6AA1B2A035C00A16157 /* ResultTests.swift in Sources */,
 				DB5EC6AC1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
 				DB5EC6AE1B2A035C00A16157 /* Fixtures.swift in Sources */,
+				DBD370A71B2A447A008E428A /* OptionalTests.swift in Sources */,
 				DB5EC6C71B2A307800A16157 /* MapAllTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +656,7 @@
 				DB5EC6701B2A022C00A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5EC6711B2A022C00A16157 /* Build configuration list for PBXNativeTarget "LustreTests" */ = {
 			isa = XCConfigurationList;
@@ -646,6 +665,7 @@
 				DB5EC6731B2A022C00A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5EC68A1B2A023600A16157 /* Build configuration list for PBXNativeTarget "MobileLustre" */ = {
 			isa = XCConfigurationList;
@@ -654,6 +674,7 @@
 				DB5EC68C1B2A023600A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5EC68D1B2A023600A16157 /* Build configuration list for PBXNativeTarget "MobileLustreTests" */ = {
 			isa = XCConfigurationList;
@@ -662,6 +683,7 @@
 				DB5EC68F1B2A023600A16157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

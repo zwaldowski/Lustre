@@ -141,4 +141,16 @@ class ResultTests: XCTestCase {
         XCTAssert(failureResult != failureResult2)
     }
     
+    /*func testEqualityDifferentTypes() {
+        XCTAssert(successResult == Result<String, Error>(testValue))
+        XCTAssertFalse(successResult == Result<String, Error>(failure: testError))
+        XCTAssert(failureResult == Result<String, Error>(failure: testError))
+        XCTAssertFalse(failureResult == Result<String, Error>(testValue))
+    }
+    
+    func testInequalityDifferentTypes() {
+        XCTAssert(successResult != Result<String, Error>("Different Result"))
+        XCTAssert(failureResult != Result<String, Error>(failure: testError2))
+    }*/
+    
 }
