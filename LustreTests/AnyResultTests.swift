@@ -9,21 +9,15 @@
 import XCTest
 import Lustre
 
-#if os(OSX)
-import Cocoa
-#elseif os(iOS)
-import UIKit
-#endif
-
 class AnyResultTests: XCTestCase {
     
     let testValue = 42
-    let testError = NSError(domain: "", code: 11, userInfo: nil)
-    let testError2 = NSError(domain: "", code: 12, userInfo: nil)
+    let testError = Error.First
+    let testError2 = Error.Second
     
-    private var successResult: Result<Int>  { return success(testValue) }
-    private var failureResult: Result<Int>  { return failure(testError) }
-    private var failureResult2: Result<Int> { return failure(testError2) }
+    private var successResult: Result<Int, Error>  { return success(testValue) }
+    private var failureResult: Result<Int, Error>  { return failure(testError) }
+    private var failureResult2: Result<Int, Error> { return failure(testError2) }
 
     func testSuccessAnalysis() {
         successResult.analysis(ifSuccess: { _ in }, ifFailure: {
@@ -42,7 +36,7 @@ class AnyResultTests: XCTestCase {
     }
 
     func testSuccessReturnsNoError() {
-        XCTAssertNil(successResult.error)
+        XCTAssert(successResult.error == nil)
     }
 
     func testFailureReturnsError() {
@@ -60,57 +54,59 @@ class AnyResultTests: XCTestCase {
     }
 
     func testMapSuccessNewType() {
-        let x = success("abcd")
-        let y = x.map(count)
+        let x = success("abcd") as Result<String, Error>
+        let y = x.map { $0.characters.count }
         XCTAssert(y.value == 4)
     }
 
     func testMapFailureNewType() {
-        let x: Result<String> = failure(testError)
-        let y = x.map(count)
+        let x = failure(testError) as  Result<String, Error>
+        let y = x.map { $0.characters.count }
         XCTAssert(y.error == testError)
     }
 
-    func doubleSuccess(x: Int) -> Result<Int> {
+    func doubleSuccess(x: Int) -> Result<Int, Error> {
         return success(x * 2)
     }
 
-    func doubleFailure(x: Int) -> Result<Int> {
+    func doubleFailure(x: Int) -> Result<Int, Error> {
         return failure(testError)
     }
 
     func testFlatMapSuccessSuccess() {
-        let x = successResult >>== doubleSuccess
+        let x = successResult.flatMap(doubleSuccess)
         XCTAssert(x.value == 84)
     }
 
     func testFlatMapSuccessFailure() {
         let x = successResult.flatMap(doubleFailure)
-        let y = successResult >>== doubleFailure
         XCTAssert(x.error == testError)
-        XCTAssert(y.error == testError)
     }
 
     func testFlatMapFailureSuccess() {
         let x = failureResult2.flatMap(doubleSuccess)
-        let y = failureResult2 >>== doubleSuccess
         XCTAssert(x.error == testError2)
-        XCTAssert(y.error == testError2)
     }
 
     func testFlatMapFailureFailure() {
         let x = failureResult2.flatMap(doubleFailure)
-        let y = failureResult2 >>== doubleFailure
         XCTAssert(x.error == testError2)
-        XCTAssert(y.error == testError2)
     }
-
+    
     func testDescriptionSuccess() {
-        XCTAssertEqual(successResult.description, "Success: 42")
+        XCTAssertEqual(String(successResult), "42")
     }
-
+    
     func testDescriptionFailure() {
-        XCTAssert(failureResult.description.hasPrefix("Failure: Error Domain= Code=11 "))
+        XCTAssertEqual(String(failureResult), "LustreTests.Error.First")
+    }
+    
+    func testDebugDescriptionSuccess() {
+        XCTAssertEqual(String(reflecting: successResult), "Success: 42")
+    }
+    
+    func testDebugDescriptionFailure() {
+        XCTAssertEqual(String(reflecting: failureResult), "Failure: LustreTests.Error.First")
     }
 
     func testCoalesceSuccess() {
@@ -127,32 +123,6 @@ class AnyResultTests: XCTestCase {
             return nil
         }
         return x
-    }
-
-    func testTryTSuccess() {
-        XCTAssertEqual(try(makeTryFunction(testValue)) ?? 43, testValue)
-    }
-
-    func testTryTFailure() {
-        let result = try(makeTryFunction(testValue, false))
-        XCTAssertEqual(result ?? 43, 43)
-        XCTAssert(result.description.hasPrefix("Failure: Error Domain=domain Code=1 "))
-    }
-
-    func testTryBoolSuccess() {
-        let result = try(makeTryFunction(true))
-        result.analysis(ifSuccess: { _ in }, ifFailure: {
-            XCTFail("Expected success, found \($0)")
-        })
-    }
-
-    func testTryBoolFailure() {
-        let result = try(makeTryFunction(false, false))
-        result.analysis(ifSuccess: {
-            XCTFail("Expected failure, found \($0)")
-        }, ifFailure: {
-            XCTAssert($0.description.hasPrefix("Error Domain=domain Code=1 "))
-        })
     }
 
     func testSuccessEquality() {

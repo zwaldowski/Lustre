@@ -3,47 +3,106 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 2/7/15.
-//  Copyright (c) 2014-2015. All rights reserved.
+//  Copyright © 2014-2015 Zachary Waldowski. All rights reserved.
 //
+ 
+public protocol _ResultDefaultsType {
+    
+    /// Any contained value returned from the event.
+    typealias Value
+    
+    /// Any contained error returned from the event.
+    typealias Error: ErrorType
+    
+    /// Case analysis.
+    ///
+    /// Returns the value produced by applying a given function in the case of
+    /// success, or an alternate given function in the case of failure.
+    func analysis<R>(@noescape ifSuccess ifSuccess: Value -> R, @noescape ifFailure: Error -> R) -> R
+    
+}
 
-import Foundation
+extension _ResultDefaultsType {
+    
+    /// A description of the value or error contained by the given result.
+    public var description: String {
+        return analysis(ifSuccess: {
+            String($0)
+        }, ifFailure: {
+            String($0)
+        })
+    }
+    
+    /// A description of the value or error contained by the given result.
+    public var debugDescription: String {
+        return analysis(ifSuccess: {
+            "Success: \($0)"
+        }, ifFailure: {
+            "Failure: \($0)"
+        })
+    }
+    
+}
 
-/// A type that can reflect an either-or state for a given event, though not
-/// necessarily mutually exclusively due to limitations in Swift. Ideally,
-/// implementations of this type are an `enum` with two cases.
-public protocol ResultType: _ResultType, Printable {
+/// A type that can reflect an either-or state for a given event. Ideally,
+/// implementations of this type are an `enum` with two or more cases.
+public protocol ResultType: _ResultDefaultsType, CustomStringConvertible, CustomDebugStringConvertible {
+    
+    /// Any contained value returned from the event.
+    typealias Value
+    
+    /// Any contained error returned from the event.
+    typealias Error: ErrorType
+    
+    /// Creates a result in a success state
+    init(_ success: Value)
+    
+    /// Creates a result in a failure state
+    init(failure: Error)
+    
+    /// Case analysis.
+    ///
+    /// Returns the value produced by applying a given function in the case of
+    /// success, or an alternate given function in the case of failure.
+    func analysis<R>(@noescape ifSuccess ifSuccess: Value -> R, @noescape ifFailure: Error -> R) -> R
 
+}
+
+public extension ResultType {
+    
     /// The value contained by this result iff the event succeeded, else `nil`.
-    /// The free function `unbox` can be used to provide an implementation.
-    var value: Value? { get }
+    var value: Value? {
+        return analysis(ifSuccess: { .Some($0) }, ifFailure: { _ in nil })
+    }
     
-    /// The error object iff the event failed, else `nil`. The free function
-    /// `errorOf` can be used to provide an implementation.
-    var error: NSError? { get }
+    /// The error object iff the event failed, else `nil`.
+    var error: Error? {
+        return analysis(ifSuccess: { _ in nil }, ifFailure: { .Some($0) })
+    }
     
-    /// Return the Result of mapping `transform` over `self`. The free function
-    /// `flatMap` can be used to provide an implementation.
-    func flatMap<Result: ResultType>(@noescape transform: Value -> Result) -> Result
-
+    /// Returns the Result of mapping `transform` over `self`.
+    public func flatMap<Result: ResultType where Result.Error == Error>(@noescape transform: Value -> Result) -> Result {
+        return analysis(ifSuccess: transform, ifFailure: failure)
+    }
+    
     /// Returns a new Result by mapping success cases using `transform`, or
-    /// re-wrapping the error. The free function `map` can be used to provide
-    /// an implementation.
-    func map<Result: ResultType>(@noescape transform: Value -> Result.Value) -> Result
-
+    /// re-wrapping the error.
+    public func map<Result: ResultType where Result.Error == Error>(@noescape transform: Value -> Result.Value) -> Result {
+        return flatMap { Result(transform($0)) }
+    }
+    
 }
 
-// MARK: Value analysis
-
-/// The value contained by this result iff the event succeeded, else `nil`.
-public func valueOf<Result: ResultType>(result: Result) -> Result.Value? {
-    return result.analysis(ifSuccess: { $0 }, ifFailure: { _ in nil })
+/// A success Result returning `value`.
+public func success<Result: ResultType>(value: Result.Value) -> Result {
+    return Result(value)
 }
 
-/// A description of the value or error contained by the given result.
-public func descriptionOf<Result: ResultType>(result: Result) -> String {
-    return result.analysis(ifSuccess: {
-        "Success: \($0)"
-    }, ifFailure: {
-        "Failure: \($0)"
-    })
+/// A failure result type returning a given error.
+public func failure<Result: ResultType>(error: Result.Error) -> Result {
+    return Result(failure: error)
 }
+
+public enum NoError: Equatable, ErrorType {}
+
+public func ==(lhs: NoError, rhs: NoError) -> Bool { return true }

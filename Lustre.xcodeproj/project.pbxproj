@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB5EC6091B29062D00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6081B29062D00A16157 /* Fixtures.swift */; };
+		DB5EC60A1B29062D00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6081B29062D00A16157 /* Fixtures.swift */; };
+		DB5EC60C1B29097B00A16157 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC60B1B29097B00A16157 /* NSError.swift */; };
+		DB5EC60D1B29097B00A16157 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC60B1B29097B00A16157 /* NSError.swift */; };
 		DB76F13F1AC4CB7400C068FC /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */; };
 		DB76F1401AC4CB7400C068FC /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */; };
 		DB76F1421AC5B17A00C068FC /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */; };
@@ -16,20 +20,12 @@
 		DB76F1471AC5DD7900C068FC /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
 		DB7D4AA31AC8AC2F00C54623 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D4AA21AC8AC2F00C54623 /* Operators.swift */; };
 		DB7D4AA41AC8AC2F00C54623 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D4AA21AC8AC2F00C54623 /* Operators.swift */; };
-		DBCBEF601AFD45F8006CA8CA /* ResultBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCBEF5F1AFD45F8006CA8CA /* ResultBase.swift */; };
-		DBCBEF611AFD45F8006CA8CA /* ResultBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCBEF5F1AFD45F8006CA8CA /* ResultBase.swift */; };
-		DBCBEF631AFD4A68006CA8CA /* Try.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCBEF621AFD4A68006CA8CA /* Try.swift */; };
-		DBCBEF641AFD4A68006CA8CA /* Try.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCBEF621AFD4A68006CA8CA /* Try.swift */; };
-		DBCBEF691AFD5462006CA8CA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCBEF681AFD5462006CA8CA /* Map.swift */; };
-		DBCBEF6A1AFD5462006CA8CA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCBEF681AFD5462006CA8CA /* Map.swift */; };
 		DBDF88211AC49659000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBDF88271AC49659000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF881B1AC49659000AA16F /* Lustre.framework */; };
 		DBDF88471AC49669000AA16F /* Lustre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDF883C1AC49669000AA16F /* Lustre.framework */; };
 		DBDF88551AC496F6000AA16F /* Lustre.h in Headers */ = {isa = PBXBuildFile; fileRef = DBDF88201AC49659000AA16F /* Lustre.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBDF885D1AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* Result.swift */; };
 		DBDF885E1AC49B85000AA16F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88571AC49B85000AA16F /* Result.swift */; };
-		DBDF88611AC49B85000AA16F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88591AC49B85000AA16F /* Error.swift */; };
-		DBDF88621AC49B85000AA16F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88591AC49B85000AA16F /* Error.swift */; };
 		DBDF88651AC49B85000AA16F /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* ResultType.swift */; };
 		DBDF88661AC49B85000AA16F /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF885B1AC49B85000AA16F /* ResultType.swift */; };
 		DBDF886B1AC49B95000AA16F /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDF88691AC49B95000AA16F /* AnyResultTests.swift */; };
@@ -57,13 +53,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB5EC6081B29062D00A16157 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		DB5EC60B1B29097B00A16157 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
 		DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResultTests.swift; sourceTree = "<group>"; };
 		DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResultTests.swift; sourceTree = "<group>"; };
 		DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResultTests.swift; sourceTree = "<group>"; };
 		DB7D4AA21AC8AC2F00C54623 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
-		DBCBEF5F1AFD45F8006CA8CA /* ResultBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultBase.swift; sourceTree = "<group>"; };
-		DBCBEF621AFD4A68006CA8CA /* Try.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Try.swift; sourceTree = "<group>"; };
-		DBCBEF681AFD5462006CA8CA /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		DBDF881B1AC49659000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF881F1AC49659000AA16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBDF88201AC49659000AA16F /* Lustre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lustre.h; sourceTree = "<group>"; };
@@ -72,7 +67,6 @@
 		DBDF883C1AC49669000AA16F /* Lustre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lustre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF88461AC49669000AA16F /* LustreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LustreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF88571AC49B85000AA16F /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		DBDF88591AC49B85000AA16F /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		DBDF885B1AC49B85000AA16F /* ResultType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		DBDF88691AC49B95000AA16F /* AnyResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResultTests.swift; sourceTree = "<group>"; };
 		DBE2CDF71B180294007E1499 /* MapAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAll.swift; sourceTree = "<group>"; };
@@ -137,13 +131,10 @@
 			isa = PBXGroup;
 			children = (
 				DBDF88201AC49659000AA16F /* Lustre.h */,
-				DBDF88591AC49B85000AA16F /* Error.swift */,
-				DBCBEF681AFD5462006CA8CA /* Map.swift */,
 				DB7D4AA21AC8AC2F00C54623 /* Operators.swift */,
 				DBDF88571AC49B85000AA16F /* Result.swift */,
-				DBCBEF5F1AFD45F8006CA8CA /* ResultBase.swift */,
 				DBDF885B1AC49B85000AA16F /* ResultType.swift */,
-				DBCBEF621AFD4A68006CA8CA /* Try.swift */,
+				DB5EC60B1B29097B00A16157 /* NSError.swift */,
 				DBE2CDF71B180294007E1499 /* MapAll.swift */,
 				DBE2CDF81B180294007E1499 /* ResultCollection.swift */,
 				DBDF881E1AC49659000AA16F /* Supporting Files */,
@@ -166,6 +157,7 @@
 				DB76F13E1AC4CB7400C068FC /* CustomResultTests.swift */,
 				DB76F1441AC5DB8F00C068FC /* ObjectResultTests.swift */,
 				DB76F1411AC5B17A00C068FC /* VoidResultTests.swift */,
+				DB5EC6081B29062D00A16157 /* Fixtures.swift */,
 				DBDF882B1AC49659000AA16F /* Supporting Files */,
 			);
 			path = LustreTests;
@@ -279,7 +271,8 @@
 		DBDF88121AC49659000AA16F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Zachary Waldowski";
 				TargetAttributes = {
 					DBDF881A1AC49659000AA16F = {
@@ -355,12 +348,9 @@
 				DBDF885E1AC49B85000AA16F /* Result.swift in Sources */,
 				DBDF88661AC49B85000AA16F /* ResultType.swift in Sources */,
 				DB7D4AA41AC8AC2F00C54623 /* Operators.swift in Sources */,
-				DBCBEF641AFD4A68006CA8CA /* Try.swift in Sources */,
-				DBCBEF611AFD45F8006CA8CA /* ResultBase.swift in Sources */,
 				DBE2CDFC1B180294007E1499 /* ResultCollection.swift in Sources */,
-				DBDF88621AC49B85000AA16F /* Error.swift in Sources */,
 				DBE2CDFA1B180294007E1499 /* MapAll.swift in Sources */,
-				DBCBEF6A1AFD5462006CA8CA /* Map.swift in Sources */,
+				DB5EC60D1B29097B00A16157 /* NSError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +361,7 @@
 				DBDF886B1AC49B95000AA16F /* AnyResultTests.swift in Sources */,
 				DB76F1431AC5B17A00C068FC /* VoidResultTests.swift in Sources */,
 				DB76F1401AC4CB7400C068FC /* CustomResultTests.swift in Sources */,
+				DB5EC60A1B29062D00A16157 /* Fixtures.swift in Sources */,
 				DB76F1461AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,12 +373,9 @@
 				DBDF885D1AC49B85000AA16F /* Result.swift in Sources */,
 				DBDF88651AC49B85000AA16F /* ResultType.swift in Sources */,
 				DB7D4AA31AC8AC2F00C54623 /* Operators.swift in Sources */,
-				DBCBEF631AFD4A68006CA8CA /* Try.swift in Sources */,
-				DBCBEF601AFD45F8006CA8CA /* ResultBase.swift in Sources */,
 				DBE2CDFB1B180294007E1499 /* ResultCollection.swift in Sources */,
-				DBDF88611AC49B85000AA16F /* Error.swift in Sources */,
 				DBE2CDF91B180294007E1499 /* MapAll.swift in Sources */,
-				DBCBEF691AFD5462006CA8CA /* Map.swift in Sources */,
+				DB5EC60C1B29097B00A16157 /* NSError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +386,7 @@
 				DB76F1421AC5B17A00C068FC /* VoidResultTests.swift in Sources */,
 				DB76F1471AC5DD7900C068FC /* AnyResultTests.swift in Sources */,
 				DB76F13F1AC4CB7400C068FC /* CustomResultTests.swift in Sources */,
+				DB5EC6091B29062D00A16157 /* Fixtures.swift in Sources */,
 				DB76F1451AC5DB8F00C068FC /* ObjectResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +429,7 @@
 				CURRENT_PROJECT_VERSION = 0.8.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -521,6 +511,7 @@
 				INFOPLIST_FILE = Lustre/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
 				PRODUCT_NAME = Lustre;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -539,6 +530,7 @@
 				INFOPLIST_FILE = Lustre/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
 				PRODUCT_NAME = Lustre;
 				SKIP_INSTALL = YES;
 			};
@@ -557,6 +549,7 @@
 				);
 				INFOPLIST_FILE = LustreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.waldowski.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LustreTests;
 			};
 			name = Debug;
@@ -570,6 +563,7 @@
 				);
 				INFOPLIST_FILE = LustreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.waldowski.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LustreTests;
 			};
 			name = Release;
@@ -593,6 +587,7 @@
 				INFOPLIST_FILE = Lustre/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
 				PRODUCT_NAME = Lustre;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -614,6 +609,7 @@
 				INFOPLIST_FILE = Lustre/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.waldowski.Lustre;
 				PRODUCT_NAME = Lustre;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -635,6 +631,7 @@
 				);
 				INFOPLIST_FILE = LustreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.waldowski.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LustreTests;
 				SDKROOT = macosx;
 			};
@@ -650,6 +647,7 @@
 				);
 				INFOPLIST_FILE = LustreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.waldowski.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LustreTests;
 				SDKROOT = macosx;
 			};

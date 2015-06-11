@@ -9,20 +9,14 @@
 import XCTest
 import Lustre
 
-#if os(OSX)
-import Cocoa
-#elseif os(iOS)
-import UIKit
-#endif
-
 class VoidResultTests: XCTestCase {
     
-    let testError = error("This is a test.")
-    let testError2 = error("Ce ne est pas un test.")
+    private let testError = Error.First
+    private let testError2 = Error.Second
     
-    private var successResult: Result<Void>  { return success() }
-    private var failureResult: Result<Void>  { return failure(testError) }
-    private var failureResult2: Result<Void> { return failure(testError2) }
+    private var successResult: Result<Void, Error>  { return success() }
+    private var failureResult: Result<Void, Error>  { return failure(testError) }
+    private var failureResult2: Result<Void, Error> { return failure(testError2) }
 
     func testSuccessAnalysis() {
         successResult.analysis(ifSuccess: { }, ifFailure: {
@@ -35,11 +29,11 @@ class VoidResultTests: XCTestCase {
             XCTFail("Expected failure")
         }, ifFailure: { _ in })
     }
-
+    
     func testSuccessReturnsNoError() {
-        XCTAssertNil(successResult.error)
+        XCTAssert(successResult.error == nil)
     }
-
+    
     func testFailureReturnsError() {
         XCTAssert(failureResult.error == testError)
     }
@@ -51,63 +45,66 @@ class VoidResultTests: XCTestCase {
 
     func testMapFailureNewType() {
         let result = failureResult.map { return "Test" }
-        XCTAssertNil(result.value)
+        XCTAssert(result.value == nil)
         XCTAssert(result.error == testError)
     }
 
-    func doubleSuccess() -> Result<Int> {
+    private func doubleSuccess() -> Result<Int, Error> {
         return success(42)
     }
 
-    func doubleFailure() -> Result<Int> {
+    private func doubleFailure() -> Result<Int, Error> {
         return failure(testError)
     }
 
     func testFlatMapSuccessSuccess() {
         let x = successResult.flatMap(doubleSuccess)
-        let y = successResult >>== doubleSuccess
         XCTAssert(x.value != nil)
-        XCTAssert(y.value != nil)
     }
 
     func testFlatMapSuccessFailure() {
         let x = successResult.flatMap(doubleFailure)
-        let y = successResult >>== doubleFailure
         XCTAssert(x.error == testError)
-        XCTAssert(y.error == testError)
     }
 
     func testFlatMapFailureSuccess() {
         let x = failureResult2.flatMap(doubleSuccess)
-        let y = failureResult2 >>== doubleSuccess
         XCTAssert(x.error == testError2)
-        XCTAssert(y.error == testError2)
     }
 
     func testFlatMapFailureFailure() {
         let x = failureResult2.flatMap(doubleFailure)
-        let y = failureResult2 >>== doubleFailure
         XCTAssert(x.error == testError2)
-        XCTAssert(y.error == testError2)
     }
-
+    
     func testDescriptionSuccess() {
-        XCTAssertEqual(successResult.description, "Success: ()")
+        XCTAssertEqual(String(successResult), "()")
     }
-
+    
     func testDescriptionFailure() {
-        XCTAssert(failureResult.description.hasPrefix("Failure: Error Domain=\(ResultErrorDomain) Code=-1 "))
+        XCTAssertEqual(String(failureResult), "LustreTests.Error.First")
+    }
+    
+    func testDebugDescriptionSuccess() {
+        XCTAssertEqual(String(reflecting: successResult), "Success: ()")
+    }
+    
+    func testDebugDescriptionFailure() {
+        XCTAssertEqual(String(reflecting: failureResult), "Failure: LustreTests.Error.First")
     }
 
     func testSuccessEquality() {
+        XCTAssert(successResult == successResult)
         XCTAssert(successResult == success())
     }
 
     func testFailureEquality() {
+        XCTAssert(failureResult == failureResult)
         XCTAssert(failureResult == failure(testError))
     }
 
     func testFailureInequality() {
+        XCTAssert(successResult != failureResult)
         XCTAssert(failureResult != failureResult2)
     }
     

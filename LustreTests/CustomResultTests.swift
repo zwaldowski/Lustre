@@ -9,45 +9,19 @@
 import XCTest
 import Lustre
 
-#if os(OSX)
-import Cocoa
-#elseif os(iOS)
-import UIKit
-#endif
-
 private enum StringResult: ResultType {
     case Success(String)
-    case Failure(NSError)
+    case Failure(Error)
     
     init(_ success: String) {
         self = .Success(success)
     }
     
-    init(failure: NSError) {
+    init(failure: Error) {
         self = .Failure(failure)
     }
     
-    var value: String? {
-        return valueOf(self)
-    }
-    
-    var error: NSError? {
-        return errorOf(self)
-    }
-    
-    var description: String {
-        return descriptionOf(self)
-    }
-    
-    func flatMap<Result: ResultType>(@noescape transform: String -> Result) -> Result {
-        return Lustre.flatMap(self, transform)
-    }
-
-    func map<Result: ResultType>(@noescape transform: String -> Result.Value) -> Result {
-        return Lustre.map(self, transform)
-    }
-    
-    func analysis<R>(@noescape #ifSuccess: String -> R, @noescape ifFailure: NSError -> R) -> R {
+    func analysis<R>(@noescape ifSuccess ifSuccess: String -> R, @noescape ifFailure: Error -> R) -> R {
         switch self {
         case .Success(let string): return ifSuccess(string)
         case .Failure(let error): return ifFailure(error)
@@ -59,8 +33,8 @@ private enum StringResult: ResultType {
 class CustomResultTests: XCTestCase {
     
     let testValue = "Result"
-    let testError = error("This is a test.")
-    let testError2 = error("Ce ne est pas un test.")
+    let testError = Error.First
+    let testError2 = Error.Second
     
     private var successResult: StringResult  { return success(testValue) }
     private var failureResult: StringResult  { return failure(testError) }
@@ -83,7 +57,7 @@ class CustomResultTests: XCTestCase {
     }
     
     func testSuccessReturnsNoError() {
-        XCTAssertNil(successResult.error)
+        XCTAssert(successResult.error == nil)
     }
     
     func testFailureReturnsError() {
@@ -91,15 +65,15 @@ class CustomResultTests: XCTestCase {
     }
     
     func testFailureReturnsNoValue() {
-        XCTAssertNil(failureResult.value)
+        XCTAssert(failureResult.value == nil)
     }
     
     func testMapSuccessNewType() {
-        XCTAssert(map(successResult, count).value == count(testValue))
+        XCTAssert(successResult.map { $0.characters.count }.value == testValue.characters.count)
     }
-    
+
     func testMapFailureNewType() {
-        XCTAssert(map(failureResult, count).error == testError)
+        XCTAssert(failureResult.map { $0.characters.count }.error == testError)
     }
     
     private func doubleSuccess(x: String) -> StringResult {
@@ -112,42 +86,32 @@ class CustomResultTests: XCTestCase {
     
     func testFlatMapSuccessSuccess() {
         let x = successResult.flatMap(doubleSuccess)
-        let y = successResult >>== doubleSuccess
         XCTAssert(x.value == testValue + testValue)
-        XCTAssert(y.value == testValue + testValue)
     }
     
     func testFlatMapSuccessFailure() {
         let x = successResult.flatMap(doubleFailure)
-        let y = successResult >>== doubleFailure
         XCTAssert(x.error == testError)
-        XCTAssert(y.error == testError)
     }
     
     func testFlatMapFailureSuccess() {
         let x = failureResult2.flatMap(doubleSuccess)
-        let y = failureResult2 >>== doubleSuccess
         XCTAssert(x.error == testError2)
-        XCTAssert(y.error == testError2)
     }
     
     func testFlatMapFailureFailure() {
         let x = failureResult2.flatMap(doubleFailure)
-        let y = failureResult2 >>== doubleFailure
         XCTAssert(x.error == testError2)
-        XCTAssert(y.error == testError2)
     }
     
     func testCoalesceSuccess() {
-        let r: StringResult = success("42")
-        let x = r ?? "43"
-        XCTAssertEqual(x, "42")
+        let result = StringResult("42")
+        XCTAssertEqual(result ?? "43", "42")
     }
     
     func testCoalesceFailure() {
-        let r: StringResult = failure()
-        let x = r ?? "43"
-        XCTAssertEqual(x, "43")
+        let result = StringResult(failure: Error.Second)
+        XCTAssertEqual(result ?? "43", "43")
     }
     
     func testSuccessEquality() {
@@ -167,4 +131,3 @@ class CustomResultTests: XCTestCase {
     }
     
 }
-
