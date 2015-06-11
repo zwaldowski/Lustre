@@ -3,7 +3,7 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 3/29/15.
-//  Copyright © 2014-2015 Zachary Waldowski. All rights reserved.
+//  Copyright © 2014-2015. All rights reserved.
 //
 
 /// Result failure coalescing
