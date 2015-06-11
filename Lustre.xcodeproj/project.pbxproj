@@ -39,6 +39,8 @@
 		DBD370A41B2A4203008E428A /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A21B2A4203008E428A /* Optional.swift */; };
 		DBD370A61B2A447A008E428A /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A51B2A447A008E428A /* OptionalTests.swift */; };
 		DBD370A71B2A447A008E428A /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A51B2A447A008E428A /* OptionalTests.swift */; };
+		DBD370A91B2A4B21008E428A /* ResultCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A81B2A4B21008E428A /* ResultCollectionTests.swift */; };
+		DBD370AA1B2A4B21008E428A /* ResultCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD370A81B2A4B21008E428A /* ResultCollectionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 		DB5EC6C51B2A307800A16157 /* MapAllTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAllTests.swift; sourceTree = "<group>"; };
 		DBD370A21B2A4203008E428A /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		DBD370A51B2A447A008E428A /* OptionalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
+		DBD370A81B2A4B21008E428A /* ResultCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCollectionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,7 @@
 				DB5EC6C51B2A307800A16157 /* MapAllTests.swift */,
 				DB5EC6BF1B2A2CA400A16157 /* NSErrorTests.swift */,
 				DBD370A51B2A447A008E428A /* OptionalTests.swift */,
+				DBD370A81B2A4B21008E428A /* ResultCollectionTests.swift */,
 				DB5EC6A41B2A035C00A16157 /* ResultTests.swift */,
 				DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */,
 				DB5EC66B1B2A022C00A16157 /* Info.plist */,
@@ -359,6 +363,7 @@
 				DB5EC6B11B2A035C00A16157 /* VoidResultTests.swift in Sources */,
 				DB5EC6A91B2A035C00A16157 /* ResultTests.swift in Sources */,
 				DB5EC6AB1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
+				DBD370A91B2A4B21008E428A /* ResultCollectionTests.swift in Sources */,
 				DB5EC6AD1B2A035C00A16157 /* Fixtures.swift in Sources */,
 				DBD370A61B2A447A008E428A /* OptionalTests.swift in Sources */,
 				DB5EC6C61B2A307800A16157 /* MapAllTests.swift in Sources */,
@@ -387,6 +392,7 @@
 				DB5EC6B21B2A035C00A16157 /* VoidResultTests.swift in Sources */,
 				DB5EC6AA1B2A035C00A16157 /* ResultTests.swift in Sources */,
 				DB5EC6AC1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
+				DBD370AA1B2A4B21008E428A /* ResultCollectionTests.swift in Sources */,
 				DB5EC6AE1B2A035C00A16157 /* Fixtures.swift in Sources */,
 				DBD370A71B2A447A008E428A /* OptionalTests.swift in Sources */,
 				DB5EC6C71B2A307800A16157 /* MapAllTests.swift in Sources */,
