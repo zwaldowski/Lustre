@@ -6,7 +6,7 @@
 //  Copyright © 2014-2015. All rights reserved.
 //
  
-public protocol _ResultDefaultsType {
+public protocol ResultTypeBase {
     
     /// Any contained value returned from the event.
     typealias Value
@@ -22,7 +22,7 @@ public protocol _ResultDefaultsType {
     
 }
 
-extension _ResultDefaultsType {
+extension ResultTypeBase {
     
     /// A description of the value or error contained by the given result.
     public var description: String {
@@ -46,25 +46,13 @@ extension _ResultDefaultsType {
 
 /// A type that can reflect an either-or state for a given event. Ideally,
 /// implementations of this type are an `enum` with two or more cases.
-public protocol ResultType: _ResultDefaultsType, CustomStringConvertible, CustomDebugStringConvertible {
-    
-    /// Any contained value returned from the event.
-    typealias Value
-    
-    /// Any contained error returned from the event.
-    typealias Error: ErrorType
+public protocol ResultType: ResultTypeBase, CustomStringConvertible, CustomDebugStringConvertible {
     
     /// Creates a result in a success state
     init(_ success: Value)
     
     /// Creates a result in a failure state
     init(failure: Error)
-    
-    /// Case analysis.
-    ///
-    /// Returns the value produced by applying a given function in the case of
-    /// success, or an alternate given function in the case of failure.
-    func analysis<R>(@noescape ifSuccess ifSuccess: Value -> R, @noescape ifFailure: Error -> R) -> R
 
 }
 
