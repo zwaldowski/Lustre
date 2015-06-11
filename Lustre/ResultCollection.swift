@@ -57,19 +57,8 @@ public extension ResultType where Value: SequenceType {
     ///
     /// - returns: A tuple of `successes` and `failures`.
     public func split<Result: ResultType>(@noescape transform: Element -> Result) -> Lustre.Result<(successes: [Result.Value], failures: [Result.Error]), Error> {
-        return flatMap { results in
-            var successes = Array<Result.Value>()
-            var failures  = Array<Result.Error>()
-
-            for result in results {
-                transform(result).analysis(ifSuccess: {
-                    successes.append($0)
-                }, ifFailure: {
-                    failures.append($0)
-                })
-            }
-            
-            return success((successes, failures))
+        return map {
+            lazy($0).map(transform).partition()
         }
     }
     
