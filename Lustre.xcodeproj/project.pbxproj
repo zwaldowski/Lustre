@@ -29,8 +29,6 @@
 		DB5EC6AC1B2A035C00A16157 /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */; };
 		DB5EC6AD1B2A035C00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A61B2A035C00A16157 /* Fixtures.swift */; };
 		DB5EC6AE1B2A035C00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A61B2A035C00A16157 /* Fixtures.swift */; };
-		DB5EC6AF1B2A035C00A16157 /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A71B2A035C00A16157 /* ObjectResultTests.swift */; };
-		DB5EC6B01B2A035C00A16157 /* ObjectResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A71B2A035C00A16157 /* ObjectResultTests.swift */; };
 		DB5EC6B11B2A035C00A16157 /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */; };
 		DB5EC6B21B2A035C00A16157 /* VoidResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */; };
 		DB5EC6C61B2A307800A16157 /* MapAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6C51B2A307800A16157 /* MapAllTests.swift */; };
@@ -71,7 +69,6 @@
 		DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResultTests.swift; sourceTree = "<group>"; };
 		DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResultTests.swift; sourceTree = "<group>"; };
 		DB5EC6A61B2A035C00A16157 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
-		DB5EC6A71B2A035C00A16157 /* ObjectResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectResultTests.swift; sourceTree = "<group>"; };
 		DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResultTests.swift; sourceTree = "<group>"; };
 		DB5EC6C51B2A307800A16157 /* MapAllTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAllTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,7 +149,6 @@
 				DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */,
 				DB5EC6A61B2A035C00A16157 /* Fixtures.swift */,
 				DB5EC6C51B2A307800A16157 /* MapAllTests.swift */,
-				DB5EC6A71B2A035C00A16157 /* ObjectResultTests.swift */,
 				DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */,
 				DB5EC66B1B2A022C00A16157 /* Info.plist */,
 			);
@@ -350,7 +346,6 @@
 				DB5EC6A91B2A035C00A16157 /* AnyResultTests.swift in Sources */,
 				DB5EC6AB1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
 				DB5EC6AD1B2A035C00A16157 /* Fixtures.swift in Sources */,
-				DB5EC6AF1B2A035C00A16157 /* ObjectResultTests.swift in Sources */,
 				DB5EC6C61B2A307800A16157 /* MapAllTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,7 +371,6 @@
 				DB5EC6AA1B2A035C00A16157 /* AnyResultTests.swift in Sources */,
 				DB5EC6AC1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
 				DB5EC6AE1B2A035C00A16157 /* Fixtures.swift in Sources */,
-				DB5EC6B01B2A035C00A16157 /* ObjectResultTests.swift in Sources */,
 				DB5EC6C71B2A307800A16157 /* MapAllTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
