@@ -23,8 +23,8 @@
 		DB5EC6A11B2A032100A16157 /* ResultCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6961B2A032100A16157 /* ResultCollection.swift */; };
 		DB5EC6A21B2A032100A16157 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6971B2A032100A16157 /* ResultType.swift */; };
 		DB5EC6A31B2A032100A16157 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6971B2A032100A16157 /* ResultType.swift */; };
-		DB5EC6A91B2A035C00A16157 /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */; };
-		DB5EC6AA1B2A035C00A16157 /* AnyResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */; };
+		DB5EC6A91B2A035C00A16157 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A41B2A035C00A16157 /* ResultTests.swift */; };
+		DB5EC6AA1B2A035C00A16157 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A41B2A035C00A16157 /* ResultTests.swift */; };
 		DB5EC6AB1B2A035C00A16157 /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */; };
 		DB5EC6AC1B2A035C00A16157 /* CustomResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */; };
 		DB5EC6AD1B2A035C00A16157 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EC6A61B2A035C00A16157 /* Fixtures.swift */; };
@@ -66,7 +66,7 @@
 		DB5EC6951B2A032100A16157 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DB5EC6961B2A032100A16157 /* ResultCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCollection.swift; sourceTree = "<group>"; };
 		DB5EC6971B2A032100A16157 /* ResultType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
-		DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyResultTests.swift; sourceTree = "<group>"; };
+		DB5EC6A41B2A035C00A16157 /* ResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomResultTests.swift; sourceTree = "<group>"; };
 		DB5EC6A61B2A035C00A16157 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidResultTests.swift; sourceTree = "<group>"; };
@@ -145,10 +145,10 @@
 		DB5EC6681B2A022C00A16157 /* LustreTests */ = {
 			isa = PBXGroup;
 			children = (
-				DB5EC6A41B2A035C00A16157 /* AnyResultTests.swift */,
 				DB5EC6A51B2A035C00A16157 /* CustomResultTests.swift */,
 				DB5EC6A61B2A035C00A16157 /* Fixtures.swift */,
 				DB5EC6C51B2A307800A16157 /* MapAllTests.swift */,
+				DB5EC6A41B2A035C00A16157 /* ResultTests.swift */,
 				DB5EC6A81B2A035C00A16157 /* VoidResultTests.swift */,
 				DB5EC66B1B2A022C00A16157 /* Info.plist */,
 			);
@@ -343,7 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB5EC6B11B2A035C00A16157 /* VoidResultTests.swift in Sources */,
-				DB5EC6A91B2A035C00A16157 /* AnyResultTests.swift in Sources */,
+				DB5EC6A91B2A035C00A16157 /* ResultTests.swift in Sources */,
 				DB5EC6AB1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
 				DB5EC6AD1B2A035C00A16157 /* Fixtures.swift in Sources */,
 				DB5EC6C61B2A307800A16157 /* MapAllTests.swift in Sources */,
@@ -368,7 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB5EC6B21B2A035C00A16157 /* VoidResultTests.swift in Sources */,
-				DB5EC6AA1B2A035C00A16157 /* AnyResultTests.swift in Sources */,
+				DB5EC6AA1B2A035C00A16157 /* ResultTests.swift in Sources */,
 				DB5EC6AC1B2A035C00A16157 /* CustomResultTests.swift in Sources */,
 				DB5EC6AE1B2A035C00A16157 /* Fixtures.swift in Sources */,
 				DB5EC6C71B2A307800A16157 /* MapAllTests.swift in Sources */,

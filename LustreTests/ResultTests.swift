@@ -1,5 +1,5 @@
 //
-//  AnyResultTests.swift
+//  ResultTests.swift
 //  LustreTests
 //
 //  Created by Zachary Waldowski on 2/7/15.
@@ -9,7 +9,7 @@
 import XCTest
 import Lustre
 
-class AnyResultTests: XCTestCase {
+class ResultTests: XCTestCase {
     
     let testValue = 42
     let testError = Error.First
