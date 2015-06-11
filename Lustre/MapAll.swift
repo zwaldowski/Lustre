@@ -16,8 +16,10 @@ A function to `map` the `Result` value into a function call.
 
 - returns: A `Result`.
 */
-public func mapAll<R1: ResultType, U>(r1: R1, @noescape f: (R1.Value) -> U) -> Result<U, NSError> {
-    return r1.flatMap { success(f($0)) }
+public func mapAll<R1: ResultType, U>(r1: R1, @noescape _ transform: (R1.Value) -> U) -> Result<U, NSError> {
+    return r1.flatMap { s1 in
+        success(transform(s1))
+    }
 }
 
 /**
@@ -28,9 +30,9 @@ A function to `map` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func mapAll<R1: ResultType, R2: ResultType, U>(r1: R1, r2: R2, @noescape f: (R1.Value, R2.Value) -> U) -> Result<U, NSError> {
+public func mapAll<R1: ResultType, R2: ResultType, U>(r1: R1, _ r2: R2, @noescape _ transform: (R1.Value, R2.Value) -> U) -> Result<U, NSError> {
     return r1.flatMap { s1 in
-        mapAll(r2) { f(s1, $0) }
+        mapAll(r2) { transform(s1, $0) }
     }
 }
 
@@ -42,9 +44,9 @@ A function to `map` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, U>(r1: R1, r2: R2, r3: R3, @noescape f: (R1.Value, R2.Value, R3.Value) -> U) -> Result<U, NSError> {
+public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, U>(r1: R1, _ r2: R2, _ r3: R3, @noescape _ transform: (R1.Value, R2.Value, R3.Value) -> U) -> Result<U, NSError> {
     return r1.flatMap { s1 in
-        mapAll(r2, r2: r3) { f(s1, $0, $1) }
+        mapAll(r2, r3) { transform(s1, $0, $1) }
     }
 }
 
@@ -56,9 +58,9 @@ A function to `map` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, U>(r1: R1, r2: R2, r3: R3, r4: R4, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value) -> U) -> Result<U, NSError> {
+public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, U>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value) -> U) -> Result<U, NSError> {
     return r1.flatMap { s1 in
-        mapAll(r2, r2: r3, r3: r4) { f(s1, $0, $1, $2) }
+        mapAll(r2, r3, r4) { transform(s1, $0, $1, $2) }
     }
 }
 
@@ -70,9 +72,9 @@ A function to `map` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, U>(r1: R1, r2: R2, r3: R3, r4: R4, r5: R5, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value) -> U) -> Result<U, NSError> {
+public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, U>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, _ r5: R5, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value) -> U) -> Result<U, NSError> {
     return r1.flatMap { s1 in
-        mapAll(r2, r2: r3, r3: r4, r4: r5) { f(s1, $0, $1, $2, $3) }
+        mapAll(r2, r3, r4, r5) { transform(s1, $0, $1, $2, $3) }
     }
 }
 
@@ -84,9 +86,9 @@ A function to `map` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, U>(r1: R1, r2: R2, r3: R3, r4: R4, r5: R5, r6: R6, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value) -> U) -> Result<U, NSError> {
+public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, U>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, _ r5: R5, _ r6: R6, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value) -> U) -> Result<U, NSError> {
     return r1.flatMap { s1 in
-        mapAll(r2, r2: r3, r3: r4, r4: r5, r5: r6) { f(s1, $0, $1, $2, $3, $4) }
+        mapAll(r2, r3, r4, r5, r6) { transform(s1, $0, $1, $2, $3, $4) }
     }
 }
 
@@ -98,9 +100,9 @@ A function to `map` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, R7: ResultType, U>(r1: R1, r2: R2, r3: R3, r4: R4, r5: R5, r6: R6, r7: R7, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value, R7.Value) -> U) -> Result<U, NSError> {
+public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, R7: ResultType, U>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, _ r5: R5, _ r6: R6, _ r7: R7, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value, R7.Value) -> U) -> Result<U, NSError> {
     return r1.flatMap { s1 in
-        mapAll(r2, r2: r3, r3: r4, r4: r5, r5: r6, r6: r7) { f(s1, $0, $1, $2, $3, $4, $5) }
+        mapAll(r2, r3, r4, r5, r6, r7) { transform(s1, $0, $1, $2, $3, $4, $5) }
     }
 }
 
@@ -112,9 +114,9 @@ A function to `map` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, R7: ResultType, R8: ResultType, U>(r1: R1, r2: R2, r3: R3, r4: R4, r5: R5, r6: R6, r7: R7, r8: R8, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value, R7.Value, R8.Value) -> U) -> Result<U, NSError> {
+public func mapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, R7: ResultType, R8: ResultType, U>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, _ r5: R5, _ r6: R6, _ r7: R7, _ r8: R8, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value, R7.Value, R8.Value) -> U) -> Result<U, NSError> {
     return r1.flatMap { s1 in
-        mapAll(r2, r2: r3, r3: r4, r4: r5, r5: r6, r6: r7, r7: r8) { f(s1, $0, $1, $2, $3, $4, $5, $6) }
+        mapAll(r2, r3, r4, r5, r6, r7, r8) { transform(s1, $0, $1, $2, $3, $4, $5, $6) }
     }
 }
 
@@ -126,8 +128,8 @@ A function to `flatMap` the `Result` value into a function call.
 
 - returns: A `Result`.
 */
-public func flatMapAll<R1: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, @noescape f: R1.Value -> Result) -> Result {
-    return r1.flatMap(f)
+public func flatMapAll<R1: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, @noescape _ transform: R1.Value -> Result) -> Result {
+    return r1.flatMap(transform)
 }
 
 /**
@@ -138,9 +140,9 @@ A function to `flatMap` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func flatMapAll<R1: ResultType, R2: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, r2: R2, @noescape f: (R1.Value, R2.Value) -> Result) -> Result {
+public func flatMapAll<R1: ResultType, R2: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, _ r2: R2, @noescape _ transform: (R1.Value, R2.Value) -> Result) -> Result {
     return r1.flatMap { s1 in
-        flatMapAll(r2) { f(s1, $0) }
+        flatMapAll(r2) { transform(s1, $0) }
     }
 }
 
@@ -152,9 +154,9 @@ A function to `flatMap` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, r2: R2, r3: R3, @noescape f: (R1.Value, R2.Value, R3.Value) -> Result) -> Result {
+public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, _ r2: R2, _ r3: R3, @noescape _ transform: (R1.Value, R2.Value, R3.Value) -> Result) -> Result {
     return r1.flatMap { s1 in
-        flatMapAll(r2, r2: r3) { f(s1, $0, $1) }
+        flatMapAll(r2, r3) { transform(s1, $0, $1) }
     }
 }
 
@@ -166,9 +168,9 @@ A function to `flatMap` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, r2: R2, r3: R3, r4: R4, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value) -> Result) -> Result {
+public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value) -> Result) -> Result {
     return r1.flatMap { s1 in
-        flatMapAll(r2, r2: r3, r3: r4) { f(s1, $0, $1, $2) }
+        flatMapAll(r2, r3, r4) { transform(s1, $0, $1, $2) }
     }
 }
 
@@ -180,9 +182,9 @@ A function to `flatMap` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, r2: R2, r3: R3, r4: R4, r5: R5, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value) -> Result) -> Result {
+public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, _ r5: R5, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value) -> Result) -> Result {
     return r1.flatMap { s1 in
-        flatMapAll(r2, r2: r3, r3: r4, r4: r5) { f(s1, $0, $1, $2, $3) }
+        flatMapAll(r2, r3, r4, r5) { transform(s1, $0, $1, $2, $3) }
     }
 }
 
@@ -194,9 +196,9 @@ A function to `flatMap` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, r2: R2, r3: R3, r4: R4, r5: R5, r6: R6, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value) -> Result) -> Result {
+public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, _ r5: R5, _ r6: R6, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value) -> Result) -> Result {
     return r1.flatMap { s1 in
-        flatMapAll(r2, r2: r3, r3: r4, r4: r5, r5: r6) { f(s1, $0, $1, $2, $3, $4) }
+        flatMapAll(r2, r3, r4, r5, r6) { transform(s1, $0, $1, $2, $3, $4) }
     }
 }
 
@@ -208,9 +210,9 @@ A function to `flatMap` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, R7: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, r2: R2, r3: R3, r4: R4, r5: R5, r6: R6, r7: R7, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value, R7.Value) -> Result) -> Result {
+public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, R7: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, _ r5: R5, _ r6: R6, _ r7: R7, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value, R7.Value) -> Result) -> Result {
     return r1.flatMap { s1 in
-        flatMapAll(r2, r2: r3, r3: r4, r4: r5, r5: r6, r6: r7) { f(s1, $0, $1, $2, $3, $4, $5) }
+        flatMapAll(r2, r3, r4, r5, r6, r7) { transform(s1, $0, $1, $2, $3, $4, $5) }
     }
 }
 
@@ -222,8 +224,8 @@ A function to `flatMap` all of the `Result` values into a single function call.
 
 - returns: A `Result`.
 */
-public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, R7: ResultType, R8: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, r2: R2, r3: R3, r4: R4, r5: R5, r6: R6, r7: R7, r8: R8, @noescape f: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value, R7.Value, R8.Value) -> Result) -> Result {
+public func flatMapAll<R1: ResultType, R2: ResultType, R3: ResultType, R4: ResultType, R5: ResultType, R6: ResultType, R7: ResultType, R8: ResultType, Result: ResultType where Result.Error == NSError>(r1: R1, _ r2: R2, _ r3: R3, _ r4: R4, _ r5: R5, _ r6: R6, _ r7: R7, _ r8: R8, @noescape _ transform: (R1.Value, R2.Value, R3.Value, R4.Value, R5.Value, R6.Value, R7.Value, R8.Value) -> Result) -> Result {
     return r1.flatMap { s1 in
-        flatMapAll(r2, r2: r3, r3: r4, r4: r5, r5: r6, r6: r7, r7: r8) { f(s1, $0, $1, $2, $3, $4, $5, $6) }
+        flatMapAll(r2, r3, r4, r5, r6, r7, r8) { transform(s1, $0, $1, $2, $3, $4, $5, $6) }
     }
 }
