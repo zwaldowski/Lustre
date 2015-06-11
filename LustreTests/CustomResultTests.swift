@@ -114,20 +114,16 @@ class CustomResultTests: XCTestCase {
         XCTAssertEqual(result ?? "43", "43")
     }
     
-    func testSuccessEquality() {
-        XCTAssert(successResult == success(testValue))
+    func testEqualityDifferentTypes() {
+        XCTAssert(successResult == Result<String, Error>(testValue))
+        XCTAssertFalse(successResult == Result<String, Error>(failure: testError))
+        XCTAssert(failureResult == Result<String, Error>(failure: testError))
+        XCTAssertFalse(failureResult == Result<String, Error>(testValue))
     }
     
-    func testFailureEquality() {
-        XCTAssert(failureResult == failure(testError))
-    }
-    
-    func testSuccessInequality() {
-        XCTAssert(successResult != success("Different Result"))
-    }
-    
-    func testFailureInequality() {
-        XCTAssert(failureResult != failureResult2)
+    func testInequalityDifferentTypes() {
+        XCTAssert(successResult != Result<String, Error>("Different Result"))
+        XCTAssert(failureResult != Result<String, Error>(failure: testError2))
     }
     
 }

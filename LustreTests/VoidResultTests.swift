@@ -92,20 +92,53 @@ class VoidResultTests: XCTestCase {
     func testDebugDescriptionFailure() {
         XCTAssertEqual(String(reflecting: failureResult), "Failure: LustreTests.Error.First")
     }
-
-    func testSuccessEquality() {
+    
+    func testEqualitySameType() {
         XCTAssert(successResult == successResult)
         XCTAssert(successResult == success())
-    }
-
-    func testFailureEquality() {
+        XCTAssertFalse(successResult == failureResult)
         XCTAssert(failureResult == failureResult)
         XCTAssert(failureResult == failure(testError))
+        XCTAssertFalse(failureResult == successResult)
     }
-
-    func testFailureInequality() {
+    
+    func testInequalitySameType() {
         XCTAssert(successResult != failureResult)
+        XCTAssert(failureResult != successResult)
         XCTAssert(failureResult != failureResult2)
+    }
+    
+    private enum ContrivedVoidResult: ResultType {
+        case Success
+        case Failure(Error)
+        
+        init(_ value: ()) {
+            self = .Success
+        }
+        
+        init(failure: Error) {
+            self = .Failure(failure)
+        }
+        
+        func analysis<R>(@noescape ifSuccess ifSuccess: () -> R, @noescape ifFailure: Error -> R) -> R {
+            switch self {
+            case .Success: return ifSuccess()
+            case .Failure(let error): return ifFailure(error)
+            }
+        }
+        
+    }
+    
+    func testEqualityDifferentTypes() {
+        XCTAssert(successResult == ContrivedVoidResult())
+        XCTAssertFalse(successResult == ContrivedVoidResult(failure: testError))
+        XCTAssert(failureResult == ContrivedVoidResult(failure: testError))
+        XCTAssertFalse(failureResult == ContrivedVoidResult())
+    }
+    
+    func testInequalityDifferentTypes() {
+        XCTAssertFalse(successResult != ContrivedVoidResult())
+        XCTAssert(failureResult != ContrivedVoidResult(failure: testError2))
     }
     
 }

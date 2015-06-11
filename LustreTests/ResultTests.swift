@@ -124,20 +124,20 @@ class ResultTests: XCTestCase {
         }
         return x
     }
-
-    func testSuccessEquality() {
+    
+    func testEqualitySameType() {
+        XCTAssert(successResult == successResult)
         XCTAssert(successResult == success(testValue))
-    }
-
-    func testFailureEquality() {
+        XCTAssertFalse(successResult == failureResult)
+        XCTAssert(failureResult == failureResult)
         XCTAssert(failureResult == failure(testError))
+        XCTAssertFalse(failureResult == successResult)
     }
-
-    func testSuccessInequality() {
+    
+    func testInequalitySameType() {
+        XCTAssert(successResult != failureResult)
+        XCTAssert(failureResult != successResult)
         XCTAssert(successResult != success(49))
-    }
-
-    func testFailureInequality() {
         XCTAssert(failureResult != failureResult2)
     }
     
