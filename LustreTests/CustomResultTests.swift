@@ -3,28 +3,28 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 3/26/15.
-//  Copyright (c) 2015 Zachary Waldowski. All rights reserved.
+//  Copyright © 2014-2015. Some rights reserved.
 //
 
 import XCTest
-import Lustre
+@testable import Lustre
 
-private enum StringResult: ResultType {
+private enum StringResult: EitherType {
+    case Failure(ErrorType)
     case Success(String)
-    case Failure(Error)
     
-    init(_ success: String) {
+    init(right success: String) {
         self = .Success(success)
     }
     
-    init(failure: Error) {
+    init(left failure: ErrorType) {
         self = .Failure(failure)
     }
     
-    func analysis<R>(@noescape ifSuccess ifSuccess: String -> R, @noescape ifFailure: Error -> R) -> R {
+    func analysis<Result>(@noescape ifLeft ifLeft: ErrorType -> Result, @noescape ifRight: String -> Result) -> Result {
         switch self {
-        case .Success(let string): return ifSuccess(string)
-        case .Failure(let error): return ifFailure(error)
+        case .Failure(let error): return ifLeft(error)
+        case .Success(let string): return ifRight(string)
         }
     }
 
@@ -32,98 +32,130 @@ private enum StringResult: ResultType {
 
 class CustomResultTests: XCTestCase {
     
-    let testValue = "Result"
-    let testError = Error.First
-    let testError2 = Error.Second
+    let aTestValue  = "Result"
+    let aTestError1 = Error.First
+    let aTestError2 = Error.Second
     
-    private var successResult: StringResult  { return success(testValue) }
-    private var failureResult: StringResult  { return failure(testError) }
-    private var failureResult2: StringResult { return failure(testError2) }
+    private let aSuccessResult  = StringResult.Success("Result")
+    private let aFailureResult1 = StringResult.Failure(Error.First)
+    private let aFailureResult2 = StringResult.Failure(Error.Second)
     
-    func testSuccessAnalysis() {
-        successResult.analysis(ifSuccess: { _ in }, ifFailure: {
-            XCTFail("Expected success, found \($0)")
-        })
+    func testSuccessEvaluate() {
+        assertNoThrow(aSuccessResult.evaluate, aTestValue)
     }
     
-    func testFailureAnalysis() {
-        failureResult.analysis(ifSuccess: {
-            XCTFail("Expected failure, found \($0)")
-        }, ifFailure: { _ in })
+    func testFailureEvaluate() {
+        assertThrows(aFailureResult1.evaluate, Error.First)
+        assertThrows(aFailureResult2.evaluate, Error.Second)
+    }
+    
+    func testDescriptionSuccess() {
+        XCTAssertEqual(String(aSuccessResult), String(aTestValue))
+    }
+    
+    func testDescriptionFailure() {
+        XCTAssert(String(aFailureResult1).hasSuffix("Error.First"))
+        XCTAssert(String(aFailureResult2).hasSuffix("Error.Second"))
+    }
+    
+    func testDebugDescriptionSuccess() {
+        XCTAssertEqual(String(reflecting: aSuccessResult), "Right(\(String(reflecting: aTestValue)))")
+    }
+    
+    func testDebugDescriptionFailure() {
+        let debugDescription1 = String(reflecting: aFailureResult1)
+        XCTAssert(debugDescription1.hasPrefix("Left("))
+        XCTAssert(debugDescription1.hasSuffix("Error.First)"))
+    }
+    
+    func testIsSuccessGetter() {
+        XCTAssert(aSuccessResult.isSuccess)
+        XCTAssertFalse(aFailureResult1.isSuccess)
+        XCTAssertFalse(aFailureResult2.isSuccess)
+    }
+    
+    func testIsFailureGetter() {
+        XCTAssertFalse(aSuccessResult.isFailure)
+        XCTAssert(aFailureResult1.isFailure)
+        XCTAssert(aFailureResult2.isFailure)
     }
     
     func testSuccessReturnsValue() {
-        XCTAssert(successResult.value == testValue)
+        XCTAssert(aSuccessResult.value == aTestValue)
     }
     
     func testSuccessReturnsNoError() {
-        XCTAssert(successResult.error == nil)
+        XCTAssert(aSuccessResult.error == nil)
     }
     
     func testFailureReturnsError() {
-        XCTAssert(failureResult.error == testError)
+        assertErrorMatches(aFailureResult1.error!, aTestError1)
     }
     
     func testFailureReturnsNoValue() {
-        XCTAssert(failureResult.value == nil)
-    }
-    
-    func testMapSuccessNewType() {
-        XCTAssert(successResult.map { $0.characters.count }.value == testValue.characters.count)
-    }
-
-    func testMapFailureNewType() {
-        XCTAssert(failureResult.map { $0.characters.count }.error == testError)
-    }
-    
-    private func doubleSuccess(x: String) -> StringResult {
-        return success(x + x)
-    }
-    
-    private func doubleFailure(x: String) -> StringResult {
-        return failure(testError)
-    }
-    
-    func testFlatMapSuccessSuccess() {
-        let x = successResult.flatMap(doubleSuccess)
-        XCTAssert(x.value == testValue + testValue)
-    }
-    
-    func testFlatMapSuccessFailure() {
-        let x = successResult.flatMap(doubleFailure)
-        XCTAssert(x.error == testError)
-    }
-    
-    func testFlatMapFailureSuccess() {
-        let x = failureResult2.flatMap(doubleSuccess)
-        XCTAssert(x.error == testError2)
-    }
-    
-    func testFlatMapFailureFailure() {
-        let x = failureResult2.flatMap(doubleFailure)
-        XCTAssert(x.error == testError2)
+        XCTAssert(aFailureResult1.value == nil)
     }
     
     func testCoalesceSuccess() {
-        let result = StringResult("42")
+        let result = StringResult(right: "42")
         XCTAssertEqual(result ?? "43", "42")
     }
     
     func testCoalesceFailure() {
-        let result = StringResult(failure: Error.Second)
+        let result = StringResult(left: Error.Second)
         XCTAssertEqual(result ?? "43", "43")
     }
     
     func testEqualityDifferentTypes() {
-        XCTAssert(successResult == Result<String, Error>(testValue))
-        XCTAssertFalse(successResult == Result<String, Error>(failure: testError))
-        XCTAssert(failureResult == Result<String, Error>(failure: testError))
-        XCTAssertFalse(failureResult == Result<String, Error>(testValue))
+        XCTAssert(aSuccessResult == Result<String>(value: aTestValue))
+        XCTAssertFalse(aSuccessResult == Result<String>(error: aTestError1))
+        XCTAssert(aFailureResult1 == Result<String>(error: aTestError1))
+        XCTAssertFalse(aFailureResult1 == Result<String>(value: aTestValue))
     }
     
     func testInequalityDifferentTypes() {
-        XCTAssert(successResult != Result<String, Error>("Different Result"))
-        XCTAssert(failureResult != Result<String, Error>(failure: testError2))
+        XCTAssert(aSuccessResult != Result<String>(value: "Different Result"))
+        XCTAssert(aFailureResult1 != Result<String>(error: aTestError2))
+    }
+    
+    private func countCharacters(string: String) -> Int {
+        return string.characters.count
+    }
+    
+    func testMapSuccessNewType() {
+        assertSuccess(aSuccessResult.map(countCharacters), aTestValue.characters.count)
+    }
+
+    func testMapFailureNewType() {
+        assertFailure(aFailureResult1.map(countCharacters), aTestError1)
+    }
+    
+    private func doubleSuccess(x: String) -> Result<String> {
+        return .Success(x + x)
+    }
+    
+    private func doubleFailure(x: String) -> Result<String> {
+        return .Failure(aTestError1)
+    }
+    
+    func testFlatMapSuccessSuccess() {
+        let result = aSuccessResult.flatMap(doubleSuccess)
+        assertSuccess(result, aTestValue + aTestValue)
+    }
+    
+    func testFlatMapSuccessFailure() {
+        let result = aSuccessResult.flatMap(doubleFailure)
+        assertFailure(result, aTestError1)
+    }
+    
+    func testFlatMapFailureSuccess() {
+        let result = aFailureResult2.flatMap(doubleSuccess)
+        assertFailure(result, aTestError2)
+    }
+    
+    func testFlatMapFailureFailure() {
+        let result = aFailureResult2.flatMap(doubleFailure)
+        assertFailure(result, aTestError2)
     }
     
 }

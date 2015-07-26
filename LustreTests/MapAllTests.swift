@@ -3,105 +3,161 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 6/11/15.
-//  Copyright © 2015 Zachary Waldowski. All rights reserved.
+//  Copyright © 2014-2015. Some rights reserved.
 //
 
 import XCTest
-import Lustre
+@testable import Lustre
 
 class MapAllTests: XCTestCase {
     
-    private let testValue = 42
-    private let testError = Error.First
+    private let aValue  = 42
+    private let anError = Error.First
     
-    private var successResult: Result<Int, Error>  { return success(testValue) }
-    private var failureResult: Result<Int, Error>  { return failure(testError) }
+    private let aSuccessResult = Result<Int>.Success(42)
+    private let aFailureResult = Result<Int>.Failure(Error.First)
     
-    private typealias One   = (Int)
-    private typealias Two   = (Int, Int)
-    private typealias Three = (Int, Int, Int)
-    private typealias Four  = (Int, Int, Int, Int)
-    private typealias Five  = (Int, Int, Int, Int, Int)
-    private typealias Six   = (Int, Int, Int, Int, Int, Int)
-    private typealias Seven = (Int, Int, Int, Int, Int, Int, Int)
-    private typealias Eight = (Int, Int, Int, Int, Int, Int, Int, Int)
-    
-    private func makeSuccess(i: Int) -> Result<Int, Error> {
-        return successResult.map { $0 + i }
+    private func makeSuccess(i: Int) -> Result<Int> {
+        return aSuccessResult.map { $0 + i }
     }
     
-    func testMapAllSuccess() {
-        let first  = makeSuccess(0)
-        let second = makeSuccess(1)
-        let third = makeSuccess(2)
-        let fourth = makeSuccess(3)
-        let fifth = makeSuccess(4)
-        let sixth = makeSuccess(5)
-        let seventh = makeSuccess(6)
-        let eighth = makeSuccess(7)
+    private struct IncrediblyContrived: Equatable {
         
-        let final = mapAll(first, second, third, fourth, fifth, sixth, seventh, eighth) { ($0, $1, $2, $3, $4, $5, $6, $7) }
+        static func create(first: Int, second: Int, third: Int, fourth: Int, fifth: Int, sixth: Int, seventh: Int, eighth: Int, ninth: Int, tenth: Int, eleventh: Int, twelfth: Int, thirteenth: Int, fourteenth: Int, fifteenth: Int, sixteenth: Int) -> Result<IncrediblyContrived> {
+            return Result.Success(IncrediblyContrived(first: first, second: second, third: third, fourth: fourth, fifth: fifth, sixth: sixth, seventh: seventh, eighth: eighth, ninth: ninth, tenth: tenth, eleventh: eleventh, twelfth: twelfth, thirteenth: thirteenth, fourteenth: fourteenth, fifteenth: fifteenth, sixteenth: sixteenth))
+        }
         
-        guard let value = final.value else  { XCTFail("unexpected nil"); return }
-        XCTAssert(value.0 == first.value)
-        XCTAssert(value.1 == second.value)
-        XCTAssert(value.2 == third.value)
-        XCTAssert(value.3 == fourth.value)
-        XCTAssert(value.4 == fifth.value)
-        XCTAssert(value.5 == sixth.value)
-        XCTAssert(value.6 == seventh.value)
-        XCTAssert(value.7 == eighth.value)
+        let first     : Int
+        let second    : Int
+        let third     : Int
+        let fourth    : Int
+        let fifth     : Int
+        let sixth     : Int
+        let seventh   : Int
+        let eighth    : Int
+        let ninth     : Int
+        let tenth     : Int
+        let eleventh  : Int
+        let twelfth   : Int
+        let thirteenth: Int
+        let fourteenth: Int
+        let fifteenth : Int
+        let sixteenth : Int
+    }
+    
+    private let aComposite = IncrediblyContrived(first: 42, second: 43, third: 44, fourth: 45, fifth: 46, sixth: 47, seventh: 48, eighth: 49, ninth: 50, tenth: 51, eleventh: 52, twelfth: 53, thirteenth: 54, fourteenth: 55, fifteenth: 56, sixteenth: 57)
+    
+    
+    func testMapSuccess() {
+        let first      = makeSuccess(0)
+        let second     = makeSuccess(1)
+        let third      = makeSuccess(2)
+        let fourth     = makeSuccess(3)
+        let fifth      = makeSuccess(4)
+        let sixth      = makeSuccess(5)
+        let seventh    = makeSuccess(6)
+        let eighth     = makeSuccess(7)
+        let ninth      = makeSuccess(8)
+        let tenth      = makeSuccess(9)
+        let eleventh   = makeSuccess(10)
+        let twelfth    = makeSuccess(11)
+        let thirteenth = makeSuccess(12)
+        let fourteenth = makeSuccess(13)
+        let fifteenth  = makeSuccess(14)
+        let sixteenth  = makeSuccess(15)
+        
+        let final = mapAll(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth, thirteenth, fourteenth, fifteenth, sixteenth, transform: IncrediblyContrived.init)
+        
+        assertSuccess(final, aComposite)
     }
     
     func testMapAllFailure() {
-        let first  = makeSuccess(0)
-        let second = makeSuccess(1)
-        let third = makeSuccess(2)
-        let fourth = makeSuccess(3)
-        let fifth = makeSuccess(4)
-        let sixth = makeSuccess(5)
-        let seventh = makeSuccess(6)
-        let eighth = failureResult
+        let first      = makeSuccess(0)
+        let second     = makeSuccess(1)
+        let third      = makeSuccess(2)
+        let fourth     = makeSuccess(3)
+        let fifth      = makeSuccess(4)
+        let sixth      = makeSuccess(5)
+        let seventh    = makeSuccess(6)
+        let eighth     = makeSuccess(7)
+        let ninth      = makeSuccess(8)
+        let tenth      = makeSuccess(9)
+        let eleventh   = makeSuccess(10)
+        let twelfth    = makeSuccess(11)
+        let thirteenth = makeSuccess(12)
+        let fourteenth = makeSuccess(13)
+        let fifteenth  = makeSuccess(14)
+        let sixteenth  = aFailureResult
         
-        let final = mapAll(first, second, third, fourth, fifth, sixth, seventh, eighth) { ($0, $1, $2, $3, $4, $5, $6, $7) }
-        XCTAssert(final.error != nil)
+        let final = mapAll(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth, thirteenth, fourteenth, fifteenth, sixteenth, transform: IncrediblyContrived.init)
+        
+        assertFailure(final, anError)
     }
     
-    func testFlatMapAllSuccess() {
-        let first  = makeSuccess(0)
-        let second = makeSuccess(1)
-        let third = makeSuccess(2)
-        let fourth = makeSuccess(3)
-        let fifth = makeSuccess(4)
-        let sixth = makeSuccess(5)
-        let seventh = makeSuccess(6)
-        let eighth = makeSuccess(7)
+    func testFlatMapSuccess() {
+        let first      = makeSuccess(0)
+        let second     = makeSuccess(1)
+        let third      = makeSuccess(2)
+        let fourth     = makeSuccess(3)
+        let fifth      = makeSuccess(4)
+        let sixth      = makeSuccess(5)
+        let seventh    = makeSuccess(6)
+        let eighth     = makeSuccess(7)
+        let ninth      = makeSuccess(8)
+        let tenth      = makeSuccess(9)
+        let eleventh   = makeSuccess(10)
+        let twelfth    = makeSuccess(11)
+        let thirteenth = makeSuccess(12)
+        let fourteenth = makeSuccess(13)
+        let fifteenth  = makeSuccess(14)
+        let sixteenth  = makeSuccess(15)
 
-        let final = flatMapAll(first, second, third, fourth, fifth, sixth, seventh, eighth) { Result<Eight, NSError>(($0, $1, $2, $3, $4, $5, $6, $7))  }
+        let final = flatMapAll(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth, thirteenth, fourteenth, fifteenth, sixteenth, transform: IncrediblyContrived.create)
         
-        guard let value = final.value else  { XCTFail("unexpected nil"); return }
-        XCTAssert(value.0 == first.value)
-        XCTAssert(value.1 == second.value)
-        XCTAssert(value.2 == third.value)
-        XCTAssert(value.3 == fourth.value)
-        XCTAssert(value.4 == fifth.value)
-        XCTAssert(value.5 == sixth.value)
-        XCTAssert(value.6 == seventh.value)
-        XCTAssert(value.7 == eighth.value)
+        assertSuccess(final, aComposite)
     }
+    
     
     func testFlatMapAllFailure() {
-        let first  = makeSuccess(0)
-        let second = makeSuccess(1)
-        let third = makeSuccess(2)
-        let fourth = makeSuccess(3)
-        let fifth = makeSuccess(4)
-        let sixth = makeSuccess(5)
-        let seventh = makeSuccess(6)
-        let eighth = failureResult
+        let first      = makeSuccess(0)
+        let second     = makeSuccess(1)
+        let third      = makeSuccess(2)
+        let fourth     = makeSuccess(3)
+        let fifth      = makeSuccess(4)
+        let sixth      = makeSuccess(5)
+        let seventh    = makeSuccess(6)
+        let eighth     = makeSuccess(7)
+        let ninth      = makeSuccess(8)
+        let tenth      = makeSuccess(9)
+        let eleventh   = makeSuccess(10)
+        let twelfth    = makeSuccess(11)
+        let thirteenth = makeSuccess(12)
+        let fourteenth = makeSuccess(13)
+        let fifteenth  = makeSuccess(14)
+        let sixteenth  = aFailureResult
         
-        let final = flatMapAll(first, second, third, fourth, fifth, sixth, seventh, eighth) { Result<Eight, NSError>(($0, $1, $2, $3, $4, $5, $6, $7))  }
-        XCTAssert(final.error != nil)
+        let final = flatMapAll(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth, thirteenth, fourteenth, fifteenth, sixteenth, transform: IncrediblyContrived.create)
+
+        assertFailure(final, anError)
     }
     
+}
+
+private func ==(lhs: MapAllTests.IncrediblyContrived, rhs: MapAllTests.IncrediblyContrived) -> Bool {
+    return lhs.first   == rhs.first      &&
+        lhs.second     == rhs.second     &&
+        lhs.third      == rhs.third      &&
+        lhs.fourth     == rhs.fourth     &&
+        lhs.fifth      == rhs.fifth      &&
+        lhs.sixth      == rhs.sixth      &&
+        lhs.seventh    == rhs.seventh    &&
+        lhs.eighth     == rhs.eighth     &&
+        lhs.ninth      == rhs.ninth      &&
+        lhs.tenth      == rhs.tenth      &&
+        lhs.eleventh   == rhs.eleventh   &&
+        lhs.twelfth    == rhs.twelfth    &&
+        lhs.thirteenth == rhs.thirteenth &&
+        lhs.fourteenth == rhs.fourteenth &&
+        lhs.fifteenth  == rhs.fifteenth  &&
+        lhs.sixteenth  == rhs.sixteenth
 }

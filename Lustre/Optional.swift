@@ -3,30 +3,24 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 6/11/15.
-//  Copyright © 2015 Zachary Waldowski. All rights reserved.
+//  Copyright © 2014-2015. Some rights reserved.
 //
 
-public enum NoError: ErrorType, Equatable {
-    case Unit
-}
-
-public func ==(lhs: NoError, rhs: NoError) -> Bool { return true }
-
-extension Optional: ResultType {
+extension Optional: EitherType {
     
-    public init(failure: NoError) {
+    public init(left: Void) {
         self = .None
     }
     
-    public func analysis<R>(@noescape ifSuccess ifSuccess: T -> R, @noescape ifFailure: NoError -> R) -> R {
+    public init(right: T) {
+        self = .Some(right)
+    }
+    
+    public func analysis<Result>(@noescape ifLeft ifLeft: Void -> Result, @noescape ifRight: T -> Result) -> Result {
         switch self {
-        case .Some(let value): return ifSuccess(value)
-        case .None: return ifFailure(.Unit)
+        case .None: return ifLeft()
+        case .Some(let value): return ifRight(value)
         }
     }
     
-}
-
-public func failure<Result: ResultType where Result.Error == NoError>() -> Result {
-    return Result(failure: .Unit)
 }

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DB5EC6591B2A022C00A16157"
+               BlueprintIdentifier = "DB5BCDF01B61FE8A009E42A9"
                BuildableName = "Lustre.framework"
                BlueprintName = "Lustre"
                ReferencedContainer = "container:Lustre.xcodeproj">
@@ -23,17 +23,17 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES"
-      buildConfiguration = "Debug">
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DB5EC6631B2A022C00A16157"
+               BlueprintIdentifier = "DB5BCE741B6207A7009E42A9"
                BuildableName = "LustreTests.xctest"
                BlueprintName = "LustreTests"
                ReferencedContainer = "container:Lustre.xcodeproj">
@@ -43,7 +43,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB5EC6591B2A022C00A16157"
+            BlueprintIdentifier = "DB5BCDF01B61FE8A009E42A9"
             BuildableName = "Lustre.framework"
             BlueprintName = "Lustre"
             ReferencedContainer = "container:Lustre.xcodeproj">
@@ -53,11 +53,11 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -65,7 +65,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB5EC6591B2A022C00A16157"
+            BlueprintIdentifier = "DB5BCDF01B61FE8A009E42A9"
             BuildableName = "Lustre.framework"
             BlueprintName = "Lustre"
             ReferencedContainer = "container:Lustre.xcodeproj">
@@ -75,15 +75,15 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB5EC6591B2A022C00A16157"
+            BlueprintIdentifier = "DB5BCDF01B61FE8A009E42A9"
             BuildableName = "Lustre.framework"
             BlueprintName = "Lustre"
             ReferencedContainer = "container:Lustre.xcodeproj">

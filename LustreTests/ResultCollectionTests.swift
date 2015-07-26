@@ -3,54 +3,51 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 6/11/15.
-//  Copyright © 2015 Zachary Waldowski. All rights reserved.
+//  Copyright © 2014-2015. Some rights reserved.
 //
 
 import XCTest
-import Lustre
+@testable import Lustre
 
 class ResultCollectionTests: XCTestCase {
     
-    private let testWithFailure = [ success(-1), success(0), success(1), failure(Error.First) ] as [Result<Int, Error>]
-    private let testAllSuccesses = [ success(-1), success(0), success(1), success(2) ] as [Result<Int, Error>]
+    private let testWithFailure = [ Result(value: -1), Result(value: 0), Result(value: 1), Result(error: Error.First) ] as [Result<Int>]
+    private let testAllSuccesses = [ Result(value: -1), Result(value: 0), Result(value: 1), Result(value: 2) ] as [Result<Int>]
     
     func testPartition() {
-        let (successes, failures) = testWithFailure.partition()
+        let (failures, successes) = testWithFailure.partition()
         
         XCTAssertEqual(Set(successes), [ -1, 0, 1 ])
-        XCTAssertEqual(Set(failures), [ Error.First ])
+        XCTAssert(failures.elementsEqual(CollectionOfOne(Error.First), isEquivalent: {
+            $0.matches($1)
+        }))
+    }
+    
+    func testCollectThrow() {
+        assertNoThrow(testAllSuccesses.evaluateAll, [ -1, 0, 1, 2 ])
     }
     
     func testCollectSuccess() {
-        testAllSuccesses.collectAllSuccesses().analysis(ifSuccess: {
-            XCTAssertEqual(Set($0), [ -1, 0, 1, 2 ])
-        }, ifFailure: {
-            XCTFail("Unexpected failure: \($0)")
-        })
+        assertSuccess(testAllSuccesses.collectAllSuccesses(), [ -1, 0, 1, 2 ])
     }
-    
+
     func testCollectFailure() {
-        testWithFailure.collectAllSuccesses().analysis(ifSuccess: {
-            XCTFail("Unexpected success: \($0)")
-        }, ifFailure: { _ in })
+        assertFailure(testWithFailure.collectAllSuccesses(), Error.First)
     }
     
     func testSplit() {
-        let arrayResult = success([-1, 0, 1, 2]) as Result<[Int], Error>
-        let splitResult = arrayResult.split { (number: Int) -> Result<Int, Error> in
+        let arrayResult = Result<[Int]>(value: [-1, 0, 1, 2])
+        let splitResult = arrayResult.split { (number: Int) -> Result<Int> in
             if number >= 0 {
-                return success(number * 2)
-            } else {
-                return failure(Error.First)
+                return Result(value: number * 2)
             }
+            return Result(error: Error.First)
         }
         
-        splitResult.analysis(ifSuccess: {
-            XCTAssertEqual(Set($0.0), [ 0, 2, 4 ])
-            XCTAssert($0.1.count == 1)
-        }, ifFailure: {
-            XCTFail("Unexpected failure: \($0)")
-        })
+        assertSuccess(splitResult) {
+            XCTAssert($0.0.count == 1)
+            XCTAssertEqual(Set($0.1), [ 0, 2, 4 ])
+        }
     }
 
 }

@@ -3,7 +3,7 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 3/26/15.
-//  Copyright © 2014-2015. All rights reserved.
+//  Copyright © 2014-2015. Some rights reserved.
 //
 
 #import <Foundation/Foundation.h>

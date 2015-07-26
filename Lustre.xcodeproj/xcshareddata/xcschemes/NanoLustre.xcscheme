@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DB5BCE0F1B61FE94009E42A9"
+               BlueprintIdentifier = "DB5BCE2B1B61FE9B009E42A9"
                BuildableName = "Lustre.framework"
-               BlueprintName = "MobileLustre"
-               ReferencedContainer = "container:Lustre.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DB5BCE181B61FE95009E42A9"
-               BuildableName = "MobileLustreTests.xctest"
-               BlueprintName = "MobileLustreTests"
+               BlueprintName = "NanoLustre"
                ReferencedContainer = "container:Lustre.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,29 +26,9 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DB5BCE181B61FE95009E42A9"
-               BuildableName = "MobileLustreTests.xctest"
-               BlueprintName = "MobileLustreTests"
-               ReferencedContainer = "container:Lustre.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB5BCE0F1B61FE94009E42A9"
-            BuildableName = "Lustre.framework"
-            BlueprintName = "MobileLustre"
-            ReferencedContainer = "container:Lustre.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -79,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB5BCE0F1B61FE94009E42A9"
+            BlueprintIdentifier = "DB5BCE2B1B61FE9B009E42A9"
             BuildableName = "Lustre.framework"
-            BlueprintName = "MobileLustre"
+            BlueprintName = "NanoLustre"
             ReferencedContainer = "container:Lustre.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -97,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB5BCE0F1B61FE94009E42A9"
+            BlueprintIdentifier = "DB5BCE2B1B61FE9B009E42A9"
             BuildableName = "Lustre.framework"
-            BlueprintName = "MobileLustre"
+            BlueprintName = "NanoLustre"
             ReferencedContainer = "container:Lustre.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -3,45 +3,70 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 2/7/15.
-//  Copyright © 2014-2015. All rights reserved.
+//  Copyright © 2014-2015. Some rights reserved.
 //
 
-/// Container for a successful value (`T`) or a failure (`Error`).
-/// For concrete use cases, users might prefer a custom enum conforming to
-/// `ResultType`.
-public enum Result<T, Error: ErrorType>: ResultType {
+public enum Result<T> {
+    case Failure(ErrorType)
     case Success(T)
-    case Failure(Error)
+}
 
-    /// Creates a result in a success state
-    public init(_ value: T) {
+extension Result: CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public var description: String {
+        switch self {
+        case .Failure(let error): return String(error)
+        case .Success(let value): return String(value)
+        }
+    }
+    
+    public var debugDescription: String {
+        switch self {
+        case .Failure(let error): return "Failure(\(String(reflecting: error)))"
+        case .Success(let value): return "Success(\(String(reflecting: value)))"
+        }
+    }
+    
+}
+
+extension Result: EitherType {
+    
+    public typealias LeftType = ErrorType
+    public typealias RightType = T
+    
+    public init(left error: ErrorType) {
+        self = .Failure(error)
+    }
+    
+    public init(right value: T) {
         self = .Success(value)
     }
     
-    /// Creates a result in a failure state
-    public init(failure: Error) {
-        self = .Failure(failure)
-    }
-    
-    /// Case analysis.
-    ///
-    /// Returns the value produced by applying a given function in the case of
-    /// success, or an alternate given function in the case of failure.
-    public func analysis<R>(@noescape ifSuccess ifSuccess: T -> R, @noescape ifFailure: Error -> R) -> R {
+    public func analysis<Result>(@noescape ifLeft ifLeft: ErrorType -> Result, @noescape ifRight: T -> Result) -> Result {
         switch self {
-        case .Success(let value): return ifSuccess(value)
-        case .Failure(let error): return ifFailure(error)
+        case .Failure(let error): return ifLeft(error)
+        case .Success(let value): return ifRight(value)
         }
     }
-
+    
 }
 
-public extension ResultType {
+extension EitherType where LeftType == ErrorType {
     
-    /// Returns a new Result by mapping success cases by using `transform`, or
-    /// re-wrapping the error.
-    func map<U>(@noescape transform: Value -> U) -> Result<U, Error> {
-        return flatMap { success(transform($0)) }
+    public func flatMap<Value>(@noescape transform: RightType -> Result<Value>) -> Result<Value> {
+        return analysis(ifLeft: Result.Failure, ifRight: transform)
     }
     
+    public func map<Value>(@noescape transform: RightType -> Value) -> Result<Value> {
+        return flatMap { .Success(transform($0)) }
+    }
+    
+    public func recoverWith(@autoclosure fallbackResult: () -> Result<RightType>) -> Result<RightType> {
+        return analysis(ifLeft: { _ in fallbackResult() }, ifRight: Result.Success)
+    }
+    
+}
+
+public func ??<Either: EitherType where Either.LeftType == ErrorType>(lhs: Either, @autoclosure rhs: () -> Result<Either.RightType>) -> Result<Either.RightType> {
+    return lhs.recoverWith(rhs())
 }

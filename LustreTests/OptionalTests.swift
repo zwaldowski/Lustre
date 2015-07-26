@@ -3,29 +3,29 @@
 //  Lustre
 //
 //  Created by Zachary Waldowski on 6/11/15.
-//  Copyright © 2015 Zachary Waldowski. All rights reserved.
+//  Copyright © 2014-2015. Some rights reserved.
 //
 
 import XCTest
-import Lustre
+@testable import Lustre
 
 class OptionalTests: XCTestCase {
     
-    private let testValue = 42
+    private let aValue = 42
     
-    private var successResult: Result<Int, NoError>  { return success(testValue) }
-    private var failureResult: Result<Int, NoError>  { return failure() }
+    private let aSuccessResult = Either<Void, Int>(right: 42)
+    private var aFailureResult =  Either<Void, Int>()
     
     func testEqualityOptional() {
-        XCTAssert(successResult == Optional(testValue))
-        XCTAssertFalse(successResult == Optional(failure: .Unit))
-        XCTAssert(failureResult == Optional(failure: .Unit))
-        XCTAssertFalse(failureResult == Optional(testValue))
+        XCTAssert(aSuccessResult == Optional(right: aValue))
+        XCTAssertFalse(aSuccessResult == Optional(left: ()))
+        XCTAssert(aFailureResult == Optional(left: ()))
+        XCTAssertFalse(aFailureResult == Optional(right: aValue))
     }
     
     func testInequalityOptional() {
-        XCTAssert(success(testValue) != Optional(-testValue))
-        XCTAssertFalse(failure() != Optional(failure: .Unit))
+        XCTAssert(Either(right: 42) != Optional(right: -aValue))
+        XCTAssertFalse(Either<Void, Int>() != Optional(left: ()))
     }
 
 }
