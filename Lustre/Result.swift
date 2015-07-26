@@ -9,6 +9,14 @@
 public enum Result<T> {
     case Failure(ErrorType)
     case Success(T)
+    
+    public init(error: ErrorType) {
+        self = .Failure(error)
+    }
+    
+    public init(value: T) {
+        self = .Success(value)
+    }
 }
 
 extension Result: CustomStringConvertible, CustomDebugStringConvertible {
@@ -31,15 +39,12 @@ extension Result: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension Result: EitherType {
     
-    public typealias LeftType = ErrorType
-    public typealias RightType = T
-    
     public init(left error: ErrorType) {
-        self = .Failure(error)
+        self.init(error: error)
     }
     
     public init(right value: T) {
-        self = .Success(value)
+        self.init(value: value)
     }
     
     public func analysis<Result>(@noescape ifLeft ifLeft: ErrorType -> Result, @noescape ifRight: T -> Result) -> Result {

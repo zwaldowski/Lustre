@@ -8,14 +8,6 @@
 
 extension EitherType where LeftType == ErrorType {
     
-    public init(error: LeftType) {
-        self.init(left: error)
-    }
-    
-    public init(value: RightType) {
-        self.init(right: value)
-    }
-    
     public var isSuccess: Bool {
         return isRight
     }
@@ -40,9 +32,9 @@ extension EitherType where LeftType == ErrorType {
     
     public init(@noescape _ fn: () throws -> RightType) {
         do {
-            self.init(value: try fn())
+            self.init(right: try fn())
         } catch {
-            self.init(error: error)
+            self.init(left: error)
         }
     }
     
@@ -62,9 +54,9 @@ extension EitherType where LeftType == ErrorType {
     
     public init(_ value: RightType?, @autoclosure failWith: () -> LeftType) {
         if let value = value {
-            self.init(value: value)
+            self.init(right: value)
         } else {
-            self.init(error: failWith())
+            self.init(left: failWith())
         }
     }
     
