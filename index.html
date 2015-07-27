@@ -12,49 +12,62 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Lustre</h1>
-      <h2 class="project-tagline">An imperfect but more performant implementation of the Result pattern in Swift.</h2>
+      <h2 class="project-tagline">A protocol-oriented Either and Result for Swift 2.0.</h2>
       <a href="https://github.com/zwaldowski/Lustre" class="btn">View on GitHub</a>
       <a href="https://github.com/zwaldowski/Lustre/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/zwaldowski/Lustre/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="lustre" class="anchor" href="#lustre" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lustre</h1>
+      <p>Lustre is a more protocol-oriented variant of the nascent <code>Result</code> pattern in
+Swift 2.0, as seen commonly <a href="https://github.com/antitypical/Result">in the community</a>.</p>
 
-<p>An imperfect but more performant implementation of the Result pattern in Swift.</p>
+<p>Lustre provides a protocol, <code>EitherType</code>, as well as two concrete
+implementations, <code>Either&lt;T, U&gt;</code> and <code>Result&lt;T&gt;</code>.</p>
 
-<p>Lustre defines an interface with several manual specializations to improve
-compiler inference and and runtime performance over a <code>Box&lt;T&gt;</code>-based Result
-type, such as that from <a href="https://github.com/LlamaKit/LlamaKit">LlamaKit</a>.</p>
+<ul>
+<li>The protocol is Swift-oriented and provides common functionality to monadic
+types such as equatability and case analysis.</li>
+<li>The <code>Either</code> type is modelled after the same name in Scala or Haskell. By
+convention, the "Left" case is a failure or negative scenario, but <code>Either</code>
+is more generally designed around any switch between two first-class values.</li>
+<li>The <code>Result</code> type is related to the type of the same name in Haskell, and can
+be considered a specialization of <code>Either</code> designed for compatibility with
+Swift's error-handling. Its <code>Failure</code> case takes <code>ErrorType</code>, and convenience
+methods are provided for conversion to and from Swift error handling syntax.</li>
+</ul>
 
-<p>Day-to-day syntax of using Lustre's Result types are almost identical, except
-in that you must chose specific types to use for Result instances.</p>
+<h2>
+<a id="why-the-protocol" class="anchor" href="#why-the-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why the Protocol?</h2>
 
-<p><code>VoidResult</code> and <code>ObjectResult</code> are fully-implemented specializations ready
-for use out of the box with no-return results and reference type results,
-respectively.</p>
+<p>A good chunk of the time, you'll be using the concrete <code>Either</code> and <code>Result</code>.
+Like the design of Swift's <code>map</code> and <code>flatMap</code>, the default implementations of
+<code>map</code> and <code>flatMap</code> return a <code>Result</code>.</p>
 
-<p><code>AnyResult</code> is a fallback for any value type. <code>Any</code> is used as storage of any
-<code>T</code>. Types under 17 bytes in size will be stored inline, so results of
-all primitive types and most Swift collection types will have the same
-performance of a specialized generic enum. Larger types are stored using a
-native buffer type internal to Swift.</p>
+<p>Making your own <code>EitherType</code> is useful for API design, when you want to model
+specific scenarios but also get the convenience of an <code>Either</code> API. This
+includes types not strictly represented by an enum with two cases, or a wrapper
+of another result, etc.</p>
 
-<p>The <code>CustomResult</code> protocol exists for manual specializations for custom types
-of a known size. For example, a JSON-parsing library might provide a <code>JSON</code>
-enum, and <code>JSONResult</code> would conform to <code>CustomResult</code> with a <code>.Success(JSON)</code>
-case.</p>
+<p>It might be advantageous to make your own concrete type conforming to
+<code>EitherType</code> and give it extra functionality. Consider an idiomatic <code>JSON</code>
+enum type. A JSON parser might return a <code>JSONResult</code>. On that type, you could
+have convenience methods to return a <code>Result&lt;String&gt;</code> if the JSON value is the
+string case, etc. But by conforming to <code>EitherType</code>, it is also mostly
+interchangeable with any <code>Result</code> instance.</p>
 
-<p>The common-case implementation of <code>Result&lt;T&gt;</code> is clearly the way forward. Until
-Swift supports multi-payload generic enums, <code>Lustre.Result</code> mitigates the
-performance problems around using a <code>Box&lt;T&gt;</code>-based Result type.</p>
+<p>The need for this repo can go away if extensions with <code>where</code> cases are added
+to generics to parallel protocol extensions. See <a href="http://www.openradar.me/radar?id=4677878595715072">rdar://21901489</a>.
+Until then, Lustre is a scalable, usable, and idiomatic version of the pattern
+you already know and more-or-less tolerate. Unlike previous versions of Lustre,
+there are no weird hacks, no <code>Any</code>, and no syntactical difference from the
+common-case <code>Result</code> type.</p>
 
 <h2>
 <a id="availability" class="anchor" href="#availability" aria-hidden="true"><span class="octicon octicon-link"></span></a>Availability</h2>
 
-<p>Lustre is intended for Swift 1.2. Compatibility with future versions is not
-guaranteed.</p>
+<p>Lustre, on this branch, is intended for Swift 2.0. The old hacky version for
+Swift 1.2 is still <a href="https://github.com/zwaldowski/Lustre/tree/swift-1_2">preserved</a>.</p>
 
 <h2>
 <a id="whats-up-with-the-name" class="anchor" href="#whats-up-with-the-name" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's up with the name?</h2>
