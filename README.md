@@ -1,37 +1,50 @@
 # Lustre
 
-An imperfect but more performant implementation of the Result pattern in Swift.
+Lustre is a more protocol-oriented variant of the nascent `Result` pattern in
+Swift 2.0, as seen commonly [in the community](https://github.com/antitypical/Result).
 
-Lustre defines an interface with several manual specializations to improve
-compiler inference and and runtime performance over a `Box<T>`-based Result
-type, such as that from [LlamaKit](https://github.com/LlamaKit/LlamaKit).
+Lustre provides a protocol, `EitherType`, as well as two concrete
+implementations, `Either<T, U>` and `Result<T>`.
 
-Day-to-day syntax of using Lustre's Result types are almost identical, except
-in that you must chose specific types to use for Result instances.
+* The protocol is Swift-oriented and provides common functionality to monadic
+  types such as equatability and case analysis.
+* The `Either` type is modelled after the same name in Scala or Haskell. By
+  convention, the "Left" case is a failure or negative scenario, but `Either`
+  is more generally designed around any switch between two first-class values.
+* The `Result` type is related to the type of the same name in Haskell, and can
+  be considered a specialization of `Either` designed for compatibility with
+  Swift's error-handling. Its `Failure` case takes `ErrorType`, and convenience
+  methods are provided for conversion to and from Swift error handling syntax.
 
-`VoidResult` and `ObjectResult` are fully-implemented specializations ready
-for use out of the box with no-return results and reference type results,
-respectively.
+## Why the Protocol?
 
-`AnyResult` is a fallback for any value type. `Any` is used as storage of any
-`T`. Types under 17 bytes in size will be stored inline, so results of
-all primitive types and most Swift collection types will have the same
-performance of a specialized generic enum. Larger types are stored using a
-native buffer type internal to Swift.
+A good chunk of the time, you'll be using the concrete `Either` and `Result`.
+Like the design of Swift's `map` and `flatMap`, the default implementations of
+`map` and `flatMap` return a `Result`.
 
-The `CustomResult` protocol exists for manual specializations for custom types
-of a known size. For example, a JSON-parsing library might provide a `JSON`
-enum, and `JSONResult` would conform to `CustomResult` with a `.Success(JSON)`
-case.
+Making your own `EitherType` is useful for API design, when you want to model
+specific scenarios but also get the convenience of an `Either` API. This
+includes types not strictly represented by an enum with two cases, or a wrapper
+of another result, etc.
 
-The common-case implementation of `Result<T>` is clearly the way forward. Until
-Swift supports multi-payload generic enums, `Lustre.Result` mitigates the
-performance problems around using a `Box<T>`-based Result type.
+It might be advantageous to make your own concrete type conforming to
+`EitherType` and give it extra functionality. Consider an idiomatic `JSON`
+enum type. A JSON parser might return a `JSONResult`. On that type, you could
+have convenience methods to return a `Result<String>` if the JSON value is the
+string case, etc. But by conforming to `EitherType`, it is also mostly
+interchangeable with any `Result` instance.
+
+The need for this repo can go away if extensions with `where` cases are added
+to generics to parallel protocol extensions. See [rdar://21901489](http://www.openradar.me/radar?id=4677878595715072).
+Until then, Lustre is a scalable, usable, and idiomatic version of the pattern
+you already know and more-or-less tolerate. Unlike previous versions of Lustre,
+there are no weird hacks, no `Any`, and no syntactical difference from the
+common-case `Result` type.
 
 ## Availability
 
-Lustre is intended for Swift 1.2. Compatibility with future versions is not
-guaranteed.
+Lustre, on this branch, is intended for Swift 2.0. The old hacky version for
+Swift 1.2 is still [preserved](https://github.com/zwaldowski/Lustre/tree/swift-1_2).
 
 ## What's up with the name?
 
