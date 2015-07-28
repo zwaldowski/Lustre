@@ -16,7 +16,7 @@ class VoidResultTests: XCTestCase {
     private let aSuccessResult1 = Result<Void>()
     private let aFailureResult1 = Result<Void>(error: Error.First)
     private let aSuccessResult2 = ContrivedVoidResult()
-    private let aFailureResult2 = ContrivedVoidResult(error: Error.Second)
+    private let aFailureResult2 = ContrivedVoidResult(left: Error.Second)
     
     private enum ContrivedVoidResult: EitherType {
         case Failure(ErrorType)
@@ -133,7 +133,7 @@ class VoidResultTests: XCTestCase {
         XCTAssertFalse(aSuccessResult1 == aFailureResult1)
         XCTAssertFalse(aSuccessResult2 == aFailureResult2)
         XCTAssert(aFailureResult1 == Result(error: anError1))
-        XCTAssert(aFailureResult2 == ContrivedVoidResult(error: anError2))
+        XCTAssert(aFailureResult2 == ContrivedVoidResult(left: anError2))
         XCTAssertFalse(aFailureResult1 == aSuccessResult1)
         XCTAssertFalse(aFailureResult2 == aSuccessResult2)
     }
@@ -149,8 +149,8 @@ class VoidResultTests: XCTestCase {
     func testEqualityDifferentTypes() {
         XCTAssert(aSuccessResult1 == aSuccessResult2)
         XCTAssertFalse(aSuccessResult1 == aFailureResult2)
-        XCTAssert(aFailureResult1 == ContrivedVoidResult(error: anError1))
-        XCTAssertFalse(aFailureResult1 == ContrivedVoidResult(error: Error.Second))
+        XCTAssert(aFailureResult1 == ContrivedVoidResult(left: anError1))
+        XCTAssertFalse(aFailureResult1 == ContrivedVoidResult(left: Error.Second))
     }
     
     func testInequalityDifferentTypes() {
