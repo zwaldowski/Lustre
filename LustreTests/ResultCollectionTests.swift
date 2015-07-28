@@ -24,7 +24,7 @@ class ResultCollectionTests: XCTestCase {
     }
     
     func testCollectThrow() {
-        assertNoThrow(testAllSuccesses.evaluateAll, [ -1, 0, 1, 2 ])
+        assertNoThrow(testAllSuccesses.extractAll, [ -1, 0, 1, 2 ])
     }
     
     func testCollectSuccess() {

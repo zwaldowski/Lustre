@@ -56,12 +56,12 @@ func assertNoThrow<T: Equatable>(@noescape expression: () throws -> [T], @autocl
 // MARK: Either assertions
 
 func assertFailure<Either: EitherType where Either.LeftType == ErrorType>(@autoclosure expression1: () -> Either, @autoclosure _ expression2: () -> ErrorType, _ message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
-    assertThrows(expression1().evaluate, expression2(), message, file: file, line: line)
+    assertThrows(expression1().extract, expression2(), message, file: file, line: line)
 }
 
 func assertSuccess<Either: EitherType where Either.LeftType == ErrorType>(@autoclosure expression1: () -> Either, _ message: String = "", file: String = __FILE__, line: UInt = __LINE__, @noescape assertions: Either.RightType -> ()) {
     do {
-        assertions(try expression1().evaluate())
+        assertions(try expression1().extract())
     } catch {
         XCTFail("Unexpected error in method, threw \(error)", file: file, line: line)
     }

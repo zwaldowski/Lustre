@@ -26,12 +26,12 @@ extension SequenceType where Generator.Element: EitherType, Generator.Element.Le
     }
     
     
-    public func evaluateAll() throws -> [Value] {
+    public func extractAll() throws -> [Value] {
         var successes = [Value]()
         successes.reserveCapacity(underestimateCount())
         
         for result in self {
-            successes.append(try result.evaluate())
+            successes.append(try result.extract())
         }
         
         return successes
@@ -39,7 +39,7 @@ extension SequenceType where Generator.Element: EitherType, Generator.Element.Le
     
     public func collectAllSuccesses() -> Result<[Value]> {
         do {
-            return .Success(try evaluateAll())
+            return .Success(try extractAll())
         } catch {
             return .Failure(error)
         }

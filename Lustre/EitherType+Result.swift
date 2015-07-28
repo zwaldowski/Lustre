@@ -38,7 +38,7 @@ extension EitherType where LeftType == ErrorType {
         }
     }
     
-    public func evaluate() throws -> RightType {
+    public func extract() throws -> RightType {
         var error: LeftType!
         guard let value = analysis(ifLeft: { error = $0; return .None }, ifRight: { $0 }) as RightType? else {
             throw error

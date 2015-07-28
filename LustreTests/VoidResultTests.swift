@@ -39,14 +39,14 @@ class VoidResultTests: XCTestCase {
         
     }
     
-    func testSuccessEvaluate() {
-        assertNoThrow(void: aSuccessResult1.evaluate)
-        assertNoThrow(void: aSuccessResult2.evaluate)
+    func testSuccessExtract() {
+        assertNoThrow(void: aSuccessResult1.extract)
+        assertNoThrow(void: aSuccessResult2.extract)
     }
     
-    func testFailureEvaluate() {
-        assertThrows(aFailureResult1.evaluate, Error.First)
-        assertThrows(aFailureResult2.evaluate, Error.Second)
+    func testFailureExtract() {
+        assertThrows(aFailureResult1.extract, Error.First)
+        assertThrows(aFailureResult2.extract, Error.Second)
     }
     
     func testDescriptionSuccess() {

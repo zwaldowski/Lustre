@@ -19,13 +19,13 @@ class ResultTests: XCTestCase {
     private var aFailureResult1 = Result<Int>(error: Error.First)
     private var aFailureResult2 = Result<Int>(error: Error.Second)
     
-    func testSuccessEvaluate() {
-        assertNoThrow(aSuccessResult.evaluate, aTestValue)
+    func testSuccessExtract() {
+        assertNoThrow(aSuccessResult.extract, aTestValue)
     }
     
-    func testFailureEvaluate() {
-        assertThrows(aFailureResult1.evaluate, Error.First)
-        assertThrows(aFailureResult2.evaluate, Error.Second)
+    func testFailureExtract() {
+        assertThrows(aFailureResult1.extract, Error.First)
+        assertThrows(aFailureResult2.extract, Error.Second)
     }
     
     func testDescriptionSuccess() {
