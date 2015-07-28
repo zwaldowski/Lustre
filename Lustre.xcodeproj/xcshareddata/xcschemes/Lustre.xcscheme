@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Lustre.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB5BCE741B6207A7009E42A9"
+               BuildableName = "LustreTests.xctest"
+               BlueprintName = "LustreTests"
+               ReferencedContainer = "container:Lustre.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
