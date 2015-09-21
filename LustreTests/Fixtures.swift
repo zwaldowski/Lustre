@@ -41,9 +41,9 @@ func assertNoThrow(file: String = __FILE__, line: UInt = __LINE__, @noescape voi
     assertNoThrow(fn, file: file, line: line) { _ in }
 }
 
-func assertNoThrow<T: Equatable>(@noescape expression: () throws -> T, @autoclosure _ getValue: () -> T, _ message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
-    assertNoThrow(expression, message, file: file, line: line) {
-        XCTAssertEqual($0, getValue())
+func assertNoThrow<T: Equatable>(@noescape expression: () throws -> T, @autoclosure _ getValue: () -> T?, _ message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
+    assertNoThrow(expression, message, file: file, line: line) { (value: T) in
+        XCTAssertEqual(value, getValue())
     }
 }
 

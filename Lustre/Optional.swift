@@ -12,11 +12,11 @@ extension Optional: EitherType {
         self = .None
     }
     
-    public init(right: T) {
+    public init(right: Wrapped) {
         self = .Some(right)
     }
     
-    public func analysis<Result>(@noescape ifLeft ifLeft: Void -> Result, @noescape ifRight: T -> Result) -> Result {
+    public func analysis<Result>(@noescape ifLeft ifLeft: Void -> Result, @noescape ifRight: Wrapped -> Result) -> Result {
         switch self {
         case .None: return ifLeft()
         case .Some(let value): return ifRight(value)

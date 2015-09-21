@@ -54,8 +54,8 @@ class CustomResultTests: XCTestCase {
     }
     
     func testDescriptionFailure() {
-        XCTAssert(String(aFailureResult1).hasSuffix("Error.First"))
-        XCTAssert(String(aFailureResult2).hasSuffix("Error.Second"))
+        XCTAssertEqual(String(aFailureResult1), "First")
+        XCTAssertEqual(String(aFailureResult2), "Second")
     }
     
     func testDebugDescriptionSuccess() {

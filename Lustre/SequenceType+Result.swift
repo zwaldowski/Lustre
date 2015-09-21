@@ -53,7 +53,7 @@ extension EitherType where LeftType == ErrorType, RightType: SequenceType {
     
     public func split<NewValue>(@noescape transform: Element -> Result<NewValue>) -> Result<([ErrorType], [NewValue])> {
         return map {
-            lazy($0).map(transform).partition()
+            $0.lazy.map(transform).partition()
         }
     }
     
