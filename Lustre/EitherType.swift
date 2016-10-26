@@ -7,19 +7,19 @@
 //
 
 public protocol EitherType: CustomStringConvertible, CustomDebugStringConvertible {
-    typealias LeftType
-    typealias RightType
+    associatedtype LeftType
+    associatedtype RightType
     
     init(left: LeftType)
     init(right: RightType)
     
-    func analysis<Result>(@noescape ifLeft ifLeft: LeftType -> Result, @noescape ifRight: RightType -> Result) -> Result
+    func analysis<Result>(ifLeft: (LeftType) -> Result, ifRight: (RightType) -> Result) -> Result
 }
 
 extension EitherType {
     
     public var description: String {
-        return analysis(ifLeft: { String($0) }, ifRight: { String($0) })
+        return analysis(ifLeft: { String(describing: $0) }, ifRight: { String(describing: $0) })
     }
     
     public var debugDescription: String {
@@ -76,7 +76,7 @@ extension EitherType where RightType == Void {
 
 extension EitherType {
     
-    public func equals<OtherEither: EitherType>(other: OtherEither, @noescape leftEqual: (LeftType, OtherEither.LeftType) -> Bool, @noescape rightEqual: (RightType, OtherEither.RightType) -> Bool) -> Bool {
+    public func equals<OtherEither: EitherType>(_ other: OtherEither, leftEqual: (LeftType, OtherEither.LeftType) -> Bool, rightEqual: (RightType, OtherEither.RightType) -> Bool) -> Bool {
         return analysis(ifLeft: { lhsLeft in
             other.analysis(ifLeft: { rhsLeft in
                 leftEqual(lhsLeft, rhsLeft)
@@ -90,26 +90,26 @@ extension EitherType {
     
 }
 
-public func ==<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType: Equatable, LeftEither.RightType: Equatable, RightEither.LeftType == LeftEither.LeftType, RightEither.RightType == LeftEither.RightType>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func ==<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType: Equatable, LeftEither.RightType: Equatable, RightEither.LeftType == LeftEither.LeftType, RightEither.RightType == LeftEither.RightType {
     return lhs.equals(rhs, leftEqual: ==, rightEqual: ==)
 }
 
-public func !=<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType: Equatable, LeftEither.RightType: Equatable, RightEither.LeftType == LeftEither.LeftType, RightEither.RightType == LeftEither.RightType>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func !=<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType: Equatable, LeftEither.RightType: Equatable, RightEither.LeftType == LeftEither.LeftType, RightEither.RightType == LeftEither.RightType {
     return !(lhs == rhs)
 }
 
-public func ==<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType == Void, RightEither.LeftType == Void, LeftEither.RightType: Equatable, RightEither.RightType == LeftEither.RightType>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func ==<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType == Void, RightEither.LeftType == Void, LeftEither.RightType: Equatable, RightEither.RightType == LeftEither.RightType {
     return lhs.equals(rhs, leftEqual: { _ in true }, rightEqual: ==)
 }
 
-public func !=<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType == Void, RightEither.LeftType == Void, LeftEither.RightType: Equatable, RightEither.RightType == LeftEither.RightType>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func !=<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType == Void, RightEither.LeftType == Void, LeftEither.RightType: Equatable, RightEither.RightType == LeftEither.RightType {
     return !(lhs == rhs)
 }
 
-public func ==<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType: Equatable, RightEither.LeftType == LeftEither.LeftType, LeftEither.RightType == Void, RightEither.RightType == Void>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func ==<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType: Equatable, RightEither.LeftType == LeftEither.LeftType, LeftEither.RightType == Void, RightEither.RightType == Void {
     return lhs.equals(rhs, leftEqual: ==, rightEqual: { _ in true })
 }
 
-public func !=<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType: Equatable, RightEither.LeftType == LeftEither.LeftType, LeftEither.RightType == Void, RightEither.RightType == Void>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func !=<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType: Equatable, RightEither.LeftType == LeftEither.LeftType, LeftEither.RightType == Void, RightEither.RightType == Void {
     return !(lhs == rhs)
 }

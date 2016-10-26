@@ -11,29 +11,29 @@ import XCTest
 
 class VoidResultTests: XCTestCase {
     
-    private let anError1        = Error.First
-    private let anError2        = Error.Second
-    private let aSuccessResult1 = Result<Void>()
-    private let aFailureResult1 = Result<Void>(error: Error.First)
-    private let aSuccessResult2 = ContrivedVoidResult()
-    private let aFailureResult2 = ContrivedVoidResult(left: Error.Second)
+    fileprivate let anError1        = Error.first
+    fileprivate let anError2        = Error.second
+    fileprivate let aSuccessResult1 = Result<Void>()
+    fileprivate let aFailureResult1 = Result<Void>(error: Error.first)
+    fileprivate let aSuccessResult2 = ContrivedVoidResult()
+    fileprivate let aFailureResult2 = ContrivedVoidResult(left: Error.second)
     
-    private enum ContrivedVoidResult: EitherType {
-        case Failure(ErrorType)
-        case Success
+    fileprivate enum ContrivedVoidResult: EitherType {
+        case failure(Swift.Error)
+        case success
         
-        init(left: ErrorType) {
-            self = .Failure(left)
+        init(left: Swift.Error) {
+            self = .failure(left)
         }
         
         init(right: ()) {
-            self = .Success
+            self = .success
         }
         
-        func analysis<Result>(@noescape ifLeft ifLeft: ErrorType -> Result, @noescape ifRight: Void -> Result) -> Result {
+        func analysis<Result>(ifLeft: (Swift.Error) -> Result, ifRight: (Void) -> Result) -> Result {
             switch self {
-            case .Failure(let error): return ifLeft(error)
-            case .Success: return ifRight()
+            case .failure(let error): return ifLeft(error)
+            case .success: return ifRight()
             }
         }
         
@@ -45,18 +45,18 @@ class VoidResultTests: XCTestCase {
     }
     
     func testFailureExtract() {
-        assertThrows(aFailureResult1.extract, Error.First)
-        assertThrows(aFailureResult2.extract, Error.Second)
+        assertThrows(aFailureResult1.extract, Error.first)
+        assertThrows(aFailureResult2.extract, Error.second)
     }
     
     func testDescriptionSuccess() {
-        XCTAssertEqual(String(aSuccessResult1), "()")
-        XCTAssertEqual(String(aSuccessResult2), "()")
+        XCTAssertEqual(String(describing: aSuccessResult1), "()")
+        XCTAssertEqual(String(describing: aSuccessResult2), "()")
     }
     
     func testDescriptionFailure() {
-        XCTAssertEqual(String(aFailureResult1), "First")
-        XCTAssertEqual(String(aFailureResult2), "Second")
+        XCTAssertEqual(String(describing: aFailureResult1), "first")
+        XCTAssertEqual(String(describing: aFailureResult2), "second")
     }
     
     func testDebugDescriptionSuccess() {
@@ -67,11 +67,11 @@ class VoidResultTests: XCTestCase {
     func testDebugDescriptionFailure() {
         let debugDescription1 = String(reflecting: aFailureResult1)
         XCTAssert(debugDescription1.hasPrefix("Failure("))
-        XCTAssert(debugDescription1.hasSuffix("Error.First)"))
+        XCTAssert(debugDescription1.hasSuffix("Error.first)"))
         
         let debugDescription2 = String(reflecting: aFailureResult2)
         XCTAssert(debugDescription2.hasPrefix("Left("))
-        XCTAssert(debugDescription2.hasSuffix("Error.Second)"))
+        XCTAssert(debugDescription2.hasSuffix("Error.second)"))
     }
     
     func testSuccessGetter() {
@@ -143,14 +143,14 @@ class VoidResultTests: XCTestCase {
         XCTAssert(aSuccessResult2 != aFailureResult2)
         XCTAssert(aFailureResult1 != aSuccessResult1)
         XCTAssert(aFailureResult2 != aSuccessResult2)
-        XCTAssert(aFailureResult1 != Result(error: Error.Second))
+        XCTAssert(aFailureResult1 != Result(error: Error.second))
     }
 
     func testEqualityDifferentTypes() {
         XCTAssert(aSuccessResult1 == aSuccessResult2)
         XCTAssertFalse(aSuccessResult1 == aFailureResult2)
         XCTAssert(aFailureResult1 == ContrivedVoidResult(left: anError1))
-        XCTAssertFalse(aFailureResult1 == ContrivedVoidResult(left: Error.Second))
+        XCTAssertFalse(aFailureResult1 == ContrivedVoidResult(left: Error.second))
     }
     
     func testInequalityDifferentTypes() {
@@ -158,12 +158,12 @@ class VoidResultTests: XCTestCase {
         XCTAssert(aFailureResult1 != aFailureResult2)
     }
     
-    private func doubleSuccess() -> Result<Int> {
+    fileprivate func doubleSuccess() -> Result<Int> {
         return Result(value: 42)
     }
 
-    private func doubleFailure() -> Result<Int> {
-        return Result(error: Error.Third)
+    fileprivate func doubleFailure() -> Result<Int> {
+        return Result(error: Error.third)
     }
 
     func testFlatMapSuccessSuccess() {
@@ -176,8 +176,8 @@ class VoidResultTests: XCTestCase {
     func testFlatMapSuccessFailure() {
         let x1 = aSuccessResult1.flatMap(doubleFailure)
         let x2 = aSuccessResult2.flatMap(doubleFailure)
-        assertErrorMatches(x1.error!, Error.Third)
-        assertErrorMatches(x2.error!, Error.Third)
+        assertErrorMatches(x1.error!, Error.third)
+        assertErrorMatches(x2.error!, Error.third)
     }
 
     func testFlatMapFailureSuccess() {
@@ -194,7 +194,7 @@ class VoidResultTests: XCTestCase {
         assertErrorMatches(x2.error!, anError2)
     }
     
-    private func mappedString() -> String {
+    fileprivate func mappedString() -> String {
         return "Test"
     }
     
@@ -208,10 +208,10 @@ class VoidResultTests: XCTestCase {
 
     func testMapFailureNewType() {
         let result1 = aFailureResult1.map(mappedString)
-        assertFailure(result1, Error.First)
+        assertFailure(result1, Error.first)
         
         let result2 = aFailureResult2.map(mappedString)
-        assertFailure(result2, Error.Second)
+        assertFailure(result2, Error.second)
     }
     
 }

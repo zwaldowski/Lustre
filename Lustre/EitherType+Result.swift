@@ -6,7 +6,7 @@
 //  Copyright © 2014-2015. Some rights reserved.
 //
 
-extension EitherType where LeftType == ErrorType {
+extension EitherType where LeftType == Error {
     
     public var isSuccess: Bool {
         return isRight
@@ -28,9 +28,9 @@ extension EitherType where LeftType == ErrorType {
 
 // MARK: Throws compatibility 
 
-extension EitherType where LeftType == ErrorType {
+extension EitherType where LeftType == Error {
     
-    public init(@noescape _ fn: () throws -> RightType) {
+    public init(_ fn: () throws -> RightType) {
         do {
             self.init(right: try fn())
         } catch {
@@ -40,7 +40,7 @@ extension EitherType where LeftType == ErrorType {
     
     public func extract() throws -> RightType {
         var error: LeftType!
-        guard let value = analysis(ifLeft: { error = $0; return .None }, ifRight: { $0 }) as RightType? else {
+        guard let value = analysis(ifLeft: { error = $0; return .none }, ifRight: { $0 }) as RightType? else {
             throw error
         }
         return value
@@ -50,9 +50,9 @@ extension EitherType where LeftType == ErrorType {
 
 // MARK: Value recovery
 
-extension EitherType where LeftType == ErrorType {
+extension EitherType where LeftType == Error {
     
-    public init(_ value: RightType?, @autoclosure failWith: () -> LeftType) {
+    public init(_ value: RightType?, failWith: @autoclosure () -> LeftType) {
         if let value = value {
             self.init(right: value)
         } else {
@@ -60,38 +60,38 @@ extension EitherType where LeftType == ErrorType {
         }
     }
     
-    public func recover(@autoclosure fallbackValue: () -> RightType) -> RightType {
+    public func recover(_ fallbackValue: @autoclosure () -> RightType) -> RightType {
         return analysis(ifLeft: { _ in fallbackValue() }, ifRight: { $0 })
     }
     
 }
 
-public func ??<Either: EitherType where Either.LeftType == ErrorType>(lhs: Either, @autoclosure rhs: () -> Either.RightType) -> Either.RightType {
+public func ??<Either: EitherType>(lhs: Either, rhs: @autoclosure () -> Either.RightType) -> Either.RightType where Either.LeftType == Error {
     return lhs.recover(rhs())
 }
 
 // MARK: Result equatability
 
-extension ErrorType {
+extension Error {
     
-    public func matches(other: ErrorType) -> Bool {
+    public func matches(_ other: Error) -> Bool {
         return (self as NSError) == (other as NSError)
     }
     
 }
 
-public func ==<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType == ErrorType, RightEither.LeftType == ErrorType, LeftEither.RightType: Equatable, RightEither.RightType == LeftEither.RightType>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func ==<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType == Error, RightEither.LeftType == Error, LeftEither.RightType: Equatable, RightEither.RightType == LeftEither.RightType {
     return lhs.equals(rhs, leftEqual: { $0.matches($1) }, rightEqual: ==)
 }
 
-public func !=<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType == ErrorType, RightEither.LeftType == ErrorType, LeftEither.RightType: Equatable, RightEither.RightType == LeftEither.RightType>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func !=<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType == Error, RightEither.LeftType == Error, LeftEither.RightType: Equatable, RightEither.RightType == LeftEither.RightType {
     return !(lhs == rhs)
 }
 
-public func ==<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType == ErrorType, RightEither.LeftType == ErrorType, LeftEither.RightType == Void, RightEither.RightType == Void>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func ==<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType == Error, RightEither.LeftType == Error, LeftEither.RightType == Void, RightEither.RightType == Void {
     return lhs.equals(rhs, leftEqual: { $0.matches($1) }, rightEqual: { _ in true })
 }
 
-public func !=<LeftEither: EitherType, RightEither: EitherType where LeftEither.LeftType == ErrorType, RightEither.LeftType == ErrorType, LeftEither.RightType == Void, RightEither.RightType == Void>(lhs: LeftEither, rhs: RightEither) -> Bool {
+public func !=<LeftEither: EitherType, RightEither: EitherType>(lhs: LeftEither, rhs: RightEither) -> Bool where LeftEither.LeftType == Error, RightEither.LeftType == Error, LeftEither.RightType == Void, RightEither.RightType == Void {
     return !(lhs == rhs)
 }

@@ -12,29 +12,29 @@ import XCTest
 class ResultTests: XCTestCase {
     
     let aTestValue = 42
-    let aTestError1 = Error.First
-    let aTestError2 = Error.Second
+    let aTestError1 = Error.first
+    let aTestError2 = Error.second
     
-    private var aSuccessResult  = Result<Int>(value: 42)
-    private var aFailureResult1 = Result<Int>(error: Error.First)
-    private var aFailureResult2 = Result<Int>(error: Error.Second)
+    fileprivate var aSuccessResult  = Result<Int>(value: 42)
+    fileprivate var aFailureResult1 = Result<Int>(error: Error.first)
+    fileprivate var aFailureResult2 = Result<Int>(error: Error.second)
     
     func testSuccessExtract() {
         assertNoThrow(aSuccessResult.extract, aTestValue)
     }
     
     func testFailureExtract() {
-        assertThrows(aFailureResult1.extract, Error.First)
-        assertThrows(aFailureResult2.extract, Error.Second)
+        assertThrows(aFailureResult1.extract, Error.first)
+        assertThrows(aFailureResult2.extract, Error.second)
     }
     
     func testDescriptionSuccess() {
-        XCTAssertEqual(String(aSuccessResult), String(aTestValue))
+        XCTAssertEqual(String(describing: aSuccessResult), String(aTestValue))
     }
     
     func testDescriptionFailure() {
-        XCTAssertEqual(String(aFailureResult1), "First")
-        XCTAssertEqual(String(aFailureResult2), "Second")
+        XCTAssertEqual(String(describing: aFailureResult1), "first")
+        XCTAssertEqual(String(describing: aFailureResult2), "second")
     }
     
     func testDebugDescriptionSuccess() {
@@ -44,7 +44,7 @@ class ResultTests: XCTestCase {
     func testDebugDescriptionFailure() {
         let debugDescription1 = String(reflecting: aFailureResult1)
         XCTAssert(debugDescription1.hasPrefix("Failure("))
-        XCTAssert(debugDescription1.hasSuffix("Error.First)"))
+        XCTAssert(debugDescription1.hasSuffix("Error.first)"))
     }
     
     func testSuccessGetter() {
@@ -124,14 +124,14 @@ class ResultTests: XCTestCase {
     func testAnyEquals() {
         typealias Tuple = (Int, String)
         let tupleSuccess1: Result<Tuple> = Result(value: (42, "test"))
-        let tupleFailure1: Result<Tuple> = Result(error: Error.First)
-        let tupleFailure2: Result<Tuple> = Result(error: Error.Second)
+        let tupleFailure1: Result<Tuple> = Result(error: Error.first)
+        let tupleFailure2: Result<Tuple> = Result(error: Error.second)
         
-        func tuplesEqual(lhs: Tuple, rhs: Tuple) -> Bool {
+        func tuplesEqual(_ lhs: Tuple, rhs: Tuple) -> Bool {
             return lhs.0 == rhs.0 && lhs.1 == rhs.1
         }
         
-        func errorsEqual(lhs: ErrorType, rhs: ErrorType) -> Bool {
+        func errorsEqual(_ lhs: Swift.Error, rhs: Swift.Error) -> Bool {
             return lhs.matches(rhs)
         }
         
@@ -171,10 +171,10 @@ class ResultTests: XCTestCase {
 
     func testMapFailureUnaryOperator() {
         let x = aFailureResult1.map(-)
-        assertFailure(x, Error.First)
+        assertFailure(x, Error.first)
     }
     
-    private func countCharacters(string: String) -> Int {
+    fileprivate func countCharacters(_ string: String) -> Int {
         return string.characters.count
     }
 
@@ -190,11 +190,11 @@ class ResultTests: XCTestCase {
         assertFailure(y, aTestError1)
     }
 
-    func doubleSuccess(x: Int) -> Result<Int> {
+    func doubleSuccess(_ x: Int) -> Result<Int> {
         return Result(value: x * 2)
     }
 
-    func doubleFailure(x: Int) -> Result<Int> {
+    func doubleFailure(_ x: Int) -> Result<Int> {
         return Result(error: aTestError2)
     }
 

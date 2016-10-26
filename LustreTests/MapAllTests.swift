@@ -11,20 +11,20 @@ import XCTest
 
 class MapAllTests: XCTestCase {
     
-    private let aValue  = 42
-    private let anError = Error.First
+    fileprivate let aValue  = 42
+    fileprivate let anError = Error.first
     
-    private let aSuccessResult = Result<Int>.Success(42)
-    private let aFailureResult = Result<Int>.Failure(Error.First)
+    fileprivate let aSuccessResult = Result<Int>.success(42)
+    fileprivate let aFailureResult = Result<Int>.failure(Error.first)
     
-    private func makeSuccess(i: Int) -> Result<Int> {
+    fileprivate func makeSuccess(_ i: Int) -> Result<Int> {
         return aSuccessResult.map { $0 + i }
     }
     
-    private struct IncrediblyContrived: Equatable {
+    fileprivate struct IncrediblyContrived: Equatable {
         
-        static func create(first: Int, second: Int, third: Int, fourth: Int, fifth: Int, sixth: Int, seventh: Int, eighth: Int, ninth: Int, tenth: Int, eleventh: Int, twelfth: Int, thirteenth: Int, fourteenth: Int, fifteenth: Int, sixteenth: Int) -> Result<IncrediblyContrived> {
-            return Result.Success(IncrediblyContrived(first: first, second: second, third: third, fourth: fourth, fifth: fifth, sixth: sixth, seventh: seventh, eighth: eighth, ninth: ninth, tenth: tenth, eleventh: eleventh, twelfth: twelfth, thirteenth: thirteenth, fourteenth: fourteenth, fifteenth: fifteenth, sixteenth: sixteenth))
+        static func create(_ first: Int, second: Int, third: Int, fourth: Int, fifth: Int, sixth: Int, seventh: Int, eighth: Int, ninth: Int, tenth: Int, eleventh: Int, twelfth: Int, thirteenth: Int, fourteenth: Int, fifteenth: Int, sixteenth: Int) -> Result<IncrediblyContrived> {
+            return Result.success(IncrediblyContrived(first: first, second: second, third: third, fourth: fourth, fifth: fifth, sixth: sixth, seventh: seventh, eighth: eighth, ninth: ninth, tenth: tenth, eleventh: eleventh, twelfth: twelfth, thirteenth: thirteenth, fourteenth: fourteenth, fifteenth: fifteenth, sixteenth: sixteenth))
         }
         
         let first     : Int
@@ -45,7 +45,7 @@ class MapAllTests: XCTestCase {
         let sixteenth : Int
     }
     
-    private let aComposite = IncrediblyContrived(first: 42, second: 43, third: 44, fourth: 45, fifth: 46, sixth: 47, seventh: 48, eighth: 49, ninth: 50, tenth: 51, eleventh: 52, twelfth: 53, thirteenth: 54, fourteenth: 55, fifteenth: 56, sixteenth: 57)
+    fileprivate let aComposite = IncrediblyContrived(first: 42, second: 43, third: 44, fourth: 45, fifth: 46, sixth: 47, seventh: 48, eighth: 49, ninth: 50, tenth: 51, eleventh: 52, twelfth: 53, thirteenth: 54, fourteenth: 55, fifteenth: 56, sixteenth: 57)
     
     
     func testMapSuccess() {
