@@ -15,17 +15,17 @@ class EitherTests: XCTestCase {
     let aLeftValue1 = -1
     let aLeftValue2 = 42
     
-    private let aRightEither1 = Either<Int, String>(right: "words")
-    private let aLeftEither1  = Either<Int, String>(left: -1)
-    private let aLeftEither2  = Either<Int, String>(left: 42)
+    fileprivate let aRightEither1 = Either<Int, String>(right: "words")
+    fileprivate let aLeftEither1  = Either<Int, String>(left: -1)
+    fileprivate let aLeftEither2  = Either<Int, String>(left: 42)
     
     func testDescriptionRight() {
-        XCTAssertEqual(String(aRightEither1), aRightValue)
+        XCTAssertEqual(String(describing: aRightEither1), aRightValue)
     }
     
     func testDescriptionFailure() {
-        XCTAssertEqual(String(aLeftEither1), String(aLeftValue1))
-        XCTAssertEqual(String(aLeftEither2), String(aLeftValue2))
+        XCTAssertEqual(String(describing: aLeftEither1), String(aLeftValue1))
+        XCTAssertEqual(String(describing: aLeftEither2), String(aLeftValue2))
     }
     
     func testDebugDescriptionSuccess() {
@@ -81,7 +81,7 @@ class EitherTests: XCTestCase {
         XCTAssert(aLeftEither1 != aLeftEither2)
     }
     
-    private func countCharacters(string: String) -> Int {
+    fileprivate func countCharacters(_ string: String) -> Int {
         return string.characters.count
     }
     
@@ -113,11 +113,11 @@ class EitherTests: XCTestCase {
         XCTAssert(y.right == nil)
     }
     
-    func doubleLeft(x: Int) -> Either<Int, String> {
+    func doubleLeft(_ x: Int) -> Either<Int, String> {
         return Either(left: x * 2)
     }
 
-    func doubleRight(x: String) -> Either<Int, String> {
+    func doubleRight(_ x: String) -> Either<Int, String> {
         return Either(right: x + x)
     }
 

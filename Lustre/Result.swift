@@ -7,15 +7,15 @@
 //
 
 public enum Result<T> {
-    case Failure(ErrorType)
-    case Success(T)
+    case failure(Error)
+    case success(T)
     
-    public init(error: ErrorType) {
-        self = .Failure(error)
+    public init(error: Error) {
+        self = .failure(error)
     }
     
     public init(value: T) {
-        self = .Success(value)
+        self = .success(value)
     }
 }
 
@@ -23,15 +23,15 @@ extension Result: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
         switch self {
-        case .Failure(let error): return String(error)
-        case .Success(let value): return String(value)
+        case .failure(let error): return String(describing: error)
+        case .success(let value): return String(describing: value)
         }
     }
     
     public var debugDescription: String {
         switch self {
-        case .Failure(let error): return "Failure(\(String(reflecting: error)))"
-        case .Success(let value): return "Success(\(String(reflecting: value)))"
+        case .failure(let error): return "Failure(\(String(reflecting: error)))"
+        case .success(let value): return "Success(\(String(reflecting: value)))"
         }
     }
     
@@ -39,7 +39,7 @@ extension Result: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension Result: EitherType {
     
-    public init(left error: ErrorType) {
+    public init(left error: Error) {
         self.init(error: error)
     }
     
@@ -47,31 +47,31 @@ extension Result: EitherType {
         self.init(value: value)
     }
     
-    public func analysis<Result>(@noescape ifLeft ifLeft: ErrorType -> Result, @noescape ifRight: T -> Result) -> Result {
+    public func analysis<Result>(ifLeft: (Error) -> Result, ifRight: (T) -> Result) -> Result {
         switch self {
-        case .Failure(let error): return ifLeft(error)
-        case .Success(let value): return ifRight(value)
+        case .failure(let error): return ifLeft(error)
+        case .success(let value): return ifRight(value)
         }
     }
     
 }
 
-extension EitherType where LeftType == ErrorType {
+extension EitherType where LeftType == Error {
     
-    public func flatMap<Value>(@noescape transform: RightType -> Result<Value>) -> Result<Value> {
-        return analysis(ifLeft: Result.Failure, ifRight: transform)
+    public func flatMap<Value>(_ transform: (RightType) -> Result<Value>) -> Result<Value> {
+        return analysis(ifLeft: Result.failure, ifRight: transform)
     }
     
-    public func map<Value>(@noescape transform: RightType -> Value) -> Result<Value> {
-        return flatMap { .Success(transform($0)) }
+    public func map<Value>(_ transform: (RightType) -> Value) -> Result<Value> {
+        return flatMap { .success(transform($0)) }
     }
     
-    public func recoverWith(@autoclosure fallbackResult: () -> Result<RightType>) -> Result<RightType> {
-        return analysis(ifLeft: { _ in fallbackResult() }, ifRight: Result.Success)
+    public func recoverWith(_ fallbackResult: @autoclosure () -> Result<RightType>) -> Result<RightType> {
+        return analysis(ifLeft: { _ in fallbackResult() }, ifRight: Result.success)
     }
     
 }
 
-public func ??<Either: EitherType where Either.LeftType == ErrorType>(lhs: Either, @autoclosure rhs: () -> Result<Either.RightType>) -> Result<Either.RightType> {
+public func ??<Either: EitherType>(lhs: Either, rhs: @autoclosure () -> Result<Either.RightType>) -> Result<Either.RightType> where Either.LeftType == Error {
     return lhs.recoverWith(rhs())
 }

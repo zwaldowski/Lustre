@@ -6,12 +6,12 @@
 //  Copyright © 2014-2015 Big Nerd Ranch Inc. Licensed under MIT.
 //
 
-extension SequenceType where Generator.Element: EitherType, Generator.Element.LeftType == ErrorType  {
+extension Sequence where Iterator.Element: EitherType, Iterator.Element.LeftType == Error  {
     
-    private typealias Value = Generator.Element.RightType
+    fileprivate typealias Value = Iterator.Element.RightType
     
-    public func partition() -> ([ErrorType], [Value]) {
-        var lefts  = [ErrorType]()
+    public func partition() -> ([Error], [Value]) {
+        var lefts  = [Error]()
         var rights = [Value]()
         
         for either in self {
@@ -28,7 +28,7 @@ extension SequenceType where Generator.Element: EitherType, Generator.Element.Le
     
     public func extractAll() throws -> [Value] {
         var successes = [Value]()
-        successes.reserveCapacity(underestimateCount())
+        successes.reserveCapacity(underestimatedCount)
         
         for result in self {
             successes.append(try result.extract())
@@ -39,19 +39,19 @@ extension SequenceType where Generator.Element: EitherType, Generator.Element.Le
     
     public func collectAllSuccesses() -> Result<[Value]> {
         do {
-            return .Success(try extractAll())
+            return .success(try extractAll())
         } catch {
-            return .Failure(error)
+            return .failure(error)
         }
     }
     
 }
 
-extension EitherType where LeftType == ErrorType, RightType: SequenceType {
+extension EitherType where LeftType == Error, RightType: Sequence {
     
-    private typealias Element = RightType.Generator.Element
+    fileprivate typealias Element = RightType.Iterator.Element
     
-    public func split<NewValue>(@noescape transform: Element -> Result<NewValue>) -> Result<([ErrorType], [NewValue])> {
+    public func split<NewValue>(_ transform: @escaping (Element) -> Result<NewValue>) -> Result<([Error], [NewValue])> {
         return map {
             $0.lazy.map(transform).partition()
         }

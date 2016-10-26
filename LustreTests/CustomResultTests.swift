@@ -10,21 +10,21 @@ import XCTest
 @testable import Lustre
 
 private enum StringResult: EitherType {
-    case Failure(ErrorType)
-    case Success(String)
+    case failure(Swift.Error)
+    case success(String)
     
     init(right success: String) {
-        self = .Success(success)
+        self = .success(success)
     }
     
-    init(left failure: ErrorType) {
-        self = .Failure(failure)
+    init(left failure: Swift.Error) {
+        self = .failure(failure)
     }
     
-    func analysis<Result>(@noescape ifLeft ifLeft: ErrorType -> Result, @noescape ifRight: String -> Result) -> Result {
+    func analysis<Result>(ifLeft: (Swift.Error) -> Result, ifRight: (String) -> Result) -> Result {
         switch self {
-        case .Failure(let error): return ifLeft(error)
-        case .Success(let string): return ifRight(string)
+        case .failure(let error): return ifLeft(error)
+        case .success(let string): return ifRight(string)
         }
     }
 
@@ -33,29 +33,29 @@ private enum StringResult: EitherType {
 class CustomResultTests: XCTestCase {
     
     let aTestValue  = "Result"
-    let aTestError1 = Error.First
-    let aTestError2 = Error.Second
+    let aTestError1 = Error.first
+    let aTestError2 = Error.second
     
-    private let aSuccessResult  = StringResult.Success("Result")
-    private let aFailureResult1 = StringResult.Failure(Error.First)
-    private let aFailureResult2 = StringResult.Failure(Error.Second)
+    fileprivate let aSuccessResult  = StringResult.success("Result")
+    fileprivate let aFailureResult1 = StringResult.failure(Error.first)
+    fileprivate let aFailureResult2 = StringResult.failure(Error.second)
     
     func testSuccessExtract() {
         assertNoThrow(aSuccessResult.extract, aTestValue)
     }
     
     func testFailureExtract() {
-        assertThrows(aFailureResult1.extract, Error.First)
-        assertThrows(aFailureResult2.extract, Error.Second)
+        assertThrows(aFailureResult1.extract, Error.first)
+        assertThrows(aFailureResult2.extract, Error.second)
     }
     
     func testDescriptionSuccess() {
-        XCTAssertEqual(String(aSuccessResult), String(aTestValue))
+        XCTAssertEqual(String(describing: aSuccessResult), String(aTestValue))
     }
     
     func testDescriptionFailure() {
-        XCTAssertEqual(String(aFailureResult1), "First")
-        XCTAssertEqual(String(aFailureResult2), "Second")
+        XCTAssertEqual(String(describing: aFailureResult1), "first")
+        XCTAssertEqual(String(describing: aFailureResult2), "second")
     }
     
     func testDebugDescriptionSuccess() {
@@ -65,7 +65,7 @@ class CustomResultTests: XCTestCase {
     func testDebugDescriptionFailure() {
         let debugDescription1 = String(reflecting: aFailureResult1)
         XCTAssert(debugDescription1.hasPrefix("Left("))
-        XCTAssert(debugDescription1.hasSuffix("Error.First)"))
+        XCTAssert(debugDescription1.hasSuffix("Error.first)"))
     }
     
     func testIsSuccessGetter() {
@@ -102,7 +102,7 @@ class CustomResultTests: XCTestCase {
     }
     
     func testCoalesceFailure() {
-        let result = StringResult(left: Error.Second)
+        let result = StringResult(left: Error.second)
         XCTAssertEqual(result ?? "43", "43")
     }
     
@@ -118,7 +118,7 @@ class CustomResultTests: XCTestCase {
         XCTAssert(aFailureResult1 != Result<String>(error: aTestError2))
     }
     
-    private func countCharacters(string: String) -> Int {
+    fileprivate func countCharacters(_ string: String) -> Int {
         return string.characters.count
     }
     
@@ -130,12 +130,12 @@ class CustomResultTests: XCTestCase {
         assertFailure(aFailureResult1.map(countCharacters), aTestError1)
     }
     
-    private func doubleSuccess(x: String) -> Result<String> {
-        return .Success(x + x)
+    fileprivate func doubleSuccess(_ x: String) -> Result<String> {
+        return .success(x + x)
     }
     
-    private func doubleFailure(x: String) -> Result<String> {
-        return .Failure(aTestError1)
+    fileprivate func doubleFailure(_ x: String) -> Result<String> {
+        return .failure(aTestError1)
     }
     
     func testFlatMapSuccessSuccess() {

@@ -21,7 +21,7 @@ extension Either: EitherType {
         self = .Right(right)
     }
     
-    public func analysis<Result>(@noescape ifLeft ifLeft: T -> Result, @noescape ifRight: U -> Result) -> Result {
+    public func analysis<Result>(ifLeft: (T) -> Result, ifRight: (U) -> Result) -> Result {
         switch self {
         case .Left(let value): return ifLeft(value)
         case .Right(let value): return ifRight(value)
@@ -32,19 +32,19 @@ extension Either: EitherType {
 
 extension EitherType {
     
-    public func flatMapLeft<NewLeft>(@noescape transform: LeftType -> Either<NewLeft, RightType>) -> Either<NewLeft, RightType> {
+    public func flatMapLeft<NewLeft>(_ transform: (LeftType) -> Either<NewLeft, RightType>) -> Either<NewLeft, RightType> {
         return analysis(ifLeft: transform, ifRight: Either.Right)
     }
     
-    public func mapLeft<NewLeft>(@noescape transform: LeftType -> NewLeft) -> Either<NewLeft, RightType> {
+    public func mapLeft<NewLeft>(_ transform: (LeftType) -> NewLeft) -> Either<NewLeft, RightType> {
         return flatMapLeft { .Left(transform($0)) }
     }
     
-    public func flatMapRight<NewRight>(@noescape transform: RightType -> Either<LeftType, NewRight>) -> Either<LeftType, NewRight> {
+    public func flatMapRight<NewRight>(_ transform: (RightType) -> Either<LeftType, NewRight>) -> Either<LeftType, NewRight> {
         return analysis(ifLeft: Either.Left, ifRight: transform)
     }
     
-    public func mapRight<NewRight>(@noescape transform: RightType -> NewRight) -> Either<LeftType, NewRight> {
+    public func mapRight<NewRight>(_ transform: (RightType) -> NewRight) -> Either<LeftType, NewRight> {
         return flatMapRight { .Right(transform($0)) }
     }
     

@@ -11,10 +11,10 @@ import XCTest
 
 class OptionalTests: XCTestCase {
     
-    private let aValue = 42
+    fileprivate let aValue = 42
     
-    private let aSuccessResult = Either<Void, Int>(right: 42)
-    private var aFailureResult =  Either<Void, Int>()
+    fileprivate let aSuccessResult = Either<Void, Int>(right: 42)
+    fileprivate var aFailureResult =  Either<Void, Int>()
     
     func testEqualityOptional() {
         XCTAssert(aSuccessResult == Optional(right: aValue))

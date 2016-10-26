@@ -11,14 +11,14 @@ import XCTest
 
 class ResultCollectionTests: XCTestCase {
     
-    private let testWithFailure = [ Result(value: -1), Result(value: 0), Result(value: 1), Result(error: Error.First) ] as [Result<Int>]
-    private let testAllSuccesses = [ Result(value: -1), Result(value: 0), Result(value: 1), Result(value: 2) ] as [Result<Int>]
+    fileprivate let testWithFailure = [ Result(value: -1), Result(value: 0), Result(value: 1), Result(error: Error.first) ] as [Result<Int>]
+    fileprivate let testAllSuccesses = [ Result(value: -1), Result(value: 0), Result(value: 1), Result(value: 2) ] as [Result<Int>]
     
     func testPartition() {
         let (failures, successes) = testWithFailure.partition()
         
         XCTAssertEqual(Set(successes), [ -1, 0, 1 ])
-        XCTAssert(failures.elementsEqual(CollectionOfOne(Error.First), isEquivalent: {
+        XCTAssert(failures.elementsEqual(CollectionOfOne(Error.first), by: {
             $0.matches($1)
         }))
     }
@@ -32,7 +32,7 @@ class ResultCollectionTests: XCTestCase {
     }
 
     func testCollectFailure() {
-        assertFailure(testWithFailure.collectAllSuccesses(), Error.First)
+        assertFailure(testWithFailure.collectAllSuccesses(), Error.first)
     }
     
     func testSplit() {
@@ -41,7 +41,7 @@ class ResultCollectionTests: XCTestCase {
             if number >= 0 {
                 return Result(value: number * 2)
             }
-            return Result(error: Error.First)
+            return Result(error: Error.first)
         }
         
         assertSuccess(splitResult) {

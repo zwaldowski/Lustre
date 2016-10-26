@@ -338,11 +338,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Zachary Waldowski";
 				TargetAttributes = {
 					DB5BCDF01B61FE8A009E42A9 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					DB5BCE0F1B61FE94009E42A9 = {
 						CreatedOnToolsVersion = 7.0;
@@ -355,6 +356,7 @@
 					};
 					DB5BCE741B6207A7009E42A9 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -513,6 +515,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB5BCE391B62001E009E42A9 /* Debug.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -521,7 +525,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB5BCE3A1B62001E009E42A9 /* Release.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -535,6 +542,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -547,6 +555,7 @@
 				DEFINES_MODULE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -555,6 +564,7 @@
 			baseConfigurationReference = DB5BCE3B1B62005E009E42A9 /* Lustre.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -569,6 +579,7 @@
 			baseConfigurationReference = DB5BCE3B1B62005E009E42A9 /* Lustre.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -601,6 +612,7 @@
 			baseConfigurationReference = DB5BCE3B1B62005E009E42A9 /* Lustre.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -614,6 +626,7 @@
 			baseConfigurationReference = DB5BCE3B1B62005E009E42A9 /* Lustre.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -626,6 +639,7 @@
 			baseConfigurationReference = DB5BCE3C1B62005E009E42A9 /* Tests.xcconfig */;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -634,6 +648,7 @@
 			baseConfigurationReference = DB5BCE3C1B62005E009E42A9 /* Tests.xcconfig */;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
